@@ -1,9 +1,9 @@
 // The location model
-const location = require('../models/location.js');
+const slot = require('../models/slot.js');
 class schedule {
-    constructor(name, slots, specification,) {
+    constructor(startTime,endTime,name, specification,) {
+        slot.call(this,startTime,endTime);
         this.name=name;
-        this.slots=slots;
         this.specification=specification;
 
     };
