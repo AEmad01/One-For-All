@@ -1,3 +1,4 @@
+
 const uuid = require('uuid')
 // The User Model
 class User {
