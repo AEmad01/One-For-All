@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 // Direct routes to appropriate files 
-//app.use('/api/users', users)
+app.use('/api/users', users)
 app.use('/api/members', members)
 
 // Handling 404

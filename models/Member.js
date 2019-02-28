@@ -2,7 +2,6 @@ const User= require("./User")
 class Member{
 
   constructor(name,age,skills,intrests,pastEvents,completedProjects,reviews,certificates) {
-    //User.call(this,name, age);
     new User(this.name=name,this.age=age);
     //this.name=name;
     //this.age=age;
