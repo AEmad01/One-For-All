@@ -1,0 +1,19 @@
+{
+  "name": "lirtenhub",
+  "version": "1.0.0",
+  "description": "one for all",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SE-GUC/One-For-All.git"
+  },
+  "author": "One For all",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SE-GUC/One-For-All/issues"
+  },
+  "homepage": "https://github.com/SE-GUC/One-For-All#readme"
+}
