@@ -3,7 +3,7 @@ const express = require('express');
 const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
-
+//router.use(express.json);
 // Models
 const Partner = require('../../models/Partner');
 
@@ -76,5 +76,41 @@ router.post('/joi', (req, res) => {
 	};
 	return res.json({ data: newUser });
 });
+// Get all partners
+router.get('/api/partners', (req, res) => {
+    res.send(partners)
+})
+// Get a certain partner
+router.get('/api/partners/:id', (req, res) => {
+    const partnerId = req.params.id
+    const partner = partners.find(partner => partner.id === partnerId)  
+    res.send(partner)
+})
+
+// Update a partner's name
+router.put('/api/partners/:id', (req, res) => {
+    const partnerId = req.params.id 
+    const updatedName = req.body.name
+    const updatedage = req.body.age
+    const updatedusername = req.body.username
+    const updatedpassword = req.body.password
+
+    const partner = partners.find(partner => partner.id === partnerId)
+    partner.name = updatedName
+    partner.age = updatedage
+    partner.username = updatedusername
+    partner.password = updatedpassword
+
+    res.send(partners)
+})
+
+router.delete('/api/partners/:id', (req, res) => {
+    const partnerId = req.params.id 
+    const partner = partners.find(partner => partner.id === partnerId)
+    const index = partners.indexOf(partner)
+    partners.splice(index,1)
+    res.send(partners)
+})
+    
 
 module.exports = router;
