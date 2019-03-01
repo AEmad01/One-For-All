@@ -1,6 +1,5 @@
 const uuid = require('uuid')
 
-// The User Model
 class Admin {
     constructor(name, age) {
         this.name = name;

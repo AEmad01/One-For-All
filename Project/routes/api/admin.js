@@ -108,10 +108,48 @@ router.post('/',(req,res)=>{
 	};
 	return res.json({ data: newTask });
 
-}
+});
 
-)
+router.post('/joi', (req, res) => {
+	const time = req.body.time
+    const effort=req.body.effort
+    const level_of_commitment = req.body.level_of_commitment
+    const the_experience_level =req.body.the_experience_level
+    const partner_who_owns_it = req.body.partner_who_owns_it
+    const monetary_compensation =req.body.monetary_compensation
+    const consultancy_assigned_to_it =req.body.consultancy_assigned_to_it
+    const set_of_skills =req.body.set_of_skills
+
+	const schema = {
+		name: Joi.string().min(3).required(),
+		age: Joi.number().required(),
+	}
+
+	const result = Joi.validate(req.body, schema);
+
+	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+
+	const newAdmin = {
+		name,
+        age,
+        set_of_skills,
+		id: uuid.v4(),
+	};
+	return res.json({ data: newAdmin });
+});
 //Choose the candidate 
+router.post('/', (req, res) => {
+    const name = req.body.name;
+    const taskNumber = req.body.taskNumber;
 
+    if (!name) return res.status(400).send({ err: 'Name field is required' });
+    if (typeof name !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
+    if (!taskNumber) return res.status(400).send({ err: 'taskNumber field is required' });
+    if (typeof taskNumber !== 'number') return res.status(400).send({ err: 'Invalid value for taskNumber' });
+    if (taskNumber > tasks.length) return res.status(400).send({err: 'taskNumber value cannot be more than '+tasks.length});
+
+    tasks[taskNumber].assignedMember = name;
+    return res.json({ data: tasks });
+});
 
 module.exports = router;

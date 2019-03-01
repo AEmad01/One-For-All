@@ -7,11 +7,13 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
     <a href="/api/admin">Admins</a>
+    <a href="/api/task">tasks</a>
     `);
 })
 
 // Direct routes to appropriate files 
 app.use('/api/admin', admins)
+app.use('/api/task', tasks)
 
 // Handling 404
 app.use((req, res) => {
