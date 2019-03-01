@@ -5,8 +5,6 @@ const uuid = require('uuid');
 const router = express.Router();
 
 // Models
-const coach = require('../../models/member');
-const member = require('../../models/lifecoach');
 const location = require('../../models/location');
 
 // temporary data created as if it was pulled out of the database ...
