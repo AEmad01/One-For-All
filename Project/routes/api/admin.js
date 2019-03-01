@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Models
 const Admin = require('../../models/Admin');
+const tasks = require('../../models/task');
 
 // temporary data created as if it was pulled out of the database ...
 const admins = [
@@ -121,21 +122,32 @@ router.post('/joi', (req, res) => {
     const set_of_skills =req.body.set_of_skills
 
 	const schema = {
-		name: Joi.string().min(3).required(),
-		age: Joi.number().required(),
+		time: Joi.string().min(3).required(),
+        effort: Joi.string().min(3).required(),
+        level_of_commitment: Joi.number().required(),
+        the_experience_level: Joi.string().min(3).required(),
+        partner_who_owns_it: Joi.string().min(3).required(),
+        monetary_compensation: Joi.number().required(),
+        consultancy_assigned_to_it: Joi.string().min(3).required(),
+        set_of_skills: Joi.string().min(3).required(),
 	}
 
 	const result = Joi.validate(req.body, schema);
 
 	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
 
-	const newAdmin = {
-		name,
-        age,
+	const newTask = {
+		time,
+        effort,
+        level_of_commitment,
+        the_experience_level,
+        partner_who_owns_it,
+        monetary_compensation,
+        consultancy_assigned_to_it,
         set_of_skills,
-		id: uuid.v4(),
+	
 	};
-	return res.json({ data: newAdmin });
+	return res.json({ data: newTask });
 });
 //Choose the candidate 
 router.post('/', (req, res) => {
@@ -148,7 +160,7 @@ router.post('/', (req, res) => {
     if (typeof taskNumber !== 'number') return res.status(400).send({ err: 'Invalid value for taskNumber' });
     if (taskNumber > tasks.length) return res.status(400).send({err: 'taskNumber value cannot be more than '+tasks.length});
 
-    tasks[taskNumber].assignedMember = name;
+    tasks[taskNumber-1].Candidate = name;
     return res.json({ data: tasks });
 });
 
