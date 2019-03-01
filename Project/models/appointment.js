@@ -1,7 +1,4 @@
-const slot = require('../models/slot.js');
-const location = require('../models/location.js');
 class appointment{
-    
     constructor(location,slot,lifeCoach,person,confirm){
         this.location=Location;
         this.slot=slot;
@@ -10,4 +7,4 @@ class appointment{
         this.confirm = confirm;
     }
 }
-module.exports=appointment;
+module.exports=appointment

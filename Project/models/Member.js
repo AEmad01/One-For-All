@@ -1,6 +1,9 @@
+const uuid = require('uuid')
 class Member{
 constructor(name,age,skills,intrests,pastEvents,completedProjects,reviews,certificates) {
-    User.call(this,name, age);
+    this.name = name;
+    this.age = age;
+    this.id = uuid.v4();
     this.skills=skills;
     this.intrests=intrests;
     this.pastEvents=pastEvents;

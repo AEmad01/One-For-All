@@ -1,7 +1,6 @@
 // The location model
-class Location {
-    constructor(name, address, city, country,time,sender,reciver) {
-
+class location {
+    constructor(name, address, city, country, time, sender, reciver) {
         this.name=name;
         this.address=address;
         this.city=city;
@@ -12,4 +11,4 @@ class Location {
     };
 }
 
-module.exports = Location
+module.exports = location
