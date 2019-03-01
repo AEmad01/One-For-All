@@ -3,7 +3,7 @@ const express = require('express');
 const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
-const schedulee = require('../../models/schedulee');
+const schedule = require('../../models/schedule');
 
 const users = [
     new User('Abdullah','mental',2),
