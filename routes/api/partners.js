@@ -9,11 +9,11 @@ const Partner = require('../../models/Partner');
 
 // temporary data created as if it was pulled out of the database ...
 const partners = [
-	new Partner('Stinson', 30,'BStrinson','legendary'),
-	new Partner('Audren', 27,'Laudren','sonofabeach'),
-	new Partner('Moseby', 29,'mosebyboy','detectiveM'),
-	new Partner('Eriksen', 27,'judgeEriksen','just press options'),
-	new Partner('Schrbatsky', 28,'MallGirl','CANADA')
+	new Partner(1,'Stinson', 30,'BStrinson','legendary'),
+	new Partner(2,'Audren', 27,'Laudren','sonofabeach'),
+	new Partner(3,'Moseby', 29,'mosebyboy','detectiveM'),
+	new Partner(4,'Eriksen', 27,'judgeEriksen','just press options'),
+	new Partner(5,'Schrbatsky', 28,'MallGirl','CANADA')
 ];
 
 // Instead of app use route

@@ -20,6 +20,55 @@ Descriptions.push({TaskName: req.body.TaskName,DateTime: req.body.DateTime,Text:
 
 
 })
+router.post('/', (req, res) => {
+	const TaskName = req.body.TaskName;
+    const DateTime = req.body.DateTime;
+    const Text = req.body.Text;
+    const PartnerName = req.body.PartnerName; 
+
+	if (!TaskName) return res.status(400).send({ err: 'Task Name field is required' });
+	if (typeof TaskName !== 'string') return res.status(400).send({ err: 'Invalid value for Taskname' });
+	if (!DateTime) return res.status(400).send({ err: 'DateTime field is required' });
+    if (!Text) return res.status(400).send({ err: 'Text field is required' });
+    if (!PartnerName) return res.status(400).send({ err: 'Partner name field is required' });
+
+	const newUser = {
+        TaskName,
+        DateTime,
+        Text,
+        PartnerName
+	};
+	return res.json({ data: newUser });
+});
+
+router.post('/joi', (req, res) => {
+	const TaskName = req.body.TaskName
+    const DateTime = req.body.DateTime
+    const Text = req.body.Text
+    const PartnerName = req.body.PartnerName,
+    
+
+	const schema = {
+		TaskName: Joi.string().min(3).required(),
+        DateTime: Joi.DateTime.required(),
+        Text: Joi.string().min(8).required(),
+        PartnerName: Joi.string().min(8).required(),
+
+	}
+
+	const result = Joi.validate(req.body, schema);
+
+	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+
+	const newUser = {
+    TaskName,
+    DateTime,
+    Text,
+    PartnerName
+        
+	};
+	return res.json({ data: newUser });
+});
 
 router.get('/', (req, res) => res.json({ data: Descriptions }))
 
