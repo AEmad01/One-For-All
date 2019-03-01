@@ -16,7 +16,7 @@ const users = [
 // res.json() Automatically sends a status of 200
 
 // Get all users
-router.get('/', (req, res) => res.json({ data: users }));
+router.get('/', (req, res) => res.json({ data: schedule }));
 
 // Create a new user
 router.post('/', (req, res) => {
