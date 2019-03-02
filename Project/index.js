@@ -1,21 +1,18 @@
 const express = require('express')
 
-const users = require('./routes/api/')
-const books = require('./routes/api/books')
+const appointments = require('./routes/api/appointments')
 
 const app = express()
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send(`<h1>Welcome to Book Store</h1>
-    <a href="/api/users">Users</a>
-    <a href="/api/books">Books</a>
+    res.send(`<h1>Welcome to Litren Hub</h1>
+    <a href="/api/appointments">Appointments</a>
     `);
 })
 
 // Direct routes to appropriate files 
-app.use('/api/users', users)
-app.use('/api/books', books)
+app.use('/api/appointments', appointments)
 
 // Handling 404
 app.use((req, res) => {

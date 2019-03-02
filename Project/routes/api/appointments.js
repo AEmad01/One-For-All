@@ -27,14 +27,14 @@ router.post('/', (req, res) => {
     const person = req.body.person;
 
 
-	if (!location) return res.status(400).send({ err: 'Name field is required' });
-	if (typeof location !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
-	if (!slot) return res.status(400).send({ err: 'Age field is required' });
-    if (typeof slot !== 'number') return res.status(400).send({ err: 'Invalid value for age' });
-    if (!lifeCoach) return res.status(400).send({ err: 'Name field is required' });
-    if (typeof lifeCoach !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
-    if (!person) return res.status(400).send({ err: 'Name field is required' });
-	if (typeof person !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
+	if (!location) return res.status(400).send({ err: 'location field is required' });
+	if (typeof location !== 'string') return res.status(400).send({ err: 'Invalid value for location' });
+	if (!slot) return res.status(400).send({ err: 'slot field is required' });
+    if (typeof slot !== 'number') return res.status(400).send({ err: 'Invalid value for slot' });
+    if (!lifeCoach) return res.status(400).send({ err: 'lifeCoach field is required' });
+    if (typeof lifeCoach !== 'string') return res.status(400).send({ err: 'Invalid value for lifeCoach' });
+    if (!person) return res.status(400).send({ err: 'person field is required' });
+	if (typeof person !== 'string') return res.status(400).send({ err: 'Invalid value for person' });
 
 	const newAppointment = {
 		location,
@@ -43,7 +43,8 @@ router.post('/', (req, res) => {
 		person,
 		id: uuid.v4(),
 	};
-	return res.json({ data: newAppointment});
+	appointments.push(newAppointment);
+	return res.json({ data: appointments});
 });
 
 router.post('/joi', (req, res) => {
@@ -70,7 +71,8 @@ router.post('/joi', (req, res) => {
 		person,
 		id: uuid.v4(),
 	};
-	return res.json({ data: newAppointment });
+	appointments.push(newAppointment);
+	return res.json({ data: appointments });
 });
 
 module.exports = router;
