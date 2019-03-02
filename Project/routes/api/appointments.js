@@ -1,15 +1,15 @@
 // Dependencies
 const express = require('express');
 const Joi = require('joi');
-const uuid = require('uuid');
 const router = express.Router();
+const bodyParser=require('body-parser');
 
 // Models
 const appointment = require('../../models/appointment');
-
+router.use(bodyParser.urlencoded({extended:false}));
 // temporary data created as if it was pulled out of the database ...
 const appointments = [
-	new appointment('cairo',1,'hazem','ahmed',false)
+	new appointment(1,'cairo',1,'hazem','ahmed',false)
 ];
 
 // Instead of app use route
@@ -37,11 +37,12 @@ router.post('/', (req, res) => {
 	if (typeof person !== 'string') return res.status(400).send({ err: 'Invalid value for person' });
 
 	const newAppointment = {
+		id: appointments.length + 1,
 		location,
         slot,
         lifeCoach,
 		person,
-		id: uuid.v4(),
+		
 	};
 	appointments.push(newAppointment);
 	return res.json({ data: appointments});
@@ -65,14 +66,42 @@ router.post('/joi', (req, res) => {
 	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
 
 	const newAppointment = {
+		id: appointments.length + 1,
 		location,
         slot,
         lifeCoach,
 		person,
-		id: uuid.v4(),
 	};
 	appointments.push(newAppointment);
 	return res.json({ data: appointments });
 });
 
+// Get a certain appointments
+router.get('/api/appointments/:id', (req, res) => {
+    const appointmentId = req.params.id
+    const appointment = appointments.find(appointment => appointment.id === appointmentId)  
+    res.send(appointment)
+});
+
+// Update a appointments
+router.put('/api/partners/:id', (req, res) => {
+    console.log(req.body);
+    const partnerId = req.params.id 
+    const updatedName = req.body.name
+    const updatedage = req.body.age
+    const updatedusername = req.body.username
+    const updatedpassword = req.body.password
+console.log(partnerId);
+    const partner = partners.find(partner=> partner.id == partnerId)
+    console.log(partner)
+    partner.name = updatedName
+    partner.age = updatedage
+    partner.username = updatedusername
+    partner.password = updatedpassword
+
+
+    res.send(partners)
+})
+
 module.exports = router;
+
