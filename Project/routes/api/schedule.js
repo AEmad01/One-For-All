@@ -5,18 +5,18 @@ const uuid = require('uuid');
 const router = express.Router();
 const schedule = require('../../models/schedule');
 
-const users = [
-    new User('Abdullah','mental',2),
-	new User('Walid','health',3),
-	new User('Ahmed','health',1),
+const schedules = [
+    new schedule('Abdullah','mental',2),
+	new schedule('Walid','health',3),
+	new schedule('Ahmed','health',1),
 ];
 
 // Instead of app use route
 // No need to write the full route
 // res.json() Automatically sends a status of 200
 
-// Get all users
-router.get('/', (req, res) => res.json({ data: schedule }));
+// Get all schedules
+router.get('/', (req, res) => res.json({ data: schedules}));
 
 // Create a new user
 router.post('/', (req, res) => {
@@ -34,7 +34,8 @@ router.post('/', (req, res) => {
 	const newSchedule = {
         lifecoach,
         specification,
-        slots
+		slots,
+		id: uuid.v4(),
 	};
 	return res.json({ data: newSchedule  });
 });
@@ -57,7 +58,8 @@ router.post('/joi', (req, res) => {
 	const newSchedule = {
         lifecoach,
         specification,
-        slots
+        slots,
+		id: uuid.v4(),
 	};
 	return res.json({ data: newSchedule  });
 });
