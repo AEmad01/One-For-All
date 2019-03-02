@@ -55,7 +55,6 @@ router.post('/', (req, res) => {
 	};
 	return res.json({ data: newMember });
 });
-
 router.post('/joi', (req, res) => {
 	const name = req.body.name
 	const age = req.body.age
@@ -66,7 +65,7 @@ router.post('/joi', (req, res) => {
     const reviews=req.body.reviews;
     const certificates=req.body.certificates;
 	const schema = {
-		name: Joi.string().min(3).required(),
+		name: Joi.string().min(3 ).required(),
         age: Joi.number().required(),
         skills: Joi.string().min(3).required(),
         intrests: Joi.string().min(3).required(),
@@ -97,7 +96,7 @@ router.post('/joi', (req, res) => {
 // Get a certain member
 router.get('/api/members/:id', (req, res) => {
     const memberID = req.params.id
-    const member = members.find(Member => Member.id === memberID)  
+    const member = members.find(member => member.id === memberID)  
     res.send(member)
 })
 
@@ -107,22 +106,21 @@ router.put('/api/members/:id', (req, res) => {
     const updatedName = req.body.name;
 	const updatedAge = req.body.age;
     const updatedSkills=req.body.skills;
-    const UpdatedIntrests=req.body.intrests;
-    const UpdatedPastEvents=req.body.pastEvents;
+    const updatedIntrests=req.body.intrests;
+    const updatedPastEvents=req.body.pastEvents;
     const updatedCompletedProjects=req.body.completedProjects;
     const updatedReviews=req.body.reviews;
     const updatedCertificates=req.body.certificates;
-
     const Member = members.find(Member => Member.id === memberID)
-    member.name=updatedName;
-    member.age=updatedAge;
-    member.skill=updatedSkills;
-    member.reviews=updatedReviews;
-    member.intrests=UpdatedIntrests;
-    member.pastEvents=UpdatedPastEvents;
-    member.completedProjects=updatedCompletedProjects;
-    member.certificates=updatedCertificates;
-    res.send(Member)
+    Member.name=updatedName;
+    Member.age=updatedAge;
+    Member.skill=updatedSkills;
+    Member.reviews=updatedReviews;
+    Member.intrests=updatedIntrests;
+    Member.pastEvents=updatedPastEvents;
+    Member.completedProjects=updatedCompletedProjects;
+    Member.certificates=updatedCertificates;
+    res.send(members)
 })
 // delete a certain member
 router.delete('/api/members/:id', (req, res) => {
@@ -130,7 +128,7 @@ router.delete('/api/members/:id', (req, res) => {
     const member = members.find(member => member.id === memberID)
     const index = memebrs.indexOf(member)
     members.splice(index,1)
-    res.send(Member)
-})
+    res.send(members)
+});
 
 module.exports = router;
