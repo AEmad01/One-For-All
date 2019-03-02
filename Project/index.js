@@ -1,5 +1,5 @@
 const express = require('express')
-
+const schedules = require('./routes/api/schedules')
 const partners = require('./routes/api/partners')
 const descriptions = require('./routes/api/descriptions')
 const users = require('./routes/api/users')
@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
     <a href="/api/descriptions">Descriptions</a>
     <a href="/api/appointments">Appointments</a>
     <a href="/api/members">Members</a>
+    <a href="/api/schedules">schedules</a>
     `);
 })
 
@@ -23,6 +24,7 @@ app.use('/api/partners', partners)
 app.use('/api/descriptions', descriptions)
 app.use('/api/members', members)
 app.use('/api/appointments', appointments)
+app.use('/api/schedules', schedules)
 
 // Handling 404
 app.use((req, res) => {
