@@ -9,6 +9,7 @@ class Partner{
        // this.id = uuid.v4();
         this.username = username;
         this.password = password;
+        
     };
 };
 

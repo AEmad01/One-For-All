@@ -1,6 +1,7 @@
 // The Book Model
 class Description {
-    constructor(TaskName,DateTime,Text,PartnerName,) {
+    constructor(id,TaskName,DateTime,Text,PartnerName,) {
+        this.id = id;
         this.TaskName = TaskName;
         this.DateTime = DateTime;
         this.Text = Text;

@@ -3,10 +3,11 @@ const express = require('express');
 const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
+const bodyParser=require('body-parser');
 //router.use(express.json);
 // Models
 const Partner = require('../../models/Partner');
-
+router.use(bodyParser.urlencoded({extended:false}));
 // temporary data created as if it was pulled out of the database ...
 const partners = [
 	new Partner(1,'Stinson', 30,'BStrinson','legendary'),
@@ -54,11 +55,11 @@ router.post('/joi', (req, res) => {
     const password = req.body.password; 
     
 
-	const schema = {
+	var schema = {
 		name: Joi.string().min(3).required(),
         age: Joi.number().required(),
         username: Joi.string().min(8).required(),
-        password: Joi.string().min(8).required(),
+        password: Joi.string().min(8).required()
 
 	}
 
@@ -73,7 +74,8 @@ router.post('/joi', (req, res) => {
         username,
         password,
         
-	};
+    };
+    partners.push(newUser);
 	return res.json({ data: newUser });
 });
 // Get all partners
@@ -89,24 +91,27 @@ router.get('/api/partners/:id', (req, res) => {
 
 // Update a partner's name
 router.put('/api/partners/:id', (req, res) => {
+    console.log(req.body);
     const partnerId = req.params.id 
     const updatedName = req.body.name
     const updatedage = req.body.age
     const updatedusername = req.body.username
     const updatedpassword = req.body.password
-
-    const partner = partners.find(partner => partner.id === partnerId)
+console.log(partnerId);
+    const partner = partners.find(partner=> partner.id == partnerId)
+    console.log(partner)
     partner.name = updatedName
     partner.age = updatedage
     partner.username = updatedusername
     partner.password = updatedpassword
+
 
     res.send(partners)
 })
 
 router.delete('/api/partners/:id', (req, res) => {
     const partnerId = req.params.id 
-    const partner = partners.find(partner => partner.id === partnerId)
+    const partner = partners.find(partner => partner.id == partnerId)
     const index = partners.indexOf(partner)
     partners.splice(index,1)
     res.send(partners)
