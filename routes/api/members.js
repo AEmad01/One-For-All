@@ -3,22 +3,16 @@ const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
 
-// Models
 const Member = require('../../models/Member.js');
-// temporary data created as if it was pulled out of the database ...
 const members = [
-	new Member('Barney', 30,'skills','intrests','pastEvents','completedProjects','reviews','certificates'),
-	new Member('Lily', 27,'skills','intrests','pastEvents','completedProjects','reviews','certificates')
+	new Member('Barney', 30,'hookups','women','sex','200 different women','reviews','MIT'),
+	new Member('Ted', 27,'lecturing','Architecture','pastEvents','GNB HQ','reviews','GUC')
 ];
 
-// Instead of app use route
-// No need to write the full route
-// res.json() Automatically sends a status of 200
-
-// Get all users
+// Get all members
 router.get('/', (req, res) => res.json({ data: members }));
 
-// Create a new user
+// Create a new member
 router.post('/', (req, res) => {
 	const name = req.body.name;
     const age = req.body.age;
@@ -28,6 +22,7 @@ router.post('/', (req, res) => {
     const completedProjects=req.body.completedProjects;
     const reviews=req.body.reviews;
     const certificates=req.body.certificates;
+    const notification=notification;
 	if (!name) return res.status(400).send({ err: 'Name field is required' });
 	if (typeof name !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
 	if (!age) return res.status(400).send({ err: 'Age field is required' });
@@ -36,13 +31,15 @@ router.post('/', (req, res) => {
     if (typeof skills !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
     if (!intrests) return res.status(400).send({ err: 'intrests field is required' });
     if (typeof intrests !== 'string') return res.status(400).send({ err: 'Invalid value for intrest' });
-    if (!pastEvents) return res.status(400).send({ err: 'Skills field is required' });
+    if (!pastEvents) return res.status(400).send({ err: 'pastEvent field is required' });
     if (typeof pastEvents !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
     if (!completedProjects) return res.status(400).send({ err: 'Skills field is required' });
     if (typeof completedProjects !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
     if (!reviews) return res.status(400).send({ err: 'Skills field is required' });
     if (typeof reviews !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
     if (!certificates) return res.status(400).send({ err: 'Skills field is required' });
+    if (typeof certificates !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
+    if (!notification) return res.status(400).send({ err: 'Skills field is required' });
     if (typeof certificates !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
     
 	const newMember = {
@@ -97,5 +94,43 @@ router.post('/joi', (req, res) => {
 	};
 	return res.json({ data: newMember });
 });
+// Get a certain member
+router.get('/api/members/:id', (req, res) => {
+    const memberID = req.params.id
+    const member = members.find(Member => Member.id === memberID)  
+    res.send(member)
+})
+
+// Update a member's name
+router.put('/api/members/:id', (req, res) => {
+    const memberID = req.params.id 
+    const updatedName = req.body.name;
+	const updatedAge = req.body.age;
+    const updatedSkills=req.body.skills;
+    const UpdatedIntrests=req.body.intrests;
+    const UpdatedPastEvents=req.body.pastEvents;
+    const updatedCompletedProjects=req.body.completedProjects;
+    const updatedReviews=req.body.reviews;
+    const updatedCertificates=req.body.certificates;
+
+    const Member = members.find(Member => Member.id === memberID)
+    member.name=updatedName;
+    member.age=updatedAge;
+    member.skill=updatedSkills;
+    member.reviews=updatedReviews;
+    member.intrests=UpdatedIntrests;
+    member.pastEvents=UpdatedPastEvents;
+    member.completedProjects=updatedCompletedProjects;
+    member.certificates=updatedCertificates;
+    res.send(Member)
+})
+// delete a certain member
+router.delete('/api/members/:id', (req, res) => {
+    const memberID = req.params.id 
+    const member = members.find(member => member.id === memberID)
+    const index = memebrs.indexOf(member)
+    members.splice(index,1)
+    res.send(Member)
+})
 
 module.exports = router;
