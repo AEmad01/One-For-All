@@ -84,23 +84,31 @@ router.get('/api/appointments/:id', (req, res) => {
 });
 
 // Update a appointments
-router.put('/api/partners/:id', (req, res) => {
+router.put('/api/appointments/:id', (req, res) => {
     console.log(req.body);
-    const partnerId = req.params.id 
-    const updatedName = req.body.name
-    const updatedage = req.body.age
-    const updatedusername = req.body.username
-    const updatedpassword = req.body.password
-console.log(partnerId);
-    const partner = partners.find(partner=> partner.id == partnerId)
-    console.log(partner)
-    partner.name = updatedName
-    partner.age = updatedage
-    partner.username = updatedusername
-    partner.password = updatedpassword
+    const appointmentId = req.params.id 
+    const updatelocation = req.body.location;
+    const updateslot = req.body.slot;
+    const updatelifeCoach = req.body.lifeCoach;
+    const updateperson = req.body.person;
+	console.log(appointmentId);
+    const appointment = appointments.find(appointment=> appointment.id == appointmentId)
+    console.log(appointment)
+    partner.location = updatelocation
+    partner.slot = updateslot
+    partner.lifeCoach = updatelifeCoach
+    partner.person = updateperson
 
 
-    res.send(partners)
+    res.send(appointments)
+})
+
+router.delete('/api/appointments/:id', (req, res) => {
+    const appointmentId = req.params.id 
+    const appointment = appointments.find(appointment => appointment.id == appointmentId)
+    const index = appointments.indexOf(appointment)
+    appointments.splice(index,1)
+    res.send(appointments)
 })
 
 module.exports = router;

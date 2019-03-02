@@ -1,4 +1,3 @@
-const uuid = require('uuid')
 class Member{
 constructor(id,name,age,skills,intrests,pastEvents,completedProjects,reviews,certificates) {
     this.id = id;
