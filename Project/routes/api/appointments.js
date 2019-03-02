@@ -36,34 +36,41 @@ router.post('/', (req, res) => {
     if (!person) return res.status(400).send({ err: 'Name field is required' });
 	if (typeof person !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
 
-	const newUser = {
+	const newAppointment = {
 		location,
         slot,
         lifeCoach,
-        person2
+		person,
+		id: uuid.v4(),
 	};
-	return res.json({ data: newUser });
+	return res.json({ data: newAppointment});
 });
 
 router.post('/joi', (req, res) => {
-	const name = req.body.name
-	const age = req.body.age
+	const location = req.body.location;
+    const slot = req.body.slot;
+    const lifeCoach = req.body.lifeCoach;
+    const person = req.body.person;
 
 	const schema = {
-		name: Joi.string().min(3).required(),
-		age: Joi.number().required(),
+		location: Joi.string().required(),
+		slot: Joi.number().required(),
+		lifeCoach: Joi.string().required(),
+		person: Joi.string().required()
 	}
 
 	const result = Joi.validate(req.body, schema);
 
 	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
 
-	const newUser = {
-		name,
-		age,
+	const newAppointment = {
+		location,
+        slot,
+        lifeCoach,
+		person,
 		id: uuid.v4(),
 	};
-	return res.json({ data: newUser });
+	return res.json({ data: newAppointment });
 });
 
 module.exports = router;
