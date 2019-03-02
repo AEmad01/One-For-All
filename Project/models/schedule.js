@@ -1,5 +1,6 @@
 class schedule {
-    constructor(lifecoach,specification,slots) {
+    constructor(id,lifecoach,specification,slots) {
+        this.id = id;
         this.lifecoach=lifecoach;
         this.specification=specification;
         this.slots=slots;
