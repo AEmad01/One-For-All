@@ -8,8 +8,7 @@ class Partner{
         this.age = age;
        // this.id = uuid.v4();
         this.username = username;
-        this.password = password;
-        
+        this.password = password; 
     };
 };
 
