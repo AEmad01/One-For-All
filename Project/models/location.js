@@ -10,6 +10,7 @@ class location {
         this.sender = sender;
         this.reciever = reciever;
         this.id = uuid.v4();
+        
 
     };
 }
