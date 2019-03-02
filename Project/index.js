@@ -1,7 +1,7 @@
 const express = require('express')
 
-const partners = require('./api/partners')
-const descriptions = require('./api/descriptions')
+const partners = require('./routes/api/partners')
+const descriptions = require('./routes/api/descriptions')
 const users = require('./routes/api/users')
 const members = require('./routes/api/members')
 const appointments = require('./routes/api/appointments')
