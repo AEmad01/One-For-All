@@ -1,19 +1,19 @@
 {
-  "name": "lirtenhub",
-  "version": "1.0.0",
-  "description": "one for all",
+  "name": "server",
+  "version": "0.0.1",
+  "description": "Introduction to node",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SE-GUC/One-For-All.git"
-  },
-  "author": "One For all",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SE-GUC/One-For-All/issues"
-  },
-  "homepage": "https://github.com/SE-GUC/One-For-All#readme"
+  "keywords": [
+    "server"
+  ],
+  "author": "Ammar Yasser",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "uuid": "^3.3.2"
+  }
 }
