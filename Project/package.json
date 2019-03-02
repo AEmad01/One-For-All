@@ -10,7 +10,7 @@
   "keywords": [
     "server"
   ],
-  "author": "Hazem, Halawa, Walid",
+  "author": "One-For-All",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
