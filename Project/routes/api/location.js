@@ -9,15 +9,14 @@ const location = require('../../models/location');
 
 // temporary data created as if it was pulled out of the database ...
 const location = [
-    new location('Downtown','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1')
+    new location('Downtown','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1'),
+    new location('GUC','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1')
+
 
 ];
 
-// Instead of app use route
-// No need to write the full route
-// res.json() Automatically sends a status of 200
 
-// Get all users
+// Get all locations
 router.get('/', (req, res) => res.json({ data: location }));
 
 router.post('/', (req, res) => {
@@ -59,6 +58,8 @@ router.post('/', (req, res) => {
         time,
         sender,
         receiver,
+        id: uuid.v4(),
+
 		
 	};
 	return res.json({ data: newLocation });
@@ -96,8 +97,36 @@ router.post('/joi', (req, res) => {
         time,
         sender,
         receiver,
+        id: uuid.v4(),
+
 	};
 	return res.json({ data: newLocation });
 });
+
+// Get a certain location
+app.get('/api/location/:id', (req, res) => {
+    const locid = req.params.id
+    const loc = location.find(loc => loc.id === locid)
+    res.send(loc)
+})
+
+// Update a location time
+app.put('/api/location/:id', (req, res) => {
+    const locid = req.params.id 
+    const updatedTime = req.body.time
+    const loc = location.find(loc => loc.id === locid)
+    loc.time = updatedTime
+    res.send(location)
+})
+
+
+// Delete a location
+app.delete('/api/location/:id', (req, res) => {
+    const locid = req.params.id 
+    const loc = location.find(loc => loc.id === locid)
+    const index = location.indexOf(loc)
+    location.splice(index,1)
+    res.send(location)
+})
 
 module.exports = router;
