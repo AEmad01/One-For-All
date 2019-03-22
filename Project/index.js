@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
 
 const app = express()
 app.use(express.json())
-
+mongoose.connect('mongodb://localhost/DB').then(()=> console.log('connected to DB')).catch(err => console.log('error'))
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Litren Hub</h1>
     <a href="/api/partners">Partners</a>
