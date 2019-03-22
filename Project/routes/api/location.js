@@ -9,7 +9,7 @@ const location = require('../../models/location');
 
 // temporary data created as if it was pulled out of the database ...
 const location = [
-    new location('Downtown','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1'),
+    new location('Downtown','Tagmo3','Cairo','Egyp','7/3/2019 12:00 AM', 'Coach1', 'Member1'),
     new location('GUC','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1')
 
 
