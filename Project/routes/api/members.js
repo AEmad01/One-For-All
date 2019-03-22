@@ -45,12 +45,16 @@ router.put('/api/members/:id', (req, res) => {
     res.send(members)
 })
 // delete a certain member
-router.delete('/api/members/:id', (req, res) => {
-    const memberID = req.params.id 
-    const member = members.find(member => member.id === memberID)
-    const index = memebrs.indexOf(member)
-    members.splice(index,1)
-    res.send(members)
-});
+router.delete('/:id', async (req,res) => {
+    try {
+     const id = req.params.id
+     const deletedMember = await Member.findByIdAndRemove(id)
+     res.json({msg:'Book was deleted successfully', data: deletedMember})
+    }
+    catch(error) {
+        // We will be handling the error later
+        console.log(error)
+    }  
+ })
 
 module.exports = router;
