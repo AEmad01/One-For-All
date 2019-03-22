@@ -24,13 +24,15 @@ router.post('/', async (req,res) => {
     }  
  })
 // Update a member's name
-router.post('/', async (req,res) => {
+router.put('/:id', async (req,res) => {
     try {
-        
-     const isValidated = validator.createValidation(req.body)
+     const id = req.params.id
+     const member = await Member.find({id})
+     if(!member) return res.status(404).send({error: 'Member does not exist'})
+     const isValidated = validator.updateValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const newMember = await Member.create(req.body)
-     res.json({msg:'Member was created successfully', data: newMember})
+     const updatedMember = await Member.updateOne(req.body)
+     res.json({msg: 'Member updated successfully'})
     }
     catch(error) {
         // We will be handling the error later
