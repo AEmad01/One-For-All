@@ -8,16 +8,16 @@ const router = express.Router();
 const location = require('../../models/location');
 
 // temporary data created as if it was pulled out of the database ...
-const location = [
-    new location('Downtown','Tagmo3','Cairo','Egyp','7/3/2019 12:00 AM', 'Coach1', 'Member1'),
-    new location('GUC','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1')
+const Location = [
+    new location('Downtown','Tagmo3','Cairo','Egypt','7/3/2019 12:00 AM', 'Coach1', 'Member1'),
+    new location('GUC','Tagmo3','Cairo','Egypt','7/3/29 12:00 AM', 'Coach1', 'Member1')
 
 
 ];
 
 
 // Get all locations
-router.get('/', (req, res) => res.json({ data: location }));
+router.get('/', (req, res) => res.json({ data: Location }));
 
 router.post('/', (req, res) => {
 	const name = req.body.name;
@@ -66,13 +66,13 @@ router.post('/', (req, res) => {
 });
 
 router.post('/joi', (req, res) => {
-    const name;
-    const address;
-    const city;
-    const country;
-    const time;
-    const sender;
-    const receiver;
+    const name = req.body.name;
+	const address = req.body.address;
+	const city = req.body.city;
+	const country = req.body.country;
+	const time = req.body.time;
+	const sender = req.body.sender;
+    const reciever = req.body.reciever;
 
 	const schema = {
 		name: Joi.string().required(),
@@ -104,14 +104,14 @@ router.post('/joi', (req, res) => {
 });
 
 // Get a certain location
-app.get('/api/location/:id', (req, res) => {
+router.get('/api/location/:id', (req, res) => {
     const locid = req.params.id
     const loc = location.find(loc => loc.id === locid)
     res.send(loc)
 })
 
 // Update a location time
-app.put('/api/location/:id', (req, res) => {
+router.put('/api/location/:id', (req, res) => {
     const locid = req.params.id 
     const updatedTime = req.body.time
     const loc = location.find(loc => loc.id === locid)
@@ -121,7 +121,7 @@ app.put('/api/location/:id', (req, res) => {
 
 
 // Delete a location
-app.delete('/api/location/:id', (req, res) => {
+router.delete('/api/location/:id', (req, res) => {
     const locid = req.params.id 
     const loc = location.find(loc => loc.id === locid)
     const index = location.indexOf(loc)

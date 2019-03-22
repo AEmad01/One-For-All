@@ -1,5 +1,5 @@
 const express = require('express')
-const tasks = require('./routes/api/tasks')
+const tasks = require('./routes/api/task')
 const admins = require('./routes/api/admin')
 const schedules = require('./routes/api/schedules')
 const partners = require('./routes/api/partners')
