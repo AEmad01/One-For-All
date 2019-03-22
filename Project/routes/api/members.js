@@ -2,7 +2,7 @@ const express = require('express');
 const Joi = require('joi');
 const router = express.Router();
 const Member = require('../../models/Member.js');
-
+const validator = require('../../validations/memberValidations')
 // Get all members
 router.get('/', async (req, res) => {
     const members = await Member.find();
