@@ -19,7 +19,6 @@ router.post('/', async (req,res) => {
      res.json({msg:'Member was created successfully', data: newMember})
     }
     catch(error) {
-        // We will be handling the error later
         console.log(error)
     }  
  })
