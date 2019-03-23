@@ -1,18 +1,38 @@
 // The location model
-const uuid = require('uuid');
-class location {
-    constructor(name, address, city, country, time, sender, reciever) {
-        this.name=name;
-        this.address=address;
-        this.city=city;
-        this.country=country;
-        this.time=time;
-        this.sender = sender;
-        this.reciever = reciever;
-        this.id = uuid.v4();
-        
-
-    };
-}
-
-module.exports = location
+const mongoose= require('mongoose')
+const Schema = mongoose.Schema;
+const locationSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
+    required: true
+  },
+  time: {
+    type: String,
+    required: true
+  },
+  member: {
+    type: String,
+    required: true
+  },
+  lifecoach: {
+    type: String,
+    required: true
+  },
+  id: {
+    type: Number,
+    required: true
+  },
+});
+  module.exports = location = mongoose.model('location',locationSchema)

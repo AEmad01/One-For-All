@@ -1,10 +1,45 @@
-const Member = require('../models/Member.js');
-class lifecoach{
-    constructor(name, age,skills, intrests,pastEvents,completedProjects,reviews,certificates ,specification,salary){
-        Member.call(this,name, age,skills, intrests,pastEvents,completedProjects,reviews,certificates);
-        this.specification = specification;
-        this.salary = salary;
-    }
-
-}
-module.exports = lifecoach
+const mongoose= require('mongoose')
+const Schema = mongoose.Schema;
+const LifecoachSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: true
+  },
+  skills: {
+    type: String,
+    required: true
+  },
+  intrests: {
+    type: String,
+    required: true
+  },
+  pastEvents: {
+    type: String,
+    required: true
+  },
+  completedProjects: {
+    type: String,
+    required: true
+  },
+  reviews: {
+    type: String,
+    required: true
+  },
+  certificates: {
+    type: String,
+    required: true
+  },
+  specification: {
+    type: String,
+    required: true
+  },
+  salary: {
+    type: Number,
+    required: true
+  }
+});
+  module.exports = Lifecoach = mongoose.model('Life Coach',LifecoachSchema);

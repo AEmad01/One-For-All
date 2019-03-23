@@ -1,15 +1,41 @@
-class Member{
- constructor(id,name,age,skills,intrests,pastEvents,completedProjects,reviews,certificates,) {
-    this.id=id;
-    this.name=name;
-    this.age=age;
-    this.skills=skills;
-    this.intrests=intrests;
-    this.pastEvents=pastEvents;
-    this.completedProjects=completedProjects;
-    this.reviews=reviews;
-    this.certificates=certificates;
-    
-  };
-};
-  module.exports = Member;
+const mongoose= require('mongoose')
+const Schema = mongoose.Schema;
+const MemberSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: true
+  },
+  skills: {
+    type: String,
+    required: true
+  },
+  intrests: {
+    type: String,
+    required: true
+  },
+  pastEvents: {
+    type: String,
+    required: true
+  },
+  completedProjects: {
+    type: String,
+    required: true
+  },
+  reviews: {
+    type: String,
+    required: true
+  },
+  certificates: {
+    type: String,
+    required: true
+  },
+  notification:{
+    type: [String],
+    required: false
+  }
+});
+  module.exports = Member = mongoose.model('Member',MemberSchema);
