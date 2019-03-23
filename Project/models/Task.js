@@ -5,41 +5,41 @@ const TaskSchema= new Schema({
      type: String,
      required: true
  },
-    time: {
+time: {
     type: Date,
     required: true
 },
 effort: {
-  type: String,
-  required: true
+    type: String,
+    required: true
 },
 levelOfCommitment: {
-  type: String,
-  required: true
+    type: String,
+    required: true
 },
 experienceLevel: {
-  type: String,
-  required: true
+    type: String,
+    required: true
 },
 partnerID: {
-  type: Number,
-  required: true
+    type: Number,
+    required: true
 },
 partnerName:{
-type: String,
-required: true
-},
+    type: String,
+    required: true
+},  
 monetaryCompensation: {
-  type: String,
-  required: true
+    type: String,
+    required: true
 },
 consultency: {
-  type: String,
-  required: true
+    type: String,
+    required: true
 },
 setOfSkills: {
-  type: [String],
-  required: true
+    type: [String],
+    required: true
 },
 memberID:{
     type: Number,
