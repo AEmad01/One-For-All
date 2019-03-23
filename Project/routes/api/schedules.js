@@ -1,13 +1,21 @@
 const express = require('express');
 const Joi = require('joi');
 const router = express.Router();
-const Schedule = require('../../models/schedule.js');
+const Schedule = require('../../models/Schedule.js');
 const validator = require('../../validations/scheduleValidations')
 // Get all schedules
 router.get('/', async (req, res) => {
     const schedules = await Schedule.find();
     res.json({ data: schedules })
 });
+
+// Get a certain partner using mongo
+router.get('/:id',async (req, res) => {
+    const schdeuleId = req.params.id
+    const schedule = await Schedule.findById(schdeuleId)  
+    if(!schedule) return res.status(400).send({error:result.error.details[0].message});
+    res.send(schedule)
+})
 
 // Create a new schedule
 router.post('/', async (req,res) => {
@@ -39,6 +47,17 @@ router.put('/:id', async (req,res) => {
     }  
  })
 
+
+ router.delete('/:id',async (req, res) => {
+    const schdeuleId = req.params.id
+    const schedule = await Schedule.findByIdAndDelete(schdeuleId)  
+    if(!schedule) return res.status(400).send({error:result.error.details[0].message});
+    /*const index = partners.indexOf(partner)
+    
+    schedules.splice(index,1)*/
+    
+    res.send({msg:"done"})
+})
 
 module.exports = router;
 
