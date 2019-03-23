@@ -43,7 +43,7 @@ router.delete('/:id', async (req,res) => {
      const id = req.params.id
      const appointments = await appointment.find({id})
      const appo = appointments._id
-     const deletedAppointment = await Member.findOneAndDelete(appo)
+     const deletedAppointment = await appointment.findOneAndDelete(appo)
      res.json({msg:'Appointment was deleted successfully', data: deletedAppointment})
     }
     catch(error) {

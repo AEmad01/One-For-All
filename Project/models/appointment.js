@@ -26,7 +26,7 @@ const appointmentSchema = new Schema({
     required: true
   },
   confirm: {
-    type: boolean,
+    type: String,
     required: true
   },
 });

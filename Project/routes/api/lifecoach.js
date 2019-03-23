@@ -38,7 +38,7 @@ router.put('/:id', async (req,res) => {
         console.log(error)
     }  
  })
-// delete a certain member
+// delete a certain lifecoach
 router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id

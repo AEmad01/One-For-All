@@ -1,7 +1,7 @@
 const express = require('express');
 const Joi = require('joi');
 const router = express.Router();
-const Schedule = require('../../models/Schedule.js');
+const Schedule = require('../../models/schedule.js');
 const validator = require('../../validations/scheduleValidations')
 // Get all schedules
 router.get('/', async (req, res) => {
