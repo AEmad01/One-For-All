@@ -1,17 +1,57 @@
-class Task {
-    constructor(time, effort, level_of_commitment, the_experience_level ,partner_who_owns_it,monetary_compensation,
-    consultancy_assigned_to_it,set_of_skills,Candidate 
-) {
-        this.time = time;
-        this.effort = effort;
-        this.level_of_commitment=level_of_commitment;
-        this.the_experience_level = the_experience_level;
-        this.partner_who_owns_it=partner_who_owns_it;
-        this.monetary_compensation=monetary_compensation;
-        this.consultancy_assigned_to_it=consultancy_assigned_to_it;
-        this.set_of_skills=set_of_skills;
-        this.Candidate=Candidate;
-    };
+const mongoose= require('mongoose')
+const Schema = mongoose.Schema;
+const TaskSchema= new Schema({
+ name :{
+     type: String,
+     required: true
+ },
+    time: {
+    type: Date,
+    required: true
+},
+effort: {
+  type: String,
+  required: true
+},
+levelOfCommitment: {
+  type: String,
+  required: true
+},
+experienceLevel: {
+  type: String,
+  required: true
+},
+partnerID: {
+  type: Number,
+  required: true
+},
+partnerName:{
+type: String,
+required: true
+},
+monetaryCompensation: {
+  type: String,
+  required: true
+},
+consultency: {
+  type: String,
+  required: true
+},
+setOfSkills: {
+  type: [String],
+  required: true
+},
+memberID:{
+    type: Number,
+    required: false
+},
+memberName:{
+    type:String,
+    required: false 
+},
+candidates:{
+    type:[Number],
+    required: false
 }
-
-module.exports = Task
+})
+  module.exports = Member = mongoose.model('members',TaskSchema);
