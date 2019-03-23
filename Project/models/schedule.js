@@ -1,17 +1,11 @@
-const mongoose= require('mongoose')
-const Schema = mongoose.Schema;
-const scheduleSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  specification: {
-    type: String,
-    required: true
-  },
-  slots: {
-    type: String,
-    required: true
-  }
-})
-module.exports = Schedule = mongoose.model('schedules',scheduleSchema);
+class schedule {
+    constructor(id,lifecoach,specification,slots) {
+        this.id = id;
+        this.lifecoach=lifecoach;
+        this.specification=specification;
+        this.slots=slots;
+
+    };
+}
+
+module.exports = schedule
