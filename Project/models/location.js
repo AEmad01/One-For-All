@@ -22,18 +22,17 @@ const locationSchema = new Schema({
     type: String,
     required: true
   },
+  member: {
+    type: String,
+    required: true
+  },
+  lifecoach: {
+    type: String,
+    required: true
+  },
   id: {
     type: Number,
     required: true
   },
-  sender: {
-    type: String,
-    required: true
-  },
-   reciever: {
-    type: String,
-    required: true
-  },
-
 });
-  module.exports = location = mongoose.model('location',locationSchema);
+  module.exports = location = mongoose.model('location',locationSchema)
