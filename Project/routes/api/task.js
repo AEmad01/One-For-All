@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Task = require("../../models/Task.js");
+const validator = require('../../validations/taskValidations');
 // Get all task
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
@@ -13,8 +14,8 @@ router.post("/", async (req, res) => {
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message });
-    const newMember = await Member.create(req.body);
-    res.json({ msg: "Member was created successfully", data: newMember });
+    const newTask = await Task.create(req.body);
+    res.json({ msg: "Task was created successfully", data: newTask });
   } catch (error) {
     // We will be handling the error later
     console.log(error);
