@@ -52,6 +52,10 @@ memberName:{
 candidates:{
     type:[Number],
     required: false
+},
+Description:{
+    type:String,
+    required: true 
 }
 })
   module.exports = Member = mongoose.model('members',TaskSchema);

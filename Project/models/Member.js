@@ -32,6 +32,10 @@ const MemberSchema = new Schema({
   certificates: {
     type: String,
     required: true
+  },
+  notification:{
+    type: [String],
+    required: false
   }
 });
   module.exports = Member = mongoose.model('Member',MemberSchema);
