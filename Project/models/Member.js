@@ -38,4 +38,4 @@ const MemberSchema = new Schema({
     required: false
   }
 });
-  module.exports = Member = mongoose.model('members',MemberSchema);
+  module.exports = Member = mongoose.model('Member',MemberSchema);

@@ -8,7 +8,16 @@ router.get('/', async (req, res) => {
     const members = await Member.find();
     res.json({ data: members })
 });
-
+// Get the notification's of a certain member
+router.get('/:id', async (req, res) => {
+    const id = req.params.id
+    const member = await Member.findOne({id})
+    const mem = member._id
+    const mem1= await Member.find(mem)
+    const noti= await mem1.notification
+    if(!member) return res.status(404).send({error: 'Member does not exist'})
+    res.json({ data:noti})
+});
 // Create a new member
 router.post('/', async (req,res) => {
     try {
@@ -45,7 +54,7 @@ router.delete('/:id', async (req,res) => {
      const member = await Member.find({id})
      const mem = member._id
      const deletedMember = await Member.findOneAndDelete(mem)
-     res.json({msg:'Book was deleted successfully', data: deletedMember})
+     res.json({msg:'Member was deleted successfully', data: deletedMember})
     }
     catch(error) {
         // We will be handling the error later
