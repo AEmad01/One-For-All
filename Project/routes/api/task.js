@@ -43,14 +43,13 @@ router.put('/chooseApplication/:id', async (req,res) => {
    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
 
    for(var i = 0; i < memberList.length ;i++){
-     if ( memberList[i] == candidateName ) found = true
-  }
+      if ( memberList[i] == candidateName ) found = true
+   }
 
-  if ( found == true ) { 
-   Task.findOneAndUpdate( id , { memberID: candidateID, memberName: candidateName} )
-  }
+  if ( found == true ) Task.findOneAndUpdate( id , { memberID: candidateID, memberName: candidateName} )
 
-   res.json({msg: 'Task updated successfully'})
+  res.json({msg: 'Task updated successfully'})
+
   }
   catch(error) {
       console.log(error)
