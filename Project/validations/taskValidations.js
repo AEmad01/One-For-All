@@ -17,7 +17,7 @@ module.exports = {
       memberID: Joi.number().required(),
       memberName: Joi.string().required(),
       candidates: Joi.array().required(),
-      negotiation:Joi.boolean().required(),
+      negotiation:Joi.string().required(),
       descriptions: Joi.string().required()
     };
 
@@ -40,7 +40,7 @@ module.exports = {
         memberID: Joi.number().required(),
         memberName: Joi.string().required(),
         candidates: Joi.array().required(),
-        negotiation:Joi.boolean().required(),
+        negotiation:Joi.string().required(),
         descriptions: Joi.string().required()
     };
 

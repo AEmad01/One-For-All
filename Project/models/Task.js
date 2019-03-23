@@ -54,7 +54,7 @@ candidates:{
     required: false
 },
 negotiation:{
-    type:boolean,
+    type:String,
     required: false
 },
 Description:{
