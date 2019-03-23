@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 // Get a certain location using mongo
 router.get('/:id',async (req, res) => {
     const locationId = req.params.id
-    const schedule = await Schedule.findById(locationId)  
+    const location = await Schedule.findById(locationId)  
     if(!location) return res.status(400).send({error:result.error.details[0].message});
     res.send(location)
 })
