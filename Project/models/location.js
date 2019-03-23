@@ -26,13 +26,14 @@ const locationSchema = new Schema({
     type: Number,
     required: true
   },
-  member: {
+  sender: {
     type: String,
     required: true
   },
-  lifecoach: {
+   reciever: {
     type: String,
     required: true
   },
+
 });
   module.exports = location = mongoose.model('location',locationSchema);
