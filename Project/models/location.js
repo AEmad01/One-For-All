@@ -22,14 +22,6 @@ const locationSchema = new Schema({
     type: String,
     required: true
   },
-  sender: {
-    type: String,
-    required: true
-  },
-  reciever: {
-    type: String,
-    required: true
-  },
   id: {
     type: Number,
     required: true
