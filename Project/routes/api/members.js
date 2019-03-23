@@ -43,7 +43,9 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
-     const deletedMember = await Member.findByIdAndRemove(id)
+     const member = await Member.find({id})
+     const mem = member._id
+     const deletedMember = await Member.findOneAndDelete(mem)
      res.json({msg:'Book was deleted successfully', data: deletedMember})
     }
     catch(error) {
