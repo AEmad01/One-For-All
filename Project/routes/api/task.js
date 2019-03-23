@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
     console.log(error);
   }
 });
-<<<<<<< HEAD
 // Update a task
 router.put('/:id', async (req,res) => {
   try {
@@ -42,7 +41,6 @@ router.put('/:id', async (req,res) => {
 })
 
 
-=======
 //negotiation 
 
 
@@ -75,6 +73,5 @@ router.put('/chooseApplication/:id', async (req,res) => {
       console.log(error)
   }
 })
->>>>>>> 35b750002625e48f2ada6481efbcb0b9231cc3af
 
 module.exports = router;
