@@ -1,26 +1,14 @@
-const express = require('express');
-const Joi = require('joi');
-const uuid = require('uuid');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const mongoose = require('mongoose')
 
-// Models
-const Admin = require('../../models/Admin');
-const Task = require('../../models/Task')
-const tasks = [
-    new Task ('10:00', 'high', 3, 'senior' ,'google',4000,'wuzzuf',['active','focused'])
-     ,new Task ('11:00', 'low', 2, 'junior' ,'yahoo',5000,'otlob',['old','focused'] )
-     ,new Task ('9:00', 'medium', 1, 'senior' ,'nike',2000,'wuzzuf',['active','focused','humble'] )
-     ,new Task ('20:00', 'high', 3, 'junior' ,'guc',6000,'sh5al',['humble','focused'] )
-     ,new Task ('22:00', 'low', 1, 'senior' ,'apple',9000,'wuzzuf',['active','productive'] )]
+const Admin = require('../../models/Admin')
+const validator = require('../../validations/adminValidations')
 
-// temporary data created as if it was pulled out of the database ...
-const admins = [
-	new Admin('Barney', 30),
-	new Admin('Lilly', 27),
-	new Admin('Ted', 29),
-	new Admin('Marshal', 27),
-	new Admin('Robin', 28)
-];
+router.get('/', async (req,res) => {
+    const admins = await Admin.find()
+    res.json({data: admins})
+})
 
 // Instead of app use route
 // No need to write the full route
@@ -79,45 +67,6 @@ router.post('/',(req,res)=>{
     tasks[tasks.length] = newTask;
 	return res.json({ data: tasks });
 
-});
-
-router.post('/joi', (req, res) => {
-	const time = req.body.time
-    const effort=req.body.effort
-    const level_of_commitment = req.body.level_of_commitment
-    const the_experience_level =req.body.the_experience_level
-    const partner_who_owns_it = req.body.partner_who_owns_it
-    const monetary_compensation =req.body.monetary_compensation
-    const consultancy_assigned_to_it =req.body.consultancy_assigned_to_it
-    const set_of_skills =req.body.set_of_skills
-
-	const schema = {
-		time: Joi.string().min(3).required(),
-        effort: Joi.string().min(3).required(),
-        level_of_commitment: Joi.number().required(),
-        the_experience_level: Joi.string().min(3).required(),
-        partner_who_owns_it: Joi.string().min(3).required(),
-        monetary_compensation: Joi.number().required(),
-        consultancy_assigned_to_it: Joi.string().min(3).required(),
-        set_of_skills: Joi.string().min(3).required(),
-	}
-
-	const result = Joi.validate(req.body, schema);
-
-	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
-
-	const newTask = {
-		time,
-        effort,
-        level_of_commitment,
-        the_experience_level,
-        partner_who_owns_it,
-        monetary_compensation,
-        consultancy_assigned_to_it,
-        set_of_skills,
-	
-	};
-	return res.json({ data: newTask });
 });
 //Choose the candidate 
 router.post('/chooseCandidate', (req, res) => {
