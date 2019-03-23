@@ -53,6 +53,10 @@ candidates:{
     type:[Number],
     required: false
 },
+negotiation:{
+    type:boolean,
+    required: false
+},
 Description:{
     type:String,
     required: true 
