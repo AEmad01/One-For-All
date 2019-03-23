@@ -1,8 +1,5 @@
 const express = require('express');
-const Joi = require('joi');
 const router = express.Router();
-const Member = require('../../models/Member.js');
-const Lifecoach = require('../../models/Lifecoach.js');
 const Location = require('../../models/Location.js');
 const validator = require('../../validations/locationValidations.js')
 
