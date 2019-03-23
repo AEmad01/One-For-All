@@ -9,13 +9,13 @@ const bodyParser=require('body-parser');
 const Partner = require('../../models/Partner');
 router.use(bodyParser.urlencoded({extended:false}));
 // temporary data created as if it was pulled out of the database ...
-const partners = [
+/*const partners = [
 	new Partner(1,'Stinson', 30,'BStrinson','legendary'),
 	new Partner(2,'Audren', 27,'Laudren','sonofabeach'),
 	new Partner(3,'Moseby', 29,'mosebyboy','detectiveM'),
 	new Partner(4,'Eriksen', 27,'judgeEriksen','just press options'),
 	new Partner(5,'Schrbatsky', 28,'MallGirl','CANADA')
-];
+];*/
 
 // Instead of app use route
 // No need to write the full route
@@ -47,14 +47,8 @@ router.post('/', (req, res) => {
 	};
 	return res.json({ data: newUser });
 });
-
-router.post('/joi', (req, res) => {
-	const name = req.body.name
-    const age = req.body.age
-    const username = req.body.username;
-    const password = req.body.password; 
-    
-
+//create partner using mongo 
+router.post('/joi',async (req, res) => {
 	var schema = {
 		name: Joi.string().min(3).required(),
         age: Joi.number().required(),
@@ -65,56 +59,58 @@ router.post('/joi', (req, res) => {
 
 	const result = Joi.validate(req.body, schema);
 
-	if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+    if (result.error) return res.status(400).send({ error: result.error.details[0].message });
 
-	const newUser = {
-		name,
-		age,
-        id: uuid.v4(),
-        username,
-        password,
-        
-    };
-    partners.push(newUser);
-	return res.json({ data: newUser });
+    const newUser=await Partner.create(req.body)
+    res.json({data:newUser})
+
+
 });
-// Get all partners
-router.get('/api/partners', (req, res) => {
-    res.send(partners)
+// Get all partners using mongo 
+router.get('/api/partners', async (req, res) => {
+    const partners_=await Partner.find()
+    if(!partners_) return res.status(400).send({error:result.error.details[0].message});
+    res.send(partners_)
 })
-// Get a certain partner
-router.get('/api/partners/:id', (req, res) => {
+// Get a certain partner using mongo
+router.get('/api/partners/:id',async (req, res) => {
     const partnerId = req.params.id
-    const partner = partners.find(partner => partner.id === partnerId)  
+    const partner = await Partner.findById(partnerId)  
+    if(!partner) return res.status(400).send({error:result.error.details[0].message});
     res.send(partner)
 })
 
 // Update a partner's name
-router.put('/api/partners/:id', (req, res) => {
-    console.log(req.body);
-    const partnerId = req.params.id 
-    const updatedName = req.body.name
-    const updatedage = req.body.age
-    const updatedusername = req.body.username
-    const updatedpassword = req.body.password
-console.log(partnerId);
-    const partner = partners.find(partner=> partner.id == partnerId)
-    console.log(partner)
-    partner.name = updatedName
-    partner.age = updatedage
-    partner.username = updatedusername
-    partner.password = updatedpassword
+router.put('/api/partners/:id',async (req, res) => {
+    try{
+    const id=req.params.id
+    var schema = {
+		name: Joi.string().min(3).required(),
+        password: Joi.string().min(8).required()
 
+    }
+    const result = Joi.validate(req.body, schema);
+    if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+    
+    const partnerup=await Partner.findById(id)   
+    if(!partnerup) return  res.status(400).send({ error: result.error.details[0].message });
+    const partner = await Partner.findOneAndUpdate({"_id":id},req.body)
+    res.send({data:partner})}
 
-    res.send(partners)
+    catch(error){
+        res.send(error)
+    }
 })
 
-router.delete('/api/partners/:id', (req, res) => {
+router.delete('/api/partners/:id',async (req, res) => {
     const partnerId = req.params.id 
-    const partner = partners.find(partner => partner.id == partnerId)
-    const index = partners.indexOf(partner)
-    partners.splice(index,1)
-    res.send(partners)
+    const partner1 = await Partner.findByIdAndDelete(partnerId)  
+    if(!partner1) return res.status(400).send({error:result.error.details[0].message});
+    /*const index = partners.indexOf(partner)
+    
+    partners.splice(index,1)*/
+    
+    res.send({msg:"done"})
 })
     
 

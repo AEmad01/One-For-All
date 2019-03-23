@@ -16,7 +16,9 @@ module.exports = {
       setOfSkills: Joi.array().required(),
       memberID: Joi.number().required(),
       memberName: Joi.string().required(),
-      candidates: Joi.array().required()
+      candidates: Joi.array().required(),
+      negotiation:Joi.boolean().required(),
+      descriptions: Joi.string().required()
     };
 
     return Joi.validate(request, createSchema);
@@ -37,7 +39,9 @@ module.exports = {
         setOfSkills: Joi.array().required(),
         memberID: Joi.number().required(),
         memberName: Joi.string().required(),
-        candidates: Joi.array().required()
+        candidates: Joi.array().required(),
+        negotiation:Joi.boolean().required(),
+        descriptions: Joi.string().required()
     };
 
     return Joi.validate(request, updateSchema);
