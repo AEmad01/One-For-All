@@ -1,5 +1,5 @@
 const express = require('express')
-const tasks = require('./routes/api/tasks')
+const tasks = require('./routes/api/task')
 const admins = require('./routes/api/admin')
 const schedules = require('./routes/api/schedules')
 const partners = require('./routes/api/partners')
@@ -7,11 +7,12 @@ const descriptions = require('./routes/api/descriptions')
 const members = require('./routes/api/members')
 const appointments = require('./routes/api/appointments')
 const location = require('./routes/api/location')
+const mongoose = require('mongoose')
 
 
 const app = express()
 app.use(express.json())
-
+mongoose.connect('mongodb://localhost/DB').then(()=> console.log('connected to DB')).catch(err => console.log('error'))
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Litren Hub</h1>
     <a href="/api/partners">Partners</a>
