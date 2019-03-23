@@ -52,6 +52,14 @@ memberName:{
 candidates:{
     type:[Number],
     required: false
+},
+description:{
+    type: String,
+    required: true
+},
+negotiation:{
+    type:boolean,
+    required: false
 }
 })
   module.exports = Member = mongoose.model('members',TaskSchema);
