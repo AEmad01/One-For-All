@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
 const Task = require("../../models/Task.js")
 const validator = require('../../validations/taskValidations')
 const Member = require('../../models/Member')
