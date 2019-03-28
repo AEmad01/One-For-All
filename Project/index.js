@@ -7,7 +7,7 @@ const members = require("./routes/api/members");
 const appointments = require("./routes/api/appointments");
 const location = require("./routes/api/location");
 const mongoose = require("mongoose");
-const db = require("./config/keys");
+const db = require('./config/keys').mongoURI;
 
 const app = express();
 app.use(express.json());
