@@ -23,9 +23,12 @@ router.post("/", async (req, res) => {
         .status(400)
         .send({ error: isValidated.error.details[0].message });    
     const newTask = await Task.create(req.body);
-    res.json({ msg: "Task was created successfully", data: newTask });
+    res.json({msg:'Task was created successfully', data: newTask})
+
+    
   } catch (error) {
     // We will be handling the error later
+    res.status(404).send({error: 'Only Partner can post'})
     console.log(error);
   }
 });
