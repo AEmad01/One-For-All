@@ -4,11 +4,18 @@ const mongoose = require('mongoose')
 const Task = require("../../models/Task.js")
 const validator = require('../../validations/taskValidations')
 const Member = require('../../models/Member')
-
+//get all tasks
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
   res.json({ data: tasks })
 });
+// search for task with name
+router.get("/search", async (req, res) => {
+  const name = req.body.name;
+  const tasks = await Task.find({name: name});
+  res.json({ data: tasks })
+});
+// post a task
 router.post("/", async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);

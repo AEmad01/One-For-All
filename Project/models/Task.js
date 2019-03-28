@@ -50,7 +50,7 @@ memberName:{
     required: false 
 },
 candidates:{
-    type:[Number],
+    type:[String],
     required: false
 },
 negotiation:{
