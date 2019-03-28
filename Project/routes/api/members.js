@@ -31,6 +31,13 @@ router.post('/', async (req,res) => {
         console.log(error)
     }  
  })
+ // get a certin member 
+ router.get('/:id',async (req, res) => {
+    const id = req.params.id
+    const newMember = await Member.findById(id)  
+    if(!newMember) return res.status(400).send({error:result.error.details[0].message});
+    res.send(newMember)
+})
 // Update a member
 router.put('/:id', async (req,res) => {
     try {
