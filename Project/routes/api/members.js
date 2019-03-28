@@ -2,20 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Member = require('../../models/Member.js');
 const validator = require('../../validations/memberValidations.js')
-const task = require('../../api/task.js')
 // Get all members
 router.get('/', async (req, res) => {
     const members = await Member.find();
     res.json({ data: members })
 });
 // Get the notification's of a certain member
-router.get('/:id', async (req, res) => {
+router.get('/notification/:id', async (req, res) => {
     const id = req.params.id
-    const member = await Member.findOne({id})
-    const mem = member._id
-    const mem1= await Member.find(mem)
-    const noti= await mem1.notification
+    const member = await Member.findById(id)
     if(!member) return res.status(404).send({error: 'Member does not exist'})
+    const noti= member.notification
     res.json({ data:noti})
 });
 // Create a new member
