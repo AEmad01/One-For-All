@@ -3,6 +3,7 @@ const Joi = require('joi');
 const router = express.Router();
 const Schedule = require('../../models/Schedule.js');
 const validator = require('../../validations/scheduleValidations')
+const lifecoach = require('../../models/lifecoach')
 // Get all schedules
 router.get('/', async (req, res) => {
     const schedules = await Schedule.find();
@@ -18,18 +19,30 @@ router.get('/:id',async (req, res) => {
 })
 
 // Create a new schedule
-router.post('/', async (req,res) => {
+router.post("/:id", async (req,res) => {
+    const id = req.params.id
     try {
     const isValidated = validator.createValidation(req.body)
-    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })    
+    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message }) ;
+
+
+
+    const lifecoachm = await lifecoach.findById(id);
+    if(lifecoachm.id!== undefined){
     const newSchedule = await Schedule.create(req.body)
      res.json({msg:'Schedule was created successfully', data: newSchedule})
+     lifecoachm.Schedule.push(newSchedule);
+     const temp = await lifecoachm.save();
+     res.send(lifecoachm);
+
+
+    }
     }
     catch(error) {
-        // We will be handling the error later
+        res.status(404).send({error: 'Only Lifecoach can post'})
         console.log(error)
     }  
- })
+ });
 // Update a Schedule
 router.put('/:id', async (req,res) => {
     try {
