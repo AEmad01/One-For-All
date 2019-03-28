@@ -1,35 +1,30 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
 const Task = require("../../models/Task.js")
 const validator = require('../../validations/taskValidations')
 const Member = require('../../models/Member')
-const partner = require('../../models/Partner')
-
+//get all tasks
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
   res.json({ data: tasks })
 });
-
-//ID of PARTNER ONLY ENTERED IN THE POST OF THE TASK MUST BE PARTNER
-router.post("/:id", async (req, res) => {
-  const id = req.params.id
+// search for task with name
+router.get("/search", async (req, res) => {
+  const name = req.body.name;
+  const tasks = await Task.find({name: name});
+  res.json({ data: tasks })
+});
+// post a task
+router.post("/", async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message });    
-    //const newTask = await Task.create(req.body);
-    
-    const partnerm = await partner.findById(id);
-    if(partnerm.id!== undefined){
-      const task = await Task.create(req.body)
-      res.json({ msg: "Task was created successfully", data: task });
-    partnerm.Task.push(task);
-      const temp = await partnerm.save();
-      res.send(partnerm);
-    }
+    const newTask = await Task.create(req.body);
+    res.json({msg:'Task was created successfully', data: newTask})
+
     
   } catch (error) {
     // We will be handling the error later
