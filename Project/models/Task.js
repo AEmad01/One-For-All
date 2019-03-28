@@ -62,4 +62,4 @@ Description:{
     required: true 
 }
 })
-  module.exports = Member = mongoose.model('members',TaskSchema);
+  module.exports = Task = mongoose.model('Task',TaskSchema);

@@ -17,7 +17,7 @@ module.exports = {
       memberName: Joi.string().required(),
       candidates: Joi.array().required(),
       negotiation:Joi.string().required(),
-      descriptions: Joi.string().required()
+      Description: Joi.string().required()
     };
 
     return Joi.validate(request, createSchema);
@@ -39,7 +39,7 @@ module.exports = {
         memberName: Joi.string().required(),
         candidates: Joi.array().required(),
         negotiation:Joi.string().required(),
-        descriptions: Joi.string().required()
+        Description: Joi.string().required()
     };
 
     return Joi.validate(request, updateSchema);
