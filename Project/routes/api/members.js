@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Member = require('../../models/Member.js');
 const validator = require('../../validations/memberValidations.js')
-const task = require('../../api/task.js')
+
 // Get all members
 router.get('/', async (req, res) => {
     const members = await Member.find();
     res.json({ data: members })
 });
 // Get the notification's of a certain member
-router.get('/:id', async (req, res) => {
+router.get('/notification/:id', async (req, res) => {
     const id = req.params.id
     const member = await Member.findOne({id})
     const mem = member._id
@@ -58,7 +58,8 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
-     const deletedMember = await Member.findByIdAndRemove(id)
+     const deletedMember = await Member.deleteMany
+     
      res.json({msg:'Member was deleted successfully', data: deletedMember})
     }
     catch(error) {
