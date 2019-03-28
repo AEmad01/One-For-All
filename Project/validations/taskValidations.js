@@ -8,7 +8,7 @@ module.exports = {
       effort: Joi.string().required(),
       levelOfCommitment: Joi.string().required(),
       experienceLevel: Joi.string().required(),
-      completedProjects: Joi.string().required(),
+     // completedProjects: Joi.string().required(),
       partnerID: Joi.number().required(),
       partnerName: Joi.string().required(),
       monetaryCompensation: Joi.string().required(),
@@ -18,7 +18,7 @@ module.exports = {
       memberName: Joi.string().required(),
       candidates: Joi.array().required(),
       negotiation:Joi.string().required(),
-      descriptions: Joi.string().required()
+      Description: Joi.string().required()
     };
 
     return Joi.validate(request, createSchema);
@@ -31,7 +31,7 @@ module.exports = {
         effort: Joi.string().required(),
         levelOfCommitment: Joi.string().required(),
         experienceLevel: Joi.string().required(),
-        completedProjects: Joi.string().required(),
+        //completedProjects: Joi.string().required(),
         partnerID: Joi.number().required(),
         partnerName: Joi.string().required(),
         monetaryCompensation: Joi.string().required(),
@@ -41,7 +41,7 @@ module.exports = {
         memberName: Joi.string().required(),
         candidates: Joi.array().required(),
         negotiation:Joi.string().required(),
-        descriptions: Joi.string().required()
+        Description: Joi.string().required()
     };
 
     return Joi.validate(request, updateSchema);

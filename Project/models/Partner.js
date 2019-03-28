@@ -19,7 +19,7 @@ const PartnerSchema = new Schema({
         type: String,
         required: true
     },
-    task:{
+    Task:{
         type:Array
     }
       
