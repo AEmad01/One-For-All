@@ -11,10 +11,12 @@ router.get('/', async (req, res) => {
 
 // Get a certain location using mongo
 router.get('/:id',async (req, res) => {
-    const locationId = req.params.id
-    const location = await Location.findById({locationId})
+
+   const locationId = req.params.id
+    const location = await Location.findById(locationId)
     if(!location) return res.status(404).send({error:'Location does not exist'})
-    res.json({ data: location })
+   res.send(location)
+
 })
 
 
