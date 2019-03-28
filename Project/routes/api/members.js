@@ -18,6 +18,7 @@ router.get('/:id', async (req, res) => {
     if(!member) return res.status(404).send({error: 'Member does not exist'})
     res.json({ data:noti})
 });
+
 // Create a new member
 router.post('/', async (req,res) => {
     try {
