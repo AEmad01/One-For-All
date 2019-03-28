@@ -8,6 +8,12 @@ router.get('/', async (req, res) => {
     const members = await Member.find();
     res.json({ data: members })
 });
+router.get('/:id',async (req, res) => {
+    const id = req.params.id
+    const member = await Member.findById(id)  
+    if(!member) return res.status(400).send({error:result.error.details[0].message});
+    res.send(member)
+})
 // Get the notification's of a certain member
 router.get('/:id', async (req, res) => {
     const id = req.params.id
