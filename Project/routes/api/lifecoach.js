@@ -1,13 +1,41 @@
 const express = require("express");
 const router = express.Router();
 const Lifecoach = require("../../models/lifecoach.js");
+const notifier = require('node-notifier');
 const validator = require("../../validations/lifecoachValidations.js");
+var open = require('open');
 // Get all life coaches
 router.get("/", async (req, res) => {
   const lifecoachs = await Lifecoach.find();
   res.json({ data: lifecoachs });
 });
 
+router.get('/notification/:id', async (req, res) => {
+  const id = req.params.id
+  const lifecoach = await Lifecoach.findById(id)
+  if(!lifecoach) return res.status(404).send({error: 'Lifecoach does not exist'})
+  const noti= lifecoach.notification
+  res.json({ data:noti})
+
+});
+// Get a certain lifecoach
+router.get('/:id',async (req, res) => {
+
+  const lifecoachID = req.params.id
+   const lifecoach1 = await Lifecoach.findById(lifecoachID)
+   if(!lifecoach1) return res.status(404).send({error:result.error.details[0].message})
+   res.send(lifecoach1)
+
+   notifier.notify({
+    'title': 'Alert',
+    'message': 'You Have A New Notification!',
+    'wait': true
+    
+  }
+  ,function() {
+open("http://localhost:3000/api/lifecoach/notification/"+lifecoachID);
+  });   
+})
 // Create a new lifecoach
 router.post("/", async (req, res) => {
   try {

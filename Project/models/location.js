@@ -29,10 +29,8 @@ const locationSchema = new Schema({
   lifecoach: {
     type: String,
     required: true
-  },
-  Notification: {
-    type: [String],
-    required: false
   }
+ 
+  
 });
   module.exports = location = mongoose.model('location',locationSchema)

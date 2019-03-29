@@ -12,7 +12,8 @@ module.exports = {
             reviews: Joi.string().required(),
             certificates: Joi.string().required(),
             specification: Joi.string().required(),
-            salary: Joi.number().required()
+            salary: Joi.number().required(),
+            Notification: Joi.array()
         }
 
         return Joi.validate(request, createSchema)
@@ -29,7 +30,9 @@ module.exports = {
             reviews: Joi.string().required(),
             certificates: Joi.string().required(),
             specification: Joi.string().required(),
-            salary: Joi.number().required()
+            salary: Joi.number().required(),
+            Notification: Joi.array()
+
         }
 
         return Joi.validate(request, updateSchema)
