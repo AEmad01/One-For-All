@@ -1,14 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const notifier = require('node-notifier');
 const Location = require('../../models/location.js');
-const validator = require('../../validations/locationValidations.js')
-
+const validator = require('../../validations/locationValidations.js');
+var open = require('open');
 // Get all locations
 router.get('/', async (req, res) => {
     const location = await Location.find();
     res.json({ data: location })
+    } 
+);
+router.get('/notification/:id', async (req, res) => {
+    const id = req.params.id
+    const location = await Location.findById(id)
+    if(!location) return res.status(404).send({error: 'Location does not exist'})
+    const noti= location.notification
+    res.json({ data:noti})
 });
-
 // Get a certain location using mongo
 router.get('/:id',async (req, res) => {
 
@@ -17,6 +25,18 @@ router.get('/:id',async (req, res) => {
     if(!location) return res.status(404).send({error:'Location does not exist'})
    res.send(location)
 
+   notifier.notify({
+    'title': 'Alert',
+    'message': 'You Have A New Notification!',
+    'wait': true
+    
+  }
+  ,function() {
+open("http://localhost:3000/api/location/notification/"+locationId);
+  });   
+
+  notifier.onclick = function() {
+      window.location("http://www.google.com")}
 })
 
 
