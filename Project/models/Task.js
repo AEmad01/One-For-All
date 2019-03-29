@@ -50,7 +50,7 @@ memberName:{
     required: false 
 },
 candidates:{
-    type:[Number],
+    type:[String],
     required: false
 },
 negotiation:{
@@ -62,4 +62,4 @@ Description:{
     required: true 
 }
 })
-  module.exports = Member = mongoose.model('members',TaskSchema);
+  module.exports = Task = mongoose.model('Task',TaskSchema);

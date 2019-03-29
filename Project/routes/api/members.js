@@ -1,8 +1,7 @@
 const express = require('express');
-const Joi = require('joi');
 const router = express.Router();
 const Member = require('../../models/Member.js');
-const validator = require('../../validations/memberValidations')
+const validator = require('../../validations/memberValidations.js')
 // Get all members
 router.get('/', async (req, res) => {
     const members = await Member.find();
@@ -15,13 +14,11 @@ router.get('/:id',async (req, res) => {
     res.send(member)
 })
 // Get the notification's of a certain member
-router.get('/:id', async (req, res) => {
+router.get('/notification/:id', async (req, res) => {
     const id = req.params.id
-    const member = await Member.findOne({id})
-    const mem = member._id
-    const mem1= await Member.find(mem)
-    const noti= await mem1.notification
+    const member = await Member.findById(id)
     if(!member) return res.status(404).send({error: 'Member does not exist'})
+    const noti= member.notification
     res.json({ data:noti})
 });
 // Create a new member
@@ -37,6 +34,13 @@ router.post('/', async (req,res) => {
         console.log(error)
     }  
  })
+ // get a certin member 
+ router.get('/:id',async (req, res) => {
+    const id = req.params.id
+    const newMember = await Member.findById(id)  
+    if(!newMember) return res.status(400).send({error:result.error.details[0].message});
+    res.send(newMember)
+})
 // Update a member
 router.put('/:id', async (req,res) => {
     try {
@@ -57,9 +61,8 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
-     const member = await Member.find({id})
-     const mem = member._id
-     const deletedMember = await Member.findOneAndDelete(mem)
+     const deletedMember = await Member.findByIdAndDelete(id);
+     
      res.json({msg:'Member was deleted successfully', data: deletedMember})
     }
     catch(error) {
