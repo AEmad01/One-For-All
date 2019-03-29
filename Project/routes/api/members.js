@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Member = require('../../models/Member.js');
 const validator = require('../../validations/memberValidations.js')
+const notifier= require('node-notifier');
+const open= require('open');
 // Get all members
 router.get('/', async (req, res) => {
     const members = await Member.find();
@@ -18,7 +20,7 @@ router.get('/notification/:id', async (req, res) => {
 // Create a new member
 router.post('/', async (req,res) => {
     try {
-        
+    
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newMember = await Member.create(req.body)
@@ -34,7 +36,15 @@ router.post('/', async (req,res) => {
     const newMember = await Member.findById(id)  
     if(!newMember) return res.status(400).send({error:result.error.details[0].message});
     res.send(newMember)
-})
+    notifier.notify({
+        'title': 'Alert',
+        'message': 'You have new Notifications',
+        'wait': true,
+        'open':'/api/members/notification/:id'
+        }, function() {open('http://localhost:3000/api/members/notification/'+id) } 
+      );
+    }
+)
 // Update a member
 router.put('/:id', async (req,res) => {
     try {
