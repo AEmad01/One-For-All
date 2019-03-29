@@ -43,6 +43,9 @@ const LifecoachSchema = new Schema({
   },
   Schedule:{
     type:Array
+},
+Appointments:{
+  type:Array
 }
 
 });
