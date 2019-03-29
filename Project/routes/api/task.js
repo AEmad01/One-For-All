@@ -17,10 +17,29 @@ router.get("/search", async (req, res) => {
 // get a certin task 
 router.get('/:id',async (req, res) => {
   const id = req.params.id
-  const tasks = await Member.findById(id)  
+  const tasks = await Task.findById(id)  
   if(!tasks) return res.status(400).send({error:result.error.details[0].message});
   res.send(tasks)
-})
+});
+router.post("/apply/:id/:mid", async (req, res) => {
+  try{
+    const id = req.params.id
+    const tasks = await Task.findById(id)  
+    if(!tasks) return res.status(400).send({error:result.error.details[0].message});
+    const mid = req.params.mid
+    const members = await Member.findById(mid)  
+    if(!members) return res.status(400).send({error:result.error.details[0].message});
+    tasks.candidates.push(members);
+    const temp = await tasks.save();
+    res.send(tasks)
+  }
+  catch (error) {
+    // We will be handling the error later
+    res.status(404).send({ error: "error" });
+    console.log(error);
+  }
+
+});
 //partner posting description and defining other attributes
 //ID of PARTNER ONLY ENTERED IN THE POST OF THE TASK, MUST BE PARTNER
 router.post("/partner/:id", async (req, res) => {
