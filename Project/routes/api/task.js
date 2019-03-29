@@ -21,6 +21,7 @@ router.get('/:id',async (req, res) => {
   if(!tasks) return res.status(400).send({error:result.error.details[0].message});
   res.send(tasks)
 });
+// apply on task with member
 router.post("/apply/:id/:mid", async (req, res) => {
   try{
     const id = req.params.id
