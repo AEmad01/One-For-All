@@ -6,8 +6,13 @@ const partners = require("./routes/api/partners");
 const members = require("./routes/api/members");
 const appointments = require("./routes/api/appointments");
 const location = require("./routes/api/location");
+<<<<<<< HEAD
 const lifecoach = require("./routes/api/lifecoach");
 const mongoose = require("mongoose"); 
+=======
+const mongoose = require("mongoose");
+const lifecoach = require("./routes/api/lifecoach")
+>>>>>>> 574b378168bb43930e1df818b5df472e57ad5b21
 const db = require('./config/keys').mongoURI;
 
 const app = express();
@@ -39,8 +44,11 @@ app.use("/api/appointments", appointments);
 app.use("/api/schedules", schedules);
 app.use("/api/location", location);
 app.use("/api/lifecoach", lifecoach);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 574b378168bb43930e1df818b5df472e57ad5b21
 // Handling 404
 app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
