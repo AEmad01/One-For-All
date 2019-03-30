@@ -103,19 +103,19 @@ router.put("/updatetask/:id", async (req, res) => {
   }
 });
 // admin  add attribute 
-router.put("/addattribute/:id", async (req, res) => {
+router.put("/addattributeAD/:id", async (req, res) => {
   try {
-    const id = req.params.id;
-    const task = await Task.findOne({ id });
-    if (!task) return res.status(404).send({ error: "task does not exist" });
-    const isValidated = validator.updateValidation(req.body);
-    if (isValidated.error)
-      return res.status(400).send({ error: isValidated.error.details[0].message });
-    var name =req.body.name;
-    var data =req.body.data;
-    var all = name+":"+data;
-    Attr.push(all);
-    res.json({ msg: "Task attribute added successfully" });
+    const id = req.params.id
+    const tasks = await Task.findById(id)  
+    if(!tasks) return res.status(400).send({error:result.error.details[0].message});
+    const name1 =req.body.name1
+    const data1 =req.body.data1
+    const all = name1+":"+data1 
+    
+    tasks.extraAtt.push(all);
+    const temp = await tasks.save();
+    res.send(tasks) 
+    res.json({ msg: "Task attribute added successfully" })
   } catch (error) {
     // We will be handling the error later
     console.log(error);
