@@ -60,6 +60,11 @@ negotiation:{
 Description:{
     type:String,
     required: true 
+},
+extraAtt:{
+    type: [String],
+    required: true
 }
+
 })
   module.exports = Task = mongoose.model('Task',TaskSchema);

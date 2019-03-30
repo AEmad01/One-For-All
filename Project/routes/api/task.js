@@ -17,7 +17,7 @@ router.get("/search", async (req, res) => {
 // get a certin task 
 router.get('/:id',async (req, res) => {
   const id = req.params.id
-  const tasks = await Member.findById(id)  
+  const tasks = await Task.findById(id)  
   if(!tasks) return res.status(400).send({error:result.error.details[0].message});
   res.send(tasks)
 })
@@ -28,9 +28,7 @@ router.post("/partner/:id", async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message });
+      return res.status(400).send({ error: isValidated.error.details[0].message });
     //const newTask = await Task.create(req.body);
 
     const partnerm = await partner.findById(id);
@@ -65,18 +63,38 @@ router.post("/", async (req, res) => {
   }
 });
 // Update a task
-router.put("/:id", async (req, res) => {
+router.put("/updatetask/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const task = await Task.findOne({ id });
+    const task = await Task.find({id});
     if (!task) return res.status(404).send({ error: "task does not exist" });
     const isValidated = validator.updateValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message });
-    const updatedTask = await Task.updateOne(req.body);
+    
+    const updatedTask = await Task.update(req.body);
     res.json({ msg: "Task updated successfully" });
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error);
+  }
+});
+// admin  add attribute 
+router.put("/addattribute/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const task = await Task.findOne({ id });
+    if (!task) return res.status(404).send({ error: "task does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res.status(400).send({ error: isValidated.error.details[0].message });
+    var name =req.body.name;
+    var data =req.body.data;
+    var all = name+":"+data;
+    Attr.push(all);
+    res.json({ msg: "Task attribute added successfully" });
   } catch (error) {
     // We will be handling the error later
     console.log(error);
