@@ -13,6 +13,13 @@ const functions = {
             candidateName: name
         
         }),
+        addAttadmin: async (i,n,d) => {
+            await axios.put('http://localhost:3000/api/task/addattributeAD/'+i,{
+
+            name1: n,
+            data1: d
+
+        })},
 
         getTasks: async () => {
             const tasks = await axios.get('http://localhost:3000/api/task/')
@@ -34,6 +41,65 @@ const functions = {
             const members = await axios.get('http://localhost:3000/api/members/')
             return members
         },
+        updatetask: async (tid,n,t,ef,loc,el,pid,pn,mc,con,set,mem,memname,can,neg,des,ex) => await axios.put('http://localhost:3000/api/task/updatetask/'+ tid, {
+            name:n,
+            time:t,
+            effort:ef,
+            levelOfCommitment:loc,
+            experienceLevel:el,
+            partnerID:pid,
+            partnerName:pn,
+            monetaryCompensation:mc,
+            consultency: con,
+            setOfSkills:set,
+            memberID:mem,
+            memberName:memname,
+            candidates:can,
+            negotiation:neg,
+            Description:des,
+            extraAtt:ex
+        }),
+
+        deleteTask: async (i) => {
+            await axios.delete('http://localhost:3000/api/task/' + i)
+        },
+        getadmin: async () =>{
+            const admins = await axios.get('http://localhost:3000/api/admin/')
+            return admins
+        },
+        updateadmin: async (i,a) =>{
+            await axios.put('http://localhost:3000/api/admin/updateadmin/'+i,{
+                age:a
+            })
+            
+        },
+        deleteadmin: async(i)=>{
+            await axios.delete('http://localhost:3000/api/admin/deleteAdmin/'+i)
+
+        },
+        AdminPostTask: async(i)=>{
+            const task = await axios.post('http://localhost:3000/api/task/admin/'+i,{
+                
+                    "name":"my project 3",
+                    "time":"12/12/2020",
+                    "effort":"high",
+                    "levelOfCommitment":"high",
+                    "experienceLevel":"low",
+                    "partnerID":"13243",
+                    "partnerName":"yousef",
+                    "monetaryCompensation":"fsdf",
+                    "consultency":"hdbsvb",
+                    "setOfSkills":["gusfg","fgdg"],
+                    "memberID":"1432",
+                    "memberName":"dsgdf",
+                    "candidates":[],
+                    "negotiation":"true",
+                    "Description":"sfgyhsdg"
+                    
+            })
+            
+        }
+    }
         PostLifecoach: async (body) =>{
             const PostLifecoach = await axios.post('http://localhost:3000/api/lifecoach/', {
             "name" :body.name,

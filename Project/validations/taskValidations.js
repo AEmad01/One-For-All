@@ -13,7 +13,7 @@ module.exports = {
       monetaryCompensation: Joi.string().required(),
       consultency: Joi.string().required(),
       setOfSkills: Joi.array().required(),
-      memberID: Joi.number().required(),
+      memberID: Joi.string().required(),
       memberName: Joi.string().required(),
       candidates: Joi.array().required(),
       negotiation:Joi.string().required(),
