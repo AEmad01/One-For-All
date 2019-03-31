@@ -5,6 +5,7 @@ const Task = require("../../models/Task.js")
 const validator = require("../../validations/taskValidations")
 const Member = require("../../models/Member")
 const admins = require("../../models/Admin.js")
+const partner=require("../../models/Partner")
 //get all tasks
 router.get("/", async (req, res) => {
   const tasks = await Task.find()
