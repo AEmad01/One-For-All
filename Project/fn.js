@@ -13,6 +13,13 @@ const functions = {
             candidateName: name
         
         }),
+        addAttadmin: async (i,n,d) => {
+            await axios.put('http://localhost:3000/api/task/addattributeAD/'+i,{
+
+            name1: n,
+            data1: d
+
+        })},
 
         getTasks: async () => {
             const tasks = await axios.get('http://localhost:3000/api/task/')
@@ -34,5 +41,31 @@ const functions = {
             const members = await axios.get('http://localhost:3000/api/members/')
             return members
         },
+        updatetask: async (tid,n,t,ef,loc,el,pid,pn,mc,con,set,mem,memname,can,neg,des,ex) => await axios.put('http://localhost:3000/api/task/updatetask/'+ tid, {
+            name:n,
+            time:t,
+            effort:ef,
+            levelOfCommitment:loc,
+            experienceLevel:el,
+            partnerID:pid,
+            partnerName:pn,
+            monetaryCompensation:mc,
+            consultency: con,
+            setOfSkills:set,
+            memberID:mem,
+            memberName:memname,
+            candidates:can,
+            negotiation:neg,
+            Description:des,
+            extraAtt:ex
+})
+.then((response) => {
+
+    console.log(response.data);
+
+  })
+  .catch(function(error){
+    console.log(error);
+  })
     }
 module.exports = functions; 

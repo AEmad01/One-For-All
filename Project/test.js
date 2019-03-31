@@ -25,6 +25,65 @@ test('choosing a applicant to be assigned to a task', async () => {
     expect(response.data.data[0].memberName).toEqual(name)
 
 });
+test('updating  task', async () => {
+    
+    const taskID = '5ca0ec29e6d969466c46796d'
+     const name = "medhat5"
+     const levelOfCommitment="high"
+     const time="2016-12-31T22:00:00.000Z"
+     const experienceLevel="high"
+     const effort="fff"
+     const partnerID=45
+     const partnerName="cvds"
+     const monetaryCompensation="svd"
+     const consultency="veve"
+     const setOfSkills=["dfd"]
+     const memberID="34"
+     const memberName="edfjew"
+     const candidates =["cd"]
+     const negotiation="ve"
+     const Description="vfebvebvervrvevveevre"
+     const extraAtt=["fve"]
+ 
+     
+     await funcs.updatetask(taskID,name,time,effort,levelOfCommitment,experienceLevel,partnerID,partnerName,monetaryCompensation,consultency,setOfSkills,memberID,memberName,candidates,negotiation,Description,extraAtt)
+     expect.assertions(17)
+     const response = await funcs.getTasks()
+     expect(response.data.data[0].name).toEqual(name)
+     expect(response.data.data[0].levelOfCommitment).toEqual(levelOfCommitment)
+     expect(response.data.data[0].experienceLevel).toEqual(experienceLevel)
+     expect(response.data.data[0].name).toEqual(name)
+     expect(response.data.data[0].effort).toEqual(effort)
+     expect(response.data.data[0].partnerID).toEqual(partnerID)
+     expect(response.data.data[0].time).toEqual(time)
+     expect(response.data.data[0].partnerName).toEqual(partnerName)
+     expect(response.data.data[0].monetaryCompensation).toEqual(monetaryCompensation)
+     expect(response.data.data[0].consultency).toEqual(consultency)
+     expect(response.data.data[0].setOfSkills).toEqual(setOfSkills)
+     expect(response.data.data[0].memberID).toEqual(memberID)
+     expect(response.data.data[0].memberName).toEqual(memberName)
+     expect(response.data.data[0].candidates).toEqual(candidates)
+     expect(response.data.data[0].negotiation).toEqual(negotiation)
+     expect(response.data.data[0].Description).toEqual(Description)
+     expect(response.data.data[0].extraAtt).toEqual(extraAtt)
+   
+     
+     
+ 
+ });
+ test('admin adds an extra attribute to a task', async () =>{
+    
+    const taskID = '5ca0ec29e6d969466c46796d'
+    const desc = 'czsdxfcgvhbd'
+    const name = 'asga'
+    expect.assertions(1)
+    await funcs.addAttadmin(taskID,name,desc)    
+    expect.assertions(1)
+    const response =  await funcs.getTasks()
+    expect(response.data.data[0].extraAtt[response.data.data[0].extraAtt.length-1]).toEqual(name + ':' + desc)
+
+});
+
 test('post member', async () => {
     const body = {
         name :"kimokono",
