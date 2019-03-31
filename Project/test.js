@@ -41,4 +41,22 @@ test('post member', async () => {
     expect(response.data.data[response.data.data.length-1].name).toEqual(body.name)
 
 });
+test('update member', async () => {
+    const body = {
+        name :"boodi",
+        age : 27,
+        skills :"lecturing",
+        intrests : "Architecture",
+        pastEvents: "pastEvents",
+        completedProjects :"GNB HQ",
+        reviews :"reviews",
+        certificates:"GUC"
+    }
+    const response = await funcs.getmember()
+    const id = response.data.data[response.data.data.length-1]._id
+    await funcs.updateMember(id,body)
+    const response1 = await funcs.getmember()
+    expect(response1.data.data[response1.data.data.length-1].name).toEqual(body.name)
+
+});
 
