@@ -10,7 +10,7 @@ const scheduleSchema = new Schema({
     required: true
   },
   slots: {
-    type: Number,
+    type: Array,
     required: true
   }
 })

@@ -48,5 +48,37 @@ const functions = {
         deleteMember: async (id) => {
             const member = await axios.delete('http://localhost:3000/api/members/'+ id)
         },
+        PostAppointment: async (id,body) =>{
+            const Appointment = await axios.post('http://localhost:3000/api/appointments'+id, {
+            "memberID": body.memberID,
+            "memberName" : body.memberName,
+            "confirm" : body.confirm,
+            
+            })
+           
+        },
+        
+        
+        UpdateAppointment: async (id,body) =>{
+            const Appointment = await axios.put('http://localhost:3000/api/appointments/'+id, {
+                "memberID": body.memberID,
+                "memberName" : body.memberName,
+                "confirm" : body.confirm,
+                
+            })
+           
+        },
+
+        DeleteAppointment: async (id) =>{
+            const Appointment = await axios.delete('http://localhost:3000/api/appointments/'+id )
+    },
+    GetAllAppointments: async () =>{
+        const Appointment = await axios.get('http://localhost:3000/api/appointments/')
+        return Appointment
+    },
+    GetlifeCoach: async()=>{
+        const Lif = await axios.get("http://localhost:3000/api/lifecoach/")
+        return Lif
+    }
     }
 module.exports = functions; 

@@ -3,6 +3,7 @@ const router = express.Router();
 const appointment = require('../../models/appointment.js');
 const validator = require('../../validations/appointmentValidation')
 const lifecoach = require('../../models/lifecoach')
+
 // Get all appointments
 router.get('/', async (req, res) => {
     const appointments = await appointment.find();
@@ -30,6 +31,7 @@ router.post('/:id', async (req,res) => {
         console.log(error)
     }  
  });
+
 // Update an appointment
 router.put('/:id', async (req,res) => {
     try {
