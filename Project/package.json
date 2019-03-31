@@ -4,7 +4,9 @@
   "description": "Introduction to node",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index.js"
+
   },
   "keywords": [
     "server"
