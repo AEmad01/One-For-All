@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Location = require('../../models/Location.js');
-const validator = require('../../validations/locationValidations.js')
-
+const Location = require('../../models/location.js');
+const validator = require('../../validations/locationValidations.js');
 // Get all locations
 router.get('/GetAllLocation', async (req, res) => {
     const location = await location.find();
@@ -16,6 +15,16 @@ router.get('/GetSpecificLocation/:id',async (req, res) => {
     if(!location) return res.status(400).send({error:result.error.details[0].message});
     res.send(location)
 })
+router.get('/', async (req, res) => {
+    const location = await Location.find();
+    res.json({ data: location })
+
+    
+    } 
+
+
+,);
+
 
 
 // Create a new location
@@ -40,7 +49,7 @@ router.put('UpdateLocation/:id', async (req,res) => {
      const isValidated = validator.updateValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const updatedlocation = await Location.updateOne(req.body)
-     res.json({msg: 'location updated successfully',data: updatedlocation})
+     res.json({msg: 'location updated successfully'})
     }
     catch(error) {
         // We will be handling the error later

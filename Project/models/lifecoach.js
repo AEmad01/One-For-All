@@ -46,7 +46,10 @@ const LifecoachSchema = new Schema({
 },
 Appointments:{
   type:Array
-}
-
+},
+  Notification: {
+    type: [String],
+    required: false
+  },
 });
   module.exports = Lifecoach = mongoose.model('Life Coach',LifecoachSchema);

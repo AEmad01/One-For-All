@@ -29,10 +29,13 @@ const locationSchema = new Schema({
   lifecoach: {
     type: String,
     required: true
+<<<<<<< HEAD
   },
   confirmedLocation:{
     type: Boolean,
     defaultValue: false
+=======
+>>>>>>> 26eeacdb3d82c6855d34c3a4cc82247493f4356b
   }
  
   
