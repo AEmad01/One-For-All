@@ -39,7 +39,9 @@ module.exports = {
         memberName: Joi.string().required(),
         candidates: Joi.array().required(),
         negotiation:Joi.string().required(),
-        Description: Joi.string().required()
+        Description: Joi.string().required(),
+        extraAtt:Joi.array().required()
+        
     };
 
     return Joi.validate(request, updateSchema);
