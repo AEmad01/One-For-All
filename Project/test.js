@@ -119,6 +119,39 @@ test('delete a task', async () => {
     const length2 = r2.data.data.length
     expect(length1).toEqual(length2+1)
 
+});
+test('get admin',async ()=>{
+    expect.assertions(1)
+const response =await funcs.getadmin()
+expect(response.data.data[0].name).toEqual("ahmed")
+});
+test('update admin',async()=>{
+    const body = {
+        age:21
+    }
+    await funcs.updateadmin('5ca0e84e735e271ba089ccde',body)
+    expect.assertions(1)
+    const response =await funcs.getadmin()
+    expect(response.data.data[0].age).toEqual(21)
+    expect.assertions(1)
+});
+test('delete admin',async()=>{
+    const response = await funcs.getadmin()
+    const id = response.data.data[response.data.data.length-1]._id
+    await funcs.deleteadmin(id)
+    expect.assertions(1)
+    const response1 = await funcs.getadmin()
+    expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
+});
+test('adminPost',async()=>{
+    expect.assertions(1)
+    const l = await funcs.getTasks()
+    const h = l.data.data.length
+    await funcs.AdminPostTask('5ca11d40a308c8306c2bf96f')
+    expect.assertions(1)
+    const response = await funcs.getTasks()
+    const j = response.data.data.length
+    expect (j).toEqual(h+1)
 })
 
 

@@ -161,8 +161,6 @@ router.put("/addattributeAD/:id", async (req, res) => {
   }
 });
 
-//negotiation
-
 router.put('/chooseApplication/:mid/:id', async (req,res) => {
 
   try {

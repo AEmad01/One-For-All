@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
     }  
  })
  //update an admin
- router.put('/updateAdmin:/id', async (req,res) => {
+ router.put('/updateAdmin/:id', async (req,res) => {
     try {
      const id = req.params.id
      const admin = await Book.findOne({id})
