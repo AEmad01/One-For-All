@@ -74,6 +74,22 @@ const functions = {
 
         DeleteLifecoach: async (id) =>{
             const Lifecoach = await axios.delete('http://localhost:3000/api/lifecoach/'+id )
-    },
+        },
+        
+        updateMember: async (id,body) => {
+            const member = await axios.put('http://localhost:3000/api/members/'+ id,{
+                "name":body.name,
+                "age": body.age,
+                "skills": body.skills,
+                "intrests":body.intrests,
+                "pastEvents":body.pastEvents,
+                "completedProjects":body.completedProjects,
+                "reviews": body.reviews, 
+                "certificates": body.certificates
+            })
+        },
+        deleteMember: async (id) => {
+            const member = await axios.delete('http://localhost:3000/api/members/'+ id)
+        },
 }
 module.exports = functions; 
