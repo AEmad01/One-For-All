@@ -1,41 +1,90 @@
 const funcs = require('./fn')
 
-test('post slot', async () => {
+test('create location', async () => {
     const body = {
-        date : "2019-03-02T22:00:00.000Z",
+        name:"Abdullah",
+        address : "kdduddd",
+        city: "osdkjscb",
+        country :"Reading",
+        time :"2019/03/03",
+        member : "2 projects",
+        lifecoach : "3 review",
+        confirmedLocation: false
+      
     }
-    const response = await funcs.getSch()
-    const id = response.data.data[response.data.data.length-1]._id
-
-    await funcs.postSlot(id,body)
-    const response1 = await funcs.getSlots()
-    console.log(response1.data.data[response1.data.data.length-1])
-    expect(response1.data.data[response1.data.data.length-1].date).toEqual(body.date)
+    await funcs.CreateLocation(body)
+    const response = await funcs.GetAllLocation()
+    expect(response.data.data[response.data.data.length-1]).toEqual(body)
 
 });
 
 
-test('delete slot', async () => {
+test('update location ', async () => {
+    const body = {
+        name:"Abdullah",
+        address : "kdduddd",
+        city: "osdkjscb",
+        country :"Reading",
+        time :"2019/03/03",
+        member : "2 projects",
+        lifecoach : "3 review",
+        confirmedLocation: true
+      
+    }
+    const response = await funcs.GetAllLocation()
+    const id =  response.data.data[response.data.data.length-1]._id
+    await funcs.UpdateLocation(id,body)
+    const response1= await funcs.GetAllLocation()
+    expect(response1.data.data[response1.data.data.length-1]).toEqual(body)
+});
+
+
+test('delete location', async () => {
    
-    const response = await funcs.getSlots()
+    const response = await funcs.GetAllLocation()
     const id = response.data.data[response.data.data.length-1]._id
-    await funcs.deleteSlot(id)
-    const response1 = await funcs.getSlots()
+    await funcs.DeleteLocation(id)
+    const response1 = await funcs.GetAllLocation()
     expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
 
 });
 
-test('update slot', async () => {
+test('create schedule', async () => {
     const body = {
-        date:"2019-03-02T22:00:00.000Z",
-        booked:"true"
-
+        "name":"Abdullah",
+        "specification":"kdduddd",
+        
     }
-    const response = await funcs.getSlots()
-    const id = response.data.data[response.data.data.length-1]._id
-    await funcs.updateSlot(id,body)
-    const response1 = await funcs.getSlots()
-    expect(response1.data.data[response1.data.data.length-1].booked).toMatchObject(body.booked)
+    const response1 = await funcs.GetAllLifecoach()
+    const id = response1.data.data[response1.data.data.length-1]._id
+
+    await funcs.CreateSchedule(id,body)
+    const response = await funcs.GetAllSchedule()
+    expect(response.data.data[response.data.data.length-1].name).toEqual(body.name)
 
 });
 
+
+
+test('delete schedule', async () => {
+   
+    const response = await funcs.GetAllSchedule()
+    const id = response.data.data[response.data.data.length-1]._id
+    await funcs.DeleteSchedule(id)
+    const response1 = await funcs.GetAllSchedule    ()
+    expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
+
+});
+test('update schedule', async () => {
+    const body = {
+        "name":"Abdullah",
+        "specification":"kdduddd",
+        
+    }
+    const response1 = await funcs.GetAllLifecoach()
+    const id = response1.data.data[response1.data.data.length-1]._id
+
+    await funcs.CreateSchedule(id,body)
+    const response = await funcs.GetAllSchedule()
+    expect(response.data.data[response.data.data.length-1].name).toEqual(body.name)
+});

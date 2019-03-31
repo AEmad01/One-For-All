@@ -9,13 +9,16 @@ const location = require("./routes/api/location");
 const mongoose = require("mongoose");
 const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
+const cors = require('cors')
 
 const db = require('./config/keys').mongoURI;
-const cors = require('cors')
 
 const app = express();
 app.use(express.json());
 app.use(cors())
+
+
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome to Litren Hub</h1>
     <a href="/api/partners">Partners</a>
