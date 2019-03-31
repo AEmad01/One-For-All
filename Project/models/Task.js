@@ -42,7 +42,7 @@ setOfSkills: {
     required: true
 },
 memberID:{
-    type: Number,
+    type: String,
     required: false
 },
 memberName:{

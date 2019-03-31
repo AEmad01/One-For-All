@@ -6,7 +6,8 @@ const router = express.Router();
 const bodyParser=require('body-parser');
 //router.use(express.json);
 // Models
-const Partner = require('../../models/Partner');
+const Partner = require('../../models/Partner')
+const Task = require('../../models/Task')
 router.use(bodyParser.urlencoded({extended:false}));
 
 //create partner using mongo 
@@ -74,6 +75,38 @@ router.delete('/:id',async (req, res) => {
     
     res.send({msg:"done"})
 })
+  
+router.put('/addAttribute/:id', async (req,res) => {
+    try {
+     var schema = {
+        attributeName: Joi.string().min(3).required(),
+        attributeDescription: Joi.string().min(8).required()
+     }
+
+     const result = Joi.validate(req.body, schema);
     
+     if (result.error) return res.status(400).send({ error: result.error.details[0].message })
+     const id = req.params.id
+     const task = await Task.find({ '_id' : id })
+     const extraAttributes = await Task.find({ '_id' : id },{_id:0,extraAtt:1})
+     const attributeName = req.body.attributeName
+     const attributeDescription = req.body.attributeDescription
+  
+     if (!task) return res.status(404).send({ error: 'Task does not exist' })
+     if (!extraAttributes) return res.status(404).send({ error: 'extraAttributes does not exist' })
+     if (!attributeName) return res.status(404).send({ error: 'Attribute name can not be empty' })
+     if (!attributeDescription) return res.status(404).send({ error: 'Desciption can not be empty' })
+
+     var newAttribute = attributeName + ': ' + attributeDescription
+
+     await Task.findByIdAndUpdate({'_id' : id} , { $push: { 'extraAtt' : newAttribute } })
+
+     res.json({msg: 'Attribute added successfully'})
+  
+    }
+    catch(error) {
+        console.log(error)
+    }
+  })
 
 module.exports = router;
