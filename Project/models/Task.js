@@ -42,7 +42,7 @@ setOfSkills: {
     required: true
 },
 memberID:{
-    type: Number,
+    type: String,
     required: false
 },
 memberName:{
@@ -50,7 +50,7 @@ memberName:{
     required: false 
 },
 candidates:{
-    type:[Number],
+    type:Array,
     required: false
 },
 negotiation:{
@@ -60,6 +60,11 @@ negotiation:{
 Description:{
     type:String,
     required: true 
+},
+extraAtt:{
+    type: [String],
+    required: true
 }
+
 })
-  module.exports = Member = mongoose.model('members',TaskSchema);
+  module.exports = Task = mongoose.model('Task',TaskSchema);

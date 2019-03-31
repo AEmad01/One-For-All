@@ -30,9 +30,11 @@ const locationSchema = new Schema({
     type: String,
     required: true
   },
-  id: {
-    type: Number,
-    required: true
-  },
+  confirmedLocation:{
+    type: Boolean,
+    defaultValue: false
+  }
+ 
+  
 });
   module.exports = location = mongoose.model('location',locationSchema)
