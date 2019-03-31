@@ -19,7 +19,7 @@ router.get('/GetSpecificSchedule/:id',async (req, res) => {
 })
 
 // Create a new schedule
-router.post('/CreateSchedule', async (req,res) => {
+router.post('/CreateSchedule/:id', async (req,res) => {
     const id = req.params.id
     try {
     const isValidated = validator.createValidation(req.body)
