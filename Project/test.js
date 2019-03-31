@@ -120,4 +120,76 @@ test('delete lifecoach', async () => {
     const response1= await funcs.GetAllLifecoach()
     expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
 });
+test('post partner', async () => {
+    const body = {
+        name :"notwalid",
+        age : 21,
+        username:"notwalid123",
+        password:"123455"
+        
+    }
+    await funcs.postpartner(body)
+    const response = await funcs.getpartners()
+    expect(response.data.data[response.data.data.length-1].name).toEqual(body.name)
 
+});
+
+test('post task with partner posting', async () => {
+    const body = {
+        "name":"omgimdead",
+         "time": "2017/1/1",
+          "effort":"high",
+          "levelOfCommitment":"high",
+          "experienceLevel":"hgih",
+          "partnerID":1,
+          "partnerName":"Waliddd",
+          "monetaryCompensation":"asfnjfsa","consultency":"asfoiunfaskm",
+          "setOfSkills":["safjlnsfalk"],
+          "memberID":123,"memberName":"waludidk",
+           "candidates":[2],
+           "Description": "hasikfbsaifubhkjsfbsfuabfskajbfskbasf",
+           "negotiation":"nononono"
+    }
+    const response = await funcs.getpartners()
+        const id = response.data.data[response.data.data.length-1]._id
+        console.log(id)
+    await funcs.posttask(id,body)
+    const responset = await funcs.getTasks()
+    
+
+    expect(responset.data.data[responset.data.data.length-1].name).toEqual(body.name)
+
+});
+
+test('Get partner',async () => {
+
+    const Update= await funcs.getpartners();
+    expect(Update.data.length).toBe(Update.data.length);
+
+      });
+
+
+      test('update partner', async () => {
+        const body = {
+            name :"okkkkkkkkk",
+        age : 21,
+        username:"notwalid123",
+        password:"123455"
+        }
+        const response = await funcs.getpartners()
+        const id = response.data.data[response.data.data.length-1]._id
+        await funcs.updatepartner(id,body)
+        const response1 = await funcs.getpartners()
+        expect(response1.data.data[response1.data.data.length-1]).toMatchObject(body)
+    
+    });
+
+    test('delete partner', async () => {
+   
+        const response = await funcs.getpartners()
+        const id = response.data.data[response.data.data.length-1]._id
+        await funcs.deletepartner(id)
+        const response1 = await funcs.getpartners()
+        expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
+    
+    });
