@@ -17,6 +17,15 @@ const functions = {
         getTasks: async () => {
             const tasks = await axios.get('http://localhost:3000/api/task/')
             return tasks
-        }
-};
+        },
+        postMember: async () => {
+            const member = await axios.post('http://localhost:3000/api/members/',{
+                "name":"willy","age":27,"skills":"lecturing","intrests":"Architecture","pastEvents":"pastEvents","completedProjects":"GNB HQ","reviews":"reviews","certificates":"GUC"
+            })
+        },
+        getmember: async () => {
+            const members = await axios.get('http://localhost:3000/api/members/')
+            return members
+        },
+    }
 module.exports = functions; 
