@@ -4,28 +4,36 @@ const Joi = require('joi');
 const uuid = require('uuid');
 const router = express.Router();
 const bodyParser=require('body-parser');
+const validator = require('../../validations/partnerValidations')
 //router.use(express.json);
 // Models
 const Partner = require('../../models/Partner')
 const Task = require('../../models/Task')
 router.use(bodyParser.urlencoded({extended:false}));
 
+
 //create partner using mongo 
 router.post('/',async (req, res) => {
-	var schema = {
-		name: Joi.string().min(3).required(),
-        age: Joi.number().required(),
-        username: Joi.string().min(8).required(),
-        password: Joi.string().min(8).required()
+	// var schema = {
+	// 	name: Joi.string().min(3).required(),
+    //     age: Joi.number().required(),
+    //     username: Joi.string().min(8).required(),
+    //     password: Joi.string().min(8).required()
 
-	}
+	// }
 
-	const result = Joi.validate(req.body, schema);
+	// const result = Joi.validate(req.body, schema);
 
-    if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+    // if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+    try{
+    const isValidated = validator.createValidation(req.body)
+     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
 
     const newUser=await Partner.create(req.body)
-    res.json({data:newUser})
+    res.json({data:newUser})}
+    catch(error) {
+        console.log(error)
+    }
 
 
 });
@@ -33,7 +41,8 @@ router.post('/',async (req, res) => {
 router.get('/', async (req, res) => {
     const partners_=await Partner.find()
     if(!partners_) return res.status(400).send({error:result.error.details[0].message});
-    res.send(partners_)
+    res.json({ data: partners_})
+    //res.send(partners_)
 })
 // Get a certain partner using mongo
 router.get('/:id',async (req, res) => {
@@ -47,16 +56,18 @@ router.get('/:id',async (req, res) => {
 router.put('/:id',async (req, res) => {
     try{
     const id=req.params.id
-    var schema = {
-		name: Joi.string().min(3).required(),
-        password: Joi.string().min(8).required()
+    // var schema = {
+	// 	name: Joi.string().min(1).required(),
+    //     password: Joi.string().min(3).required()
 
-    }
-    const result = Joi.validate(req.body, schema);
-    if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+    // }
+    // const result = Joi.validate(req.body, schema);
+    // if (result.error) return res.status(400).send({ error: result.error.details[0].message });
     
     const partnerup=await Partner.findById(id)   
     if(!partnerup) return  res.status(400).send({ error: result.error.details[0].message });
+    const isValidated = validator.updateValidation(req.body)
+     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const partner = await Partner.findOneAndUpdate({"_id":id},req.body)
     res.send({data:partner})}
 

@@ -40,6 +40,10 @@ const LifecoachSchema = new Schema({
   salary: {
     type: Number,
     required: true
-  }
+  },
+  Notification: {
+    type: [String],
+    required: false
+  },
 });
   module.exports = Lifecoach = mongoose.model('Life Coach',LifecoachSchema);
