@@ -10,7 +10,7 @@ module.exports = {
             time: Joi.string().required(),
             member: Joi.string().required(),
             lifecoach: Joi.string().required(),
-
+            
         }
 
         return Joi.validate(request, createSchema)
@@ -24,7 +24,8 @@ module.exports = {
             country: Joi.string().required(),
             time: Joi.string().required(),
             member: Joi.string().required(),
-            lifecoach: Joi.string().required()
+            lifecoach: Joi.string().required(),
+
         }
 
         return Joi.validate(request, updateSchema)
