@@ -73,8 +73,7 @@ DeleteSchedule: async (id) =>{
 },
 
 
-}
-module.exports = functions;
+
         postSlot: async (id,body) => {
             const slots = await axios.post('http://localhost:3000/api/slots/'+ id,{
                 "date": body.date,
