@@ -26,11 +26,19 @@ test('choosing a applicant to be assigned to a task', async () => {
 
 });
 test('post member', async () => {
-
-    //expect.assertions(2)
-    await funcs.postMember()
+    const body = {
+        name :"kimokono",
+        age : 27,
+        skills :"lecturing",
+        intrests : "Architecture",
+        pastEvents: "pastEvents",
+        completedProjects :"GNB HQ",
+        reviews :"reviews",
+        certificates:"GUC"
+    }
+    await funcs.postMember(body)
     const response = await funcs.getmember()
-    expect(response.data.data[response.data.data.length-1].name).toEqual("willy")
+    expect(response.data.data[response.data.data.length-1].name).toEqual(body.name)
 
 });
 

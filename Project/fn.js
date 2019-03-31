@@ -18,9 +18,16 @@ const functions = {
             const tasks = await axios.get('http://localhost:3000/api/task/')
             return tasks
         },
-        postMember: async () => {
+        postMember: async (body) => {
             const member = await axios.post('http://localhost:3000/api/members/',{
-                "name":"willy","age":27,"skills":"lecturing","intrests":"Architecture","pastEvents":"pastEvents","completedProjects":"GNB HQ","reviews":"reviews","certificates":"GUC"
+                "name":body.name,
+                "age": body.age,
+                "skills": body.skills,
+                "intrests":body.intrests,
+                "pastEvents":body.pastEvents,
+                "completedProjects":body.completedProjects,
+                "reviews": body.reviews, 
+                "certificates": body.certificates
             })
         },
         getmember: async () => {
