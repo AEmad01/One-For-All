@@ -25,4 +25,5 @@ const functions = {
         const appointments = await axios.put(`http://localhost:3000/booking/${id}`)
         return appointments
     }
-};
+}
+;
