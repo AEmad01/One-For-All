@@ -45,5 +45,8 @@ const functions = {
                 "certificates": body.certificates
             })
         },
+        deleteMember: async (id) => {
+            const member = await axios.delete('http://localhost:3000/api/members/'+ id)
+        },
     }
 module.exports = functions; 
