@@ -58,14 +58,10 @@ const functions = {
             negotiation:neg,
             Description:des,
             extraAtt:ex
-})
-.then((response) => {
+        }),
 
-    console.log(response.data);
-
-  })
-  .catch(function(error){
-    console.log(error);
-  })
+        deleteTask: async (i) => {
+            await axios.delete('http://localhost:3000/api/task/' + i)
+        }
     }
 module.exports = functions; 

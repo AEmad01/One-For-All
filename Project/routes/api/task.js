@@ -16,6 +16,18 @@ router.get("/search", async (req, res) => {
   const tasks = await Task.find({ name: name })
   res.json({ data: tasks })
 });
+//delete a task
+router.delete('/:id', async (req,res) => {
+  try {
+   const id = req.params.id
+   const deletedTask = await Task.findByIdAndDelete(id)
+   res.json({msg:'Task was deleted successfully', data: deletedTask})
+  }
+  catch(error) {
+      // We will be handling the error later
+      console.log(error)
+  }  
+})
 // get a certin task 
 router.get('/:id',async (req, res) => {
   const id = req.params.id

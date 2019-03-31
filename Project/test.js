@@ -101,3 +101,24 @@ test('post member', async () => {
 
 });
 
+test('reads tasks', async () => {
+
+    expect.assertions(1)
+    const response = await funcs.getTasks()
+    expect(response.data.data[0]._id).toEqual('5ca0ec29e6d969466c46796d')
+
+});
+
+test('delete a task', async () => {
+
+    const r1 = await funcs.getTasks()
+    const length1 = r1.data.data.length
+    const taskID = r1.data.data[length1-1]._id
+    await funcs.deleteTask(taskID)
+    const r2 = await funcs.getTasks()
+    const length2 = r2.data.data.length
+    expect(length1).toEqual(length2+1)
+
+})
+
+
