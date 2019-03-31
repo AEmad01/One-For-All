@@ -23,7 +23,6 @@ const functions = {
         })
        
     },
-<<<<<<< HEAD
     
     
     UpdateLocation: async (id,body) =>{
@@ -76,7 +75,6 @@ DeleteSchedule: async (id) =>{
 
 }
 module.exports = functions;
-=======
         postSlot: async (id,body) => {
             const slots = await axios.post('http://localhost:3000/api/slots/'+ id,{
                 "date": body.date,
@@ -165,4 +163,3 @@ module.exports = functions;
     }
     }
 module.exports = functions; 
->>>>>>> 4784c23f257a9d38914b097c18aca596eef16277
