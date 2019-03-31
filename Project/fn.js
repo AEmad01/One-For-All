@@ -91,5 +91,48 @@ const functions = {
         deleteMember: async (id) => {
             const member = await axios.delete('http://localhost:3000/api/members/'+ id)
         },
+        postpartner: async (body) => {
+            const partner = await axios.post('http://localhost:3000/api/partners/',{
+                "name":body.name,
+                "age": body.age,
+               "username": body.username,
+               "password":body.password,
+               
+            })
+            
+            
+        }
+            ,getpartners: async () => {
+                const partner = await axios.get('http://localhost:3000/api/partners/')
+                return partner
+                }
+                ,posttask: async (id,body) => {
+                    const member = await axios.post('http://localhost:3000/api/task/partner/'+ id,{
+                        "name":body.name, "time": body.time,
+                         "effort":body.effort,
+                         "levelOfCommitment":body.levelOfCommitment,
+                         "experienceLevel":body.experienceLevel,
+                         "partnerID":body.partnerID,
+                         "partnerName":body.partnerName,
+                         "monetaryCompensation":body.monetaryCompensation,
+                         "consultency":body.consultency,
+                         "setOfSkills":body.setOfSkills,
+                         "memberID":body.memberID,
+                         "memberName":body.memberName,
+                          "candidates":body.candidates,
+                          "Description": body.Description,
+                          "negotiation":body.negotiation
+                    })
+                },
+                updatepartner: async (id,body) => {
+                    const partner = await axios.put('http://localhost:3000/api/partners/'+ id,{
+                        "name":body.name,
+                        "age": body.age,
+                        "username": body.username,
+                        "password": body.password
+                    })
+                },deletepartner: async (id) => {
+                    const partner = await axios.delete('http://localhost:3000/api/partners/'+ id)
+                },
 }
 module.exports = functions; 
