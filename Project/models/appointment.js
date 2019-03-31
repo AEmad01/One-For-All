@@ -5,7 +5,7 @@ const appointmentSchema = new Schema({
     type: String,
   },
   slot: {
-    type: Date,
+    type: Array,
   },
   
   memberID: {
