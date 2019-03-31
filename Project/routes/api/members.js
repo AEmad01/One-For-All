@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     const members = await Member.find();
     res.json({ data: members })
 });
-// Get the notification's of a certain member
+// Get the notifications of a certain member
 router.get('/notification/:id', async (req, res) => {
     const id = req.params.id
     const member = await Member.findById(id)
@@ -30,7 +30,7 @@ router.post('/', async (req,res) => {
         console.log(error)
     }  
  })
- // get a certin member 
+ // get a certin member and get his/her notificatuons
  router.get('/:id',async (req, res) => {
     const id = req.params.id
     const newMember = await Member.findById(id)  
@@ -46,21 +46,24 @@ router.post('/', async (req,res) => {
     }
 )
 // Update a member
-router.put('/:id', async (req,res) => {
+router.put("/:id", async (req, res) => {
     try {
-     const id = req.params.id
-     const member = await Member.find({id})
-     if(!member) return res.status(404).send({error: 'Member does not exist'})
-     const isValidated = validator.updateValidation(req.body)
-     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const updatedMember = await Member.updateOne(req.body)
-     res.json({msg: 'Member updated successfully'})
+      const id = req.params.id;
+      const member = await Member.find({id});
+      if (!member) return res.status(404).send({ error: "member does not exist" });
+      const isValidated = validator.updateValidation(req.body);
+      if (isValidated.error)
+        return res
+          .status(400)
+          .send({ error: isValidated.error.details[0].message });
+      
+      const updatedMember = await Member.findOneAndUpdate({_id: id} , req.body);
+      res.json({ msg: "Member updated successfully" });
+    } catch (error) {
+      // We will be handling the error later
+      console.log(error);
     }
-    catch(error) {
-        // We will be handling the error later
-        console.log(error)
-    }  
- })
+  });
 // delete a certain member
 router.delete('/:id', async (req,res) => {
     try {
