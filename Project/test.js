@@ -38,7 +38,7 @@ test('post member', async () => {
     }
     await funcs.postMember(body)
     const response = await funcs.getmember()
-    expect(response.data.data[response.data.data.length-1].name).toEqual(body.name)
+    expect(response.data.data[response.data.data.length-1]).toMatchObject(body)
 
 });
 test('update member', async () => {
@@ -56,7 +56,68 @@ test('update member', async () => {
     const id = response.data.data[response.data.data.length-1]._id
     await funcs.updateMember(id,body)
     const response1 = await funcs.getmember()
-    expect(response1.data.data[response1.data.data.length-1].name).toEqual(body.name)
+    expect(response1.data.data[response1.data.data.length-1]).toMatchObject(body)
 
+});
+test('delete member', async () => {
+   
+    const response = await funcs.getmember()
+    const id = response.data.data[response.data.data.length-1]._id
+    await funcs.deleteMember(id)
+    const response1 = await funcs.getmember()
+    expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
+
+});
+
+test('post lifecoach', async () => {
+    const body = {
+        name:"karim",
+        age : 21,
+        skills: "osdkjscb",
+        intrests :"Reading",
+        pastEvents :"Match",
+        completedProjects : "2 projects",
+        reviews : "3 review",
+        certificates : "5 cert",
+        specification : "tech",
+        salary : 10000
+      
+    }
+    await funcs.PostLifecoach(body)
+    const response = await funcs.GetAllLifecoach()
+    expect(response.data.data[response.data.data.length-1]).toMatchObject(body)
+
+});
+
+test('update lifecoach', async () => {
+    const body = {
+        name:"ahmed",
+        age : 21,
+        skills: "osdkjscb",
+        intrests :"Reading",
+        pastEvents :"Match",
+        completedProjects : "2 projects",
+        reviews : "3 review",
+        certificates : "5 cert",
+        specification : "tech",
+        salary : 10000
+      
+    }
+    const response = await funcs.GetAllLifecoach()
+    const id =  response.data.data[response.data.data.length-1]._id
+    await funcs.UpdateLifecoach(id,body)
+    const response1= await funcs.GetAllLifecoach()
+    expect(response1.data.data[response1.data.data.length-1]).toMatchObject(body)
+});
+
+
+
+test('delete lifecoach', async () => {
+    
+    const response = await funcs.GetAllLifecoach()
+    const id =  response.data.data[response.data.data.length-1]._id
+    await funcs.DeleteLifecoach(id)
+    const response1= await funcs.GetAllLifecoach()
+    expect(response1.data.data[response1.data.data.length-1]._id).not.toEqual(id)
 });
 
