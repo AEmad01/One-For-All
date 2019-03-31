@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Lifecoach = require("../../models/lifecoach.js");
+const Lifecoach = require("../../models/Lifecoach.js");
 const notifier = require('node-notifier');
 const validator = require("../../validations/lifecoachValidations.js");
 const validatorApp = require("../../validations/appointmentValidation")
-const appointment = require('../../models/appointment')
+const appointment = require('../../models/Appointment')
 var open = require('open');
 // Get all life coaches
 router.get("/", async (req, res) => {

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const appointment = require('../../models/appointment.js');
+const appointment = require('../../models/Appointment.js');
 const validator = require('../../validations/appointmentValidation')
-const lifecoach = require('../../models/lifecoach')
+const lifecoach = require('../../models/Lifecoach')
 
 // Get all appointments
 router.get('/', async (req, res) => {
