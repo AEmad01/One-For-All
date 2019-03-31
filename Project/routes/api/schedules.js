@@ -5,13 +5,13 @@ const Schedule = require('../../models/Schedule.js');
 const validator = require('../../validations/scheduleValidations')
 const lifecoach = require('../../models/lifecoach')
 // Get all schedules
-router.get('/', async (req, res) => {
+router.get('/GetAllSchedule', async (req, res) => {
     const schedules = await Schedule.find();
     res.json({ data: schedules })
 });
 
 // Get a certain partner using mongo
-router.get('/:id',async (req, res) => {
+router.get('/GetSpecificSchedule/:id',async (req, res) => {
     const schdeuleId = req.params.id
     const schedule = await Schedule.findById(schdeuleId)  
     if(!schedule) return res.status(400).send({error:result.error.details[0].message});
@@ -19,7 +19,7 @@ router.get('/:id',async (req, res) => {
 })
 
 // Create a new schedule
-router.post("/:id", async (req,res) => {
+router.post('/CreateSchedule', async (req,res) => {
     const id = req.params.id
     try {
     const isValidated = validator.createValidation(req.body)
@@ -44,7 +44,7 @@ router.post("/:id", async (req,res) => {
     }  
  });
 // Update a Schedule
-router.put('/:id', async (req,res) => {
+router.put('/UpdateSchedule/:id', async (req,res) => {
     try {
      const id = req.params.id
      const schedule = await Schedule.find({id})
@@ -61,7 +61,7 @@ router.put('/:id', async (req,res) => {
  })
 
 
- router.delete('/:id',async (req, res) => {
+ router.delete('/DeleteSchedule/:id',async (req, res) => {
     const schdeuleId = req.params.id
     const schedule = await Schedule.findByIdAndDelete(schdeuleId)  
     if(!schedule) return res.status(400).send({error:result.error.details[0].message});
