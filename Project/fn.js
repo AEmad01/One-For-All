@@ -1,52 +1,31 @@
 const axios = require('axios');
+
 const functions = {
-        addAtt: async (i,n,d) => await axios.put('http://localhost:3000/api/partners/addAttribute/'+i,{
+    
 
-            attributeName: n,
-            attributeDescription: d
-
-        }),
-
-        chooseApp: async (mid,tid,name) => await axios.put('http://localhost:3000/api/task//chooseApplication/'+ mid + '/' + tid, {
-
-            candidateName: name
-        
-        }),
-
-        getTasks: async () => {
-            const tasks = await axios.get('http://localhost:3000/api/task/')
-            return tasks
+        getSlots: async () => {
+            const slots = await axios.get('http://localhost:3000/api/slots/getslots')
+            return slots
         },
-        postMember: async (body) => {
-            const member = await axios.post('http://localhost:3000/api/members/',{
-                "name":body.name,
-                "age": body.age,
-                "skills": body.skills,
-                "intrests":body.intrests,
-                "pastEvents":body.pastEvents,
-                "completedProjects":body.completedProjects,
-                "reviews": body.reviews, 
-                "certificates": body.certificates
+        getSch: async () => {
+            const sch = await axios.get('http://localhost:3000/api/schedules/getAllSchedule')
+            return sch
+        },
+        deleteSlot: async (id) => {
+            const slot = await axios.get('http://localhost:3000/api/slots/'+id)
+        },
+        updateSlot: async (id,body) => {
+            const slot = await axios.get('http://localhost:3000/api/slots/pick'+id,{
+            "date": body.date,
+            "booked": body.booked
+
+        })
+    },
+        postSlot: async (id,body) => {
+            const slots = await axios.post('http://localhost:3000/api/slots/'+ id,{
+                "date": body.date,
+                // "booked":body.booked
             })
-        },
-        getmember: async () => {
-            const members = await axios.get('http://localhost:3000/api/members/')
-            return members
-        },
-        updateMember: async (id,body) => {
-            const member = await axios.put('http://localhost:3000/api/members/'+ id,{
-                "name":body.name,
-                "age": body.age,
-                "skills": body.skills,
-                "intrests":body.intrests,
-                "pastEvents":body.pastEvents,
-                "completedProjects":body.completedProjects,
-                "reviews": body.reviews, 
-                "certificates": body.certificates
-            })
-        },
-        deleteMember: async (id) => {
-            const member = await axios.delete('http://localhost:3000/api/members/'+ id)
         },
     }
 module.exports = functions; 

@@ -12,9 +12,9 @@ router.get('/getslots', async (req, res) => {
 
 router.get('/:id',async (req, res) => {
     const slotId = req.params.id
-    const slot = await Slot.findById(slotId)  
-    if(!slot) return res.status(400).send({error:result.error.details[0].message});
-    res.send(slot)
+    const slot1 = await slot.findById(slotId)  
+    if(!slot1) return res.status(400).send({error:result.error.details[0].message});
+    res.send(slot1)
 });
 
 
@@ -55,5 +55,16 @@ router.post('/:id', async (req,res) => {
     
 
  });
+
+
+ router.delete('/:id',async (req, res) => {
+ try{ const slotid = req.params.id
+  const deletedslot = await slot.findByIdAndDelete(slotid)  
+res.json({msg:"Slot deleted", data: deletedslot}) 
+ }
+ catch (error) {
+   console.log(error)
+ }
+});
 
  module.exports = router;
