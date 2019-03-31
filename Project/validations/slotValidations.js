@@ -3,9 +3,11 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
-            memberID: Joi.number().required(),
-            memberName: Joi.string().required(),
-            confirm: Joi.string().required()   
+            location: Joi.array(),
+            booked: Joi.boolean(),
+            date: Joi.date().required(),
+            appointment: Joi.array()
+
         }
 
         return Joi.validate(request, createSchema)
@@ -13,9 +15,11 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            memberID: Joi.number().required(),
-            memberName: Joi.string().required(),
-            confirm: Joi.string().required()
+            location: Joi.array(),
+            booked: Joi.boolean(),
+            date: Joi.date().required(),
+            appointment: Joi.array()
+
         }
 
         return Joi.validate(request, updateSchema)
