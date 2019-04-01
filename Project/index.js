@@ -11,6 +11,8 @@ const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const cors = require('cors')
 
+const db = require('./config/keys').mongoURI;
+
 const app = express();
 app.use(express.json());
 app.use(cors())
@@ -33,7 +35,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect('mongodb+srv://hazem9999:gemseldeen@one-for-all-eoozu.mongodb.net/test?')
+  .connect(db)
   .then(() => console.log("connected to MongoDB"))
   .catch(err => console.log(err));
 // Direct routes to appropriate files
@@ -52,4 +54,6 @@ app.use("/api/slots", slot);
 app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
 });
-app.listen(process.env.PORT || 3000)
+
+const port = 3000;
+app.listen(port, () => console.log(`Server up and running on port ${port}`));

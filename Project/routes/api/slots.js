@@ -1,7 +1,7 @@
 const express = require('express');
 const Joi = require('joi');
 const router = express.Router();
-const slot = require('../../models/Slot');
+const slot = require('../../models/slot');
 const validator = require('../../validations/slotValidations')
 const Schedule = require('../../models/Schedule.js');
 
