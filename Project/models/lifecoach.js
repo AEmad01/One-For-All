@@ -52,4 +52,4 @@ Appointments:{
     required: false
   },
 });
-  module.exports = Lifecoach = mongoose.model('Lifecoach',LifecoachSchema);
+  module.exports = Lifecoach = mongoose.model('Life Coach',LifecoachSchema);
