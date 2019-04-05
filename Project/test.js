@@ -1,4 +1,5 @@
 const funcs = require('./fn')
+<<<<<<< HEAD
 
 test('create location', async () => {
     const body = {
@@ -104,6 +105,8 @@ test('updating  task', async () => {
 
 });
 
+=======
+>>>>>>> a9fc9aa50125da915dcecb2a1f7dc926ae1f23e0
 test('post member', async () => {
     const body = {
         name :"kimokono",
