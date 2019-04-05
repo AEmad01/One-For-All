@@ -98,8 +98,8 @@ const functions = {
                     
             })
             
-        }
-    }
+        },
+
         PostLifecoach: async (body) =>{
             const PostLifecoach = await axios.post('http://localhost:3000/api/lifecoach/', {
             "name" :body.name,
