@@ -41,6 +41,12 @@ const LifecoachSchema = new Schema({
     type: Number,
     required: true
   },
+  Schedule:{
+    type:Array
+},
+Appointments:{
+  type:Array
+},
   Notification: {
     type: [String],
     required: false

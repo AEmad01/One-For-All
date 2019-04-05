@@ -4,7 +4,9 @@ module.exports = {
     createValidation: request => {
         const createSchema = {
             name: Joi.string().required(),
-            specification: Joi.string().required(),
+            age: Joi.number().required(),
+            username: Joi.string().required(),
+            password: Joi.string().required(),
             
         }
 
@@ -14,8 +16,10 @@ module.exports = {
     updateValidation: request => {
         const updateSchema = {
             name: Joi.string().required(),
-            specification: Joi.string().required(),
-            
+            age: Joi.number().required(),
+            username: Joi.string().required(),
+            password: Joi.string().required(),
+           
         }
 
         return Joi.validate(request, updateSchema)

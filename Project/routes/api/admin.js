@@ -6,24 +6,24 @@ const validator = require('../../validations/adminValidations');
 
 // Get all Admins
 router.get("/", async (req, res) => {
-    const admin = await admin.find();
-    res.json({ data: admin });
+    const admin1 = await admin.find();
+    res.json({ data: admin1 });
   })
-
-// create a new admin
-router.post('/newadmin', async (req,res) => {
+// create new admin(temp)
+  router.post('/', async (req,res) => {
     try {
+        
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newadmin = await admin.create(req.body)
-     res.json({msg:'new Admin was created successfully', data: newadmin})
+     res.json({msg:'admin was created successfully', data: newadmin})
     }
     catch(error) {
         console.log(error)
     }  
- });
+ })
  //update an admin
- router.put('/updateAdmin:/id', async (req,res) => {
+ router.put('/updateAdmin/:id', async (req,res) => {
     try {
      const id = req.params.id
      const admin = await Book.findOne({id})
