@@ -3,8 +3,6 @@ const router = express.Router();
 const Lifecoach = require("../../models/lifecoach.js");
 const notifier = require('node-notifier');
 const validator = require("../../validations/lifecoachValidations.js");
-const validatorApp = require("../../validations/appointmentValidation")
-const appointment = require('../../models/appointment')
 var open = require('open');
 // Get all life coaches
 router.get("/", async (req, res) => {
@@ -56,27 +54,6 @@ router.post("/", async (req, res) => {
     console.log(error);
   }
 });
-//accept booking
-router.put("/booking/:id", async (req, res) => {
-  try {
-  const id = req.params.id
-  const appointmentm = await appointment.findById(id);
-  if (!appointmentm)
-    return res.status(404).send({ error: "appointment does not exist" });
-    const isValidated = validatorApp.updateValidation(req.body);
-  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message }) ;
-
-    const updatedappointment = await appointmentm.updateOne(req.body);
-     res.json({msg:'appointment updated successfully', data: updatedappointment})
-  
-    }
-    catch(error) {
-        res.status(404).send({error: 'Only appointment can be updated'})
-        console.log(error)
-  }
-});
-
-
 // Update a lifecoach
 router.put("/:id", async (req, res) => {
   try {

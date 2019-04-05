@@ -3,18 +3,6 @@ const router = express.Router();
 const Location = require('../../models/location.js');
 const validator = require('../../validations/locationValidations.js');
 // Get all locations
-router.get('/GetAllLocation', async (req, res) => {
-    const location = await location.find();
-    res.json({ data: locations })
-});
-
-// Get a certain location using mongo
-router.get('/GetSpecificLocation/:id',async (req, res) => {
-    const locationId = req.params.id
-    const location = await Schedule.findById(locationId)  
-    if(!location) return res.status(400).send({error:result.error.details[0].message});
-    res.send(location)
-})
 router.get('/', async (req, res) => {
     const location = await Location.find();
     res.json({ data: location })
@@ -28,7 +16,7 @@ router.get('/', async (req, res) => {
 
 
 // Create a new location
-router.post('/CreateLocation/', async (req,res) => {
+router.post('/', async (req,res) => {
     try {
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
@@ -41,7 +29,7 @@ router.post('/CreateLocation/', async (req,res) => {
     }  
  })
 // Update a location
-router.put('UpdateLocation/:id', async (req,res) => {
+router.put('/:id', async (req,res) => {
     try {
      const id = req.params.id
      const location = await Location.find({id})
@@ -57,7 +45,7 @@ router.put('UpdateLocation/:id', async (req,res) => {
     }  
  })
 // delete a certain location
-router.delete('DeleteLocation/:id', async (req,res) => {
+router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
      const location = await Location.find({id})

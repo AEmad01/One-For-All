@@ -17,7 +17,6 @@ router.get('/notification/:id', async (req, res) => {
     const noti= member.notification
     res.json({ data:noti})
 });
-
 // Create a new member
 router.post('/', async (req,res) => {
     try {

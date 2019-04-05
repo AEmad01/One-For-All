@@ -10,8 +10,8 @@ const scheduleSchema = new Schema({
     required: true
   },
   slots: {
-    type: Array,
-    required: false
+    type: Number,
+    required: true
   }
 })
 module.exports = Schedule = mongoose.model('schedules',scheduleSchema);

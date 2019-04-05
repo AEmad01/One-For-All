@@ -3,11 +3,20 @@ const Schema = mongoose.Schema;
 const appointmentSchema = new Schema({
   location: {
     type: String,
+    required: true
   },
   slot: {
-    type: Array,
+    type: Date,
+    required: true
   },
-  
+  lifeCoachID: {
+    type: Number,
+    required: true
+  },
+  lifeCoachName: {
+    type: String,
+    required: true
+  },
   memberID: {
     type: Number,
     required: true
@@ -17,8 +26,7 @@ const appointmentSchema = new Schema({
     required: true
   },
   confirm: {
-    type: Boolean,
-    defaultValue: false,
+    type: String,
     required: true
   },
 });
