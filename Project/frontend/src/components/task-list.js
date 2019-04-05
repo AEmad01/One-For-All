@@ -18,7 +18,7 @@ const Task = props => (
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
         <td>
-            <Link to={'/'+props.task._id}>Delete</Link>
+            <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
     </tr>
 )
