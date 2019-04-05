@@ -4,14 +4,14 @@ const Location = require('../../models/location.js');
 const validator = require('../../validations/locationValidations.js');
 // Get all locations
 router.get('/GetAllLocation', async (req, res) => {
-    const location = await location.find();
-    res.json({ data: locations })
+    const location = await Location.find();
+    res.json({ data: location })
 });
 
 // Get a certain location using mongo
 router.get('/GetSpecificLocation/:id',async (req, res) => {
     const locationId = req.params.id
-    const location = await Schedule.findById(locationId)  
+    const location = await Location.findById(locationId)  
     if(!location) return res.status(400).send({error:result.error.details[0].message});
     res.send(location)
 })
