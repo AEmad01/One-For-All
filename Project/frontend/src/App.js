@@ -7,6 +7,8 @@ import TaskList from './components/task-list'
 import DeleteTask from './components/delete-task'
 import memberList from './components/member-list'
 import CreateMember from './components/create-member'
+import AppointmentList from './components/appointment-list'
+import BookAppointment from './components/book-appointment'
 import PartnerList from './components/partner-list'
 import CreatePartner from './components/create-partner';
 
@@ -32,6 +34,9 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/partners" className="nav-link">Partners</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/appointments" className="nav-link">Appointments</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -43,7 +48,8 @@ class App extends Component {
           <Route path='/members/createMember' exact component={CreateMember} />
           <Route path='/partners' exact component={PartnerList} />
           <Route path='/partners/createPartner' exact component={CreatePartner} />
-
+          <Route path='/appointments' exact component={AppointmentList} />
+          <Route path='/appointments/createAppointment' component={BookAppointment} />
         </div>
       </Router>
     )

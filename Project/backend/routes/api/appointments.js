@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 // Create a new appointment
 
-router.post('/:id', async (req,res) => {
+router.post('/createAppointment ', async (req,res) => {
     const id = req.params.id
     try {
     const isValidated = validator.createValidation(req.body)
