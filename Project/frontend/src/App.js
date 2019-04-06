@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Homepage from './components/homepage'
 import TaskList from './components/task-list'
 import DeleteTask from './components/delete-task'
+import memberList from './components/member-list'
+import CreateMember from './components/create-member'
 
 class App extends Component {
   render() {
@@ -22,6 +24,9 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/tasks" className="nav-link">Tasks</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/members" className="nav-link">Members</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -29,6 +34,8 @@ class App extends Component {
           <Route path='/' exact component={Homepage} />
           <Route path='/tasks' exact component={TaskList} />
           <Route path='/delete/:id' component={DeleteTask} />
+          <Route path='/members' exact component={memberList} />
+          <Route path='/members/createMember' exact component={CreateMember} />
         </div>
       </Router>
     )
