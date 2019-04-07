@@ -60,6 +60,7 @@ export default class TaskList extends Component {
         return(
             <div>
                 <h3>Task List</h3>
+                <div>   <Link to={'/task/createTask'}>Create a new task</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>

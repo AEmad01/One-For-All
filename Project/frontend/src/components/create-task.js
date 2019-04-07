@@ -160,7 +160,7 @@ export default class CreateTask extends Component {
     render() {
         return(
             <div>
-                <h3>Update task</h3>
+                <h3>create task</h3>
                 <form onSubmit={this.onSubmit}>
                 
                   <div className="form-group">
