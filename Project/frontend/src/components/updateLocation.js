@@ -88,7 +88,7 @@ export default class updateLocation extends Component {
         confirmedLocation:''
       });
       alert("Location updated")
-window.location.replace("http://localhost:3001/locations");
+window.location.replace("http://localhost:3000/locations");
     }
       
       render() {
