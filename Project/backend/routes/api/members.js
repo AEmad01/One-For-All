@@ -19,7 +19,7 @@ router.get('/notification/:id', async (req, res) => {
 });
 
 // Create a new member
-router.post('/', async (req,res) => {
+router.post('/createMember', async (req,res) => {
     try {
     
      const isValidated = validator.createValidation(req.body)
