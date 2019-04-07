@@ -10,7 +10,7 @@ const slotSchema = new Schema({
   },
   booked: {
     type: Boolean,
-    defaultValue: false,
+    default: false,
   },
   Appointments:{
     type:Array,

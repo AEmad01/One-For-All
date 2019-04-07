@@ -3,19 +3,13 @@ const Joi = require('joi');
 const router = express.Router();
 const slot = require('../../models/slot');
 const validator = require('../../validations/slotValidations')
-const Schedule = require('../../models/Schedule.js');
+const Schedule = require('../../models/schedule.js');
 
 router.get('/getslots', async (req, res) => {
     const slots = await slot.find();
     res.json({ data: slots })
 });
 
-router.get('/:id',async (req, res) => {
-    const slotId = req.params.id
-    const slot1 = await slot.findById(slotId)  
-    if(!slot1) return res.status(400).send({error:result.error.details[0].message});
-    res.send(slot1)
-});
 
 
 router.post('/:id', async (req,res) => {

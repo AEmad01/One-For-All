@@ -7,6 +7,7 @@ const members = require("./routes/api/members");
 const appointments = require("./routes/api/appointments");
 const location = require("./routes/api/location");
 const mongoose = require("mongoose");
+const slot = require("./routes/api/slots")
 const lifecoach = require("./routes/api/lifecoach")
 const db = require('./config/keys').mongoURI;
 const cors = require('cors')
@@ -24,6 +25,8 @@ app.get("/", (req, res) => {
     <a href="/api/admin">Admins</a>
     <a href="/api/task">tasks</a>
     <a href="/api/lifecoach">lifecoach</a>
+    <a href="/api/slots">slots</a>
+
     `);
 });
 
@@ -41,6 +44,8 @@ app.use("/api/appointments", appointments);
 app.use("/api/schedules", schedules);
 app.use("/api/location", location);
 app.use("/api/lifecoach", lifecoach);
+app.use("/api/slots", slot);
+
 // Handling 404
 app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
