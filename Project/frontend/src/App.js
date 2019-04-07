@@ -15,6 +15,12 @@ import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
 import BookAppointment from './components/book-appointment'
 import UpdateTask from './components/updatetask'
+
+import lifeCoach from './components/lifeCoach'
+import CoachSchedule from './components/coachSchedule'
+import CoachAppointment from './components/coachAppointment'
+import CreateCoach from './components/create-coach'
+
 class App extends Component {
   render() {
     return (  
@@ -36,6 +42,9 @@ class App extends Component {
               </li>
               <li className="navbar-item">
                 <Link to="/partners" className="nav-link">Partners</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/lifecoach" className="nav-link">Life Coach</Link>
               </li>
               <li className="navbar-item">
                 <Link to="/slots" className="nav-link">Slots</Link>
@@ -63,6 +72,13 @@ class App extends Component {
           <Route path='/put/:id' component={updateLocation} />
           <Route path='/appointments' exact component={AppointmentList} />
           <Route path='/appointments/createAppointment' component={BookAppointment} />
+
+
+          <Route path='/lifecoach' component={lifeCoach} />
+          <Route path='/Coachschedule/:id' component={CoachSchedule} />
+          <Route path='/Coachappointments/:id' component={CoachAppointment} />
+          <Route path='/CreateCoach' component={CreateCoach} />
+
 
         </div>
       </Router>
