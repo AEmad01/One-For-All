@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
     <a href="/api/admin">Admins</a>
     <a href="/api/task">tasks</a>
     <a href="/api/lifecoach">lifecoach</a>
-    <a href="/api/slots">slots</a>
+    <a href="/api/slots/getslots">slots</a>
 
     `);
 });
@@ -44,7 +44,7 @@ app.use("/api/appointments", appointments);
 app.use("/api/schedules", schedules);
 app.use("/api/location", location);
 app.use("/api/lifecoach", lifecoach);
-app.use("/api/slots", slot);
+app.use("/api/slots/getslots", slot);
 
 // Handling 404
 app.use((req, res) => {
