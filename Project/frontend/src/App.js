@@ -13,6 +13,8 @@ import Slots from './components/slots-list';
 import Appointments from './components/appointment-list';
 import LocationList from './components/locationList'
 import updateLocation from './components/updateLocation'
+import ScheduleList from './components/show-schedule'
+import PostSchedule from './components/post-schedule'
 
 class App extends Component {
   render() {
@@ -45,6 +47,9 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/locations" className="nav-link">Locations</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/schedules" className="nav-link">Schedule</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -60,6 +65,8 @@ class App extends Component {
           <Route path='/appointments' exact component={Appointments} />
           <Route path='/locations' exact component={LocationList} />
           <Route path='/put/:id' component={updateLocation} />
+          <Route path='/schedules' exact component={ScheduleList} />
+          <Route path='/post/:id' component={PostSchedule} />
 
         </div>
       </Router>
