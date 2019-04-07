@@ -61,7 +61,7 @@ class App extends Component {
           <Route path='/update/:id' component={UpdateTask} />
           <Route path='/locations' exact component={LocationList} />
           <Route path='/put/:id' component={updateLocation} />
-  <Route path='/appointments' exact component={AppointmentList} />
+          <Route path='/appointments' exact component={AppointmentList} />
           <Route path='/appointments/createAppointment' component={BookAppointment} />
 
         </div>
