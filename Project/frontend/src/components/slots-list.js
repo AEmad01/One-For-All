@@ -13,7 +13,7 @@ const Slot = props => (
                <td>
      <button onClick={() =>  axios({
   method: 'put',
-  url: 'http://localhost:3001/api/slots/pick/' + props.slot._id,
+  url: 'http://localhost:3000/api/slots/pick/' + props.slot._id,
   data: {
     booked: 'true', // This is the body part
     date: props.slot.date,
@@ -39,7 +39,7 @@ export default class SlotList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/slots/getslots')
+        axios.get('http://localhost:3000/api/slots/getslots')
             .then(response => {
                 this.setState({slots: response.data.data});
             })
