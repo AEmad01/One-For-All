@@ -15,6 +15,8 @@ import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
 import BookAppointment from './components/book-appointment'
 import UpdateTask from './components/updatetask'
+import ScheduleList from './components/show-schedule'
+import PostSchedule from './components/post-schedule'
 class App extends Component {
   render() {
     return (  
@@ -46,6 +48,9 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/appointments" className="nav-link">Appointments</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/schedules" className="nav-link">Schedule</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -63,6 +68,8 @@ class App extends Component {
           <Route path='/put/:id' component={updateLocation} />
           <Route path='/appointments' exact component={AppointmentList} />
           <Route path='/appointments/createAppointment' component={BookAppointment} />
+                <Route path='/schedules' exact component={ScheduleList} />
+          <Route path='/schedule/postSchedule' component={PostSchedule} />
 
         </div>
       </Router>
