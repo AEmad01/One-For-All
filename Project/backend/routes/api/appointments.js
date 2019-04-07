@@ -12,13 +12,13 @@ router.get('/', async (req, res) => {
 
 // Create a new appointment
 
-router.post('/createAppointment ', async (req,res) => {
+router.post('/createAppointment/:id', async (req,res) => {
     const id = req.params.id
     try {
     const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const lifecoachm = await lifecoach.findById(id);
-     if(lifecoachm.id!== undefined){
+     if(lifecoachm!== undefined){
      const newAppointment = await appointment.create(req.body)
      res.json({msg:'Appointment was created successfully', data: newAppointment})
      lifecoachm.Appointments.push(newAppointment);

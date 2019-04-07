@@ -10,7 +10,7 @@ const Appointment = props => (
         <td>{props.appointment.lifeCoachName}</td>
         <td>{props.appointment.memberID}</td>
         <td>{props.appointment.memberName}</td>
-        <td>{props.appointment.confirm}</td>
+        <td>{props.appointment.confirm.toString()}</td>
     </tr>
 )
 

@@ -7,11 +7,11 @@ import TaskList from './components/task-list'
 import DeleteTask from './components/delete-task'
 import memberList from './components/member-list'
 import CreateMember from './components/create-member'
-import AppointmentList from './components/appointment-list'
-import BookAppointment from './components/book-appointment'
 import PartnerList from './components/partner-list'
 import CreatePartner from './components/create-partner';
-
+import Slots from './components/slots-list';
+import AppointmentList from './components/appointment-list'
+import BookAppointment from './components/book-appointment'
 class App extends Component {
   render() {
     return (  
@@ -35,6 +35,9 @@ class App extends Component {
                 <Link to="/partners" className="nav-link">Partners</Link>
               </li>
               <li className="navbar-item">
+                <Link to="/slots" className="nav-link">Slots</Link>
+              </li>
+              <li className="navbar-item">
                 <Link to="/appointments" className="nav-link">Appointments</Link>
               </li>
             </ul>
@@ -48,8 +51,10 @@ class App extends Component {
           <Route path='/members/createMember' exact component={CreateMember} />
           <Route path='/partners' exact component={PartnerList} />
           <Route path='/partners/createPartner' exact component={CreatePartner} />
+          <Route path='/slots' exact component={Slots} />
           <Route path='/appointments' exact component={AppointmentList} />
           <Route path='/appointments/createAppointment' component={BookAppointment} />
+
         </div>
       </Router>
     )

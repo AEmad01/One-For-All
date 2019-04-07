@@ -11,17 +11,8 @@ export default class BookAppointment extends Component {
         this.onChangeLifeCoachName=this.onChangeLifeCoachName.bind(this);
         this.onChangeMemberID=this.onChangeMemberID.bind(this);
         this.onChangeMemberName=this.onChangeMemberName.bind(this);
-        this.onChangeConfirm=this.onChangeConfirm.bind(this);
         this.onCreate= this.onCreate.bind(this);
-        this.state ={
-          location: '',
-          slot:'',
-          lifeCoachID:'',
-          lifeCoachName:'',
-          memberID:'',
-          memberName:'',
-          confirm:false
-        }
+        this.state ={}
        
     }
     onChangeLocation(e){
@@ -54,12 +45,7 @@ export default class BookAppointment extends Component {
         memberName:e.target.value
       });
     }
-    onChangeConfirm(e){
-      this.setState({
-        confirm:e.target.value
-      });
-    }
-    
+
     onCreate(e){
       e.preventDefault();
       const newAppointment ={
@@ -71,17 +57,15 @@ export default class BookAppointment extends Component {
         memberName:this.state.memberName,
         confirm:this.state.confirm,
       } 
-      axios.post('http://localhost:3001/api/appointments/createAppointment',newAppointment).then(response =>response.data);
+      axios.post('http://localhost:3000/api/appointments/createAppointment/'+ this.state.lifeCoachID,newAppointment).then(response =>response.data);
       this.setState({
-          location: '',
-          slot:'',
-          lifeCoachID:'',
-          lifeCoachName:'',
-          memberID:'',
-          memberName:'',
-          confirm:''
+
       });
       alert("Appointment Booked Successfully")
+      window.history.back();
+    location.reload();
+
+
     }
       
       render() {
@@ -137,14 +121,7 @@ export default class BookAppointment extends Component {
                                 onChange={this.onChangeMemberName}
                                 />
                     </div>
-                    <div className="form-group">
-                        <label>Confrim: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.confirm}
-                                onChange={this.onChangeConfirm}
-                                />
-                    </div>
+
                     <div className="form-group">
                         <input type="submit" value="Book Appointment" className="btn btn-primary" />
                     </div>
