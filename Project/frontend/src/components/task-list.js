@@ -20,6 +20,7 @@ const Task = props => (
         <td>
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
+        <td><Link to={'/update/'+props.task._id}>Update</Link></td> 
     </tr>
 )
 
@@ -31,6 +32,15 @@ export default class TaskList extends Component {
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3000/api/task/')
+            .then(response => {
+                this.setState({tasks: response.data.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+    componentDidUpdate() {
         axios.get('http://localhost:3000/api/task/')
             .then(response => {
                 this.setState({tasks: response.data.data});
@@ -66,7 +76,8 @@ export default class TaskList extends Component {
                             <th>Negotiation</th>
                             <th>Description</th>
                             <th>Others</th>
-                            <th>Actions</th>
+                            <th>delete</th>
+                            <th>update</th>
                         </tr>
                     </thead>
                     <tbody>
