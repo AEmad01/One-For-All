@@ -10,6 +10,7 @@ import CreateMember from './components/create-member'
 import PartnerList from './components/partner-list'
 import CreatePartner from './components/create-partner';
 import Slots from './components/slots-list';
+import Appointments from './components/appointment-list';
 
 class App extends Component {
   render() {
@@ -36,6 +37,9 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/slots" className="nav-link">Slots</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/appointments" className="nav-link">Appointments</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -48,6 +52,7 @@ class App extends Component {
           <Route path='/partners' exact component={PartnerList} />
           <Route path='/partners/createPartner' exact component={CreatePartner} />
           <Route path='/slots' exact component={Slots} />
+          <Route path='/appointments' exact component={Appointments} />
 
         </div>
       </Router>

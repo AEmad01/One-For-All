@@ -2,14 +2,21 @@ const mongoose= require('mongoose')
 const Schema = mongoose.Schema;
 const appointmentSchema = new Schema({
   location: {
-    type: String,
+    type: Array,
   },
   slot: {
     type: Array,
   },
-  
+  lifeCoachID: {
+    type: String,
+    required: true
+  },
+  lifeCoachName: {
+    type: String,
+    required: true
+  },
   memberID: {
-    type: Number,
+    type: String,
     required: true
   },
   memberName: {
@@ -18,8 +25,8 @@ const appointmentSchema = new Schema({
   },
   confirm: {
     type: Boolean,
-    defaultValue: false,
-    required: true
+    default: false,
+
   },
 });
   module.exports = appointment = mongoose.model('appointment',appointmentSchema);
