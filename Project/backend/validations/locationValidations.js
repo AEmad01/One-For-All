@@ -10,7 +10,9 @@ module.exports = {
             time: Joi.string().required(),
             member: Joi.string().required(),
             lifecoach: Joi.string().required(),
-            
+            confirmedLocation: Joi.boolean(),
+
+
         }
 
         return Joi.validate(request, createSchema)
@@ -18,13 +20,15 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            name: Joi.string().required(),
-            address: Joi.string().required(),
-            city: Joi.string().required(),
-            country: Joi.string().required(),
-            time: Joi.string().required(),
-            member: Joi.string().required(),
-            lifecoach: Joi.string().required(),
+            name: Joi.string(),
+            address: Joi.string(),
+            city: Joi.string(),
+            country: Joi.string(),
+            time: Joi.string(),
+            member: Joi.string(),
+            lifecoach: Joi.string(),
+            confirmedLocation: Joi.boolean(),
+
 
         }
 

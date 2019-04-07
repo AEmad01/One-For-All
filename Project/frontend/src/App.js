@@ -11,6 +11,8 @@ import PartnerList from './components/partner-list'
 import CreatePartner from './components/create-partner';
 import Slots from './components/slots-list';
 import Appointments from './components/appointment-list';
+import LocationList from './components/locationList'
+import updateLocation from './components/updateLocation'
 
 class App extends Component {
   render() {
@@ -40,6 +42,9 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/appointments" className="nav-link">Appointments</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/locations" className="nav-link">Locations</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -53,6 +58,8 @@ class App extends Component {
           <Route path='/partners/createPartner' exact component={CreatePartner} />
           <Route path='/slots' exact component={Slots} />
           <Route path='/appointments' exact component={Appointments} />
+          <Route path='/locations' exact component={LocationList} />
+          <Route path='/put/:id' component={updateLocation} />
 
         </div>
       </Router>
