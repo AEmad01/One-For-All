@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const appointment = require('../../models/appointment.js');
 const validator = require('../../validations/appointmentValidation')
+const lifecoach = require('../../models/lifecoach')
+
 // Get all appointments
 router.get('/', async (req, res) => {
     const appointments = await appointment.find();
@@ -9,19 +11,27 @@ router.get('/', async (req, res) => {
 });
 
 // Create a new appointment
-router.post('/', async (req,res) => {
+
+router.post('/createAppointment/:id', async (req,res) => {
+    const id = req.params.id
     try {
-        
-     const isValidated = validator.createValidation(req.body)
+    const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+     const lifecoachm = await lifecoach.findById(id);
+     if(lifecoachm!== undefined){
      const newAppointment = await appointment.create(req.body)
      res.json({msg:'Appointment was created successfully', data: newAppointment})
+     lifecoachm.Appointments.push(newAppointment);
+     const temp = await lifecoachm.save();
+     res.send(lifecoachm);
     }
-    catch(error) {
-        // We will be handling the error later
+    }
+    catch(error) {  
+        res.status(404).send({error: 'You need a LifeCoach to create an appointment'})
         console.log(error)
     }  
- })
+ });
+
 // Update an appointment
 router.put('/:id', async (req,res) => {
     try {

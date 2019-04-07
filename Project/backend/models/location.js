@@ -1,4 +1,3 @@
-// The location model
 const mongoose= require('mongoose')
 const Schema = mongoose.Schema;
 const locationSchema = new Schema({
@@ -29,7 +28,11 @@ const locationSchema = new Schema({
   lifecoach: {
     type: String,
     required: true
-  }
+  },
+  confirmedLocation: {
+    type: Boolean,
+    default: false,
+  },
  
   
 });

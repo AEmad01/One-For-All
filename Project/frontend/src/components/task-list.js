@@ -16,7 +16,7 @@ const Task = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.negotiation}</td>
         <td>{props.task.Description}</td>
-        <td>{props.task.extraAtt}</td>
+        <td>{props.task.extraAtt.toString()}</td>
         <td>
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>

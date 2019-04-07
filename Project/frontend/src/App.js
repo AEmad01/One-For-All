@@ -5,6 +5,18 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Homepage from './components/homepage'
 import TaskList from './components/task-list'
 import DeleteTask from './components/delete-task'
+import memberList from './components/member-list'
+import CreateMember from './components/create-member'
+import PartnerList from './components/partner-list'
+import CreatePartner from './components/create-partner';
+import Slots from './components/slots-list';
+import Appointments from './components/appointment-list';
+import LocationList from './components/locationList'
+import updateLocation from './components/updateLocation'
+import lifeCoach from './components/lifeCoach'
+import CoachSchedule from './components/coachSchedule'
+import CoachAppointment from './components/coachAppointment'
+import CreateCoach from './components/create-coach'
 
 class App extends Component {
   render() {
@@ -22,6 +34,24 @@ class App extends Component {
               <li className="navbar-item">
                 <Link to="/tasks" className="nav-link">Tasks</Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/members" className="nav-link">Members</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/partners" className="nav-link">Partners</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/lifecoach" className="nav-link">Life Coach</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/slots" className="nav-link">Slots</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/appointments" className="nav-link">Appointments</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/locations" className="nav-link">Locations</Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -29,6 +59,19 @@ class App extends Component {
           <Route path='/' exact component={Homepage} />
           <Route path='/tasks' exact component={TaskList} />
           <Route path='/delete/:id' component={DeleteTask} />
+          <Route path='/members' exact component={memberList} />
+          <Route path='/members/createMember' exact component={CreateMember} />
+          <Route path='/partners' exact component={PartnerList} />
+          <Route path='/partners/createPartner' exact component={CreatePartner} />
+          <Route path='/slots' exact component={Slots} />
+          <Route path='/appointments' exact component={Appointments} />
+          <Route path='/locations' exact component={LocationList} />
+          <Route path='/put/:id' component={updateLocation} />
+          <Route path='/lifecoach' component={lifeCoach} />
+          <Route path='/Coachschedule/:id' component={CoachSchedule} />
+          <Route path='/Coachappointments/:id' component={CoachAppointment} />
+          <Route path='/CreateCoach' component={CreateCoach} />
+
         </div>
       </Router>
     )
