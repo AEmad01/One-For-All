@@ -63,8 +63,7 @@ export default class BookAppointment extends Component {
       });
       alert("Appointment Booked Successfully")
       window.history.back();
-    location.reload();
-
+ location.reload();
 
     }
       
