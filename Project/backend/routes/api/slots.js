@@ -11,6 +11,11 @@ router.get('/getslots', async (req, res) => {
 });
 
 
+router.get('/', async (req, res) => {
+  const slots = await slot.find();
+  res.json({ data: slots })
+});
+
 
 router.post('/:id', async (req,res) => {
     const id = req.params.id
