@@ -36,6 +36,16 @@ export default class LocationList extends Component {
             })
     }
 
+    componentDidUpdate() {
+        axios.get('http://localhost:3000/api/locations/')
+            .then(response => {
+                this.setState({locations: response.data.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     locationList() {
         return this.state.locations.map(function(currentLocation, i) {
             return <Location location={currentLocation} key={i} />;
