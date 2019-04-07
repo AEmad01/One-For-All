@@ -15,6 +15,8 @@ import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
 import BookAppointment from './components/book-appointment'
 import UpdateTask from './components/updatetask'
+import ScheduleList from './components/show-schedule'
+import PostSchedule from './components/post-schedule'
 
 import lifeCoach from './components/lifeCoach'
 import CoachSchedule from './components/coachSchedule'
@@ -59,7 +61,7 @@ class App extends Component {
           </div>
         </nav>
 
-          <Route path='/' exact component={Homepage} />
+        <Route path='/' exact component={Homepage} />
           <Route path='/tasks' exact component={TaskList} />
           <Route path='/delete/:id' component={DeleteTask} />
           <Route path='/members' exact component={memberList} />
@@ -72,6 +74,8 @@ class App extends Component {
           <Route path='/put/:id' component={updateLocation} />
           <Route path='/appointments' exact component={AppointmentList} />
           <Route path='/appointments/createAppointment' component={BookAppointment} />
+          <Route path='/schedules' exact component={ScheduleList} />
+          <Route path='/schedule/postSchedule' component={PostSchedule} />
 
 
           <Route path='/lifecoach' component={lifeCoach} />
