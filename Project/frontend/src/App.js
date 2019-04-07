@@ -14,8 +14,15 @@ import LocationList from './components/locationList'
 import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
 import BookAppointment from './components/book-appointment'
-import CreateTask from './components/create-task'
 import UpdateTask from './components/updatetask'
+import ScheduleList from './components/show-schedule'
+import PostSchedule from './components/post-schedule'
+import CreateTask from './components/create-task'
+import lifeCoach from './components/lifeCoach'
+import CoachSchedule from './components/coachSchedule'
+import CoachAppointment from './components/coachAppointment'
+import CreateCoach from './components/create-coach'
+
 class App extends Component {
   render() {
     return (  
@@ -39,6 +46,9 @@ class App extends Component {
                 <Link to="/partners" className="nav-link">Partners</Link>
               </li>
               <li className="navbar-item">
+                <Link to="/lifecoach" className="nav-link">Life Coach</Link>
+              </li>
+              <li className="navbar-item">
                 <Link to="/slots" className="nav-link">Slots</Link>
               </li>
              <li className="navbar-item">
@@ -51,7 +61,7 @@ class App extends Component {
           </div>
         </nav>
 
-          <Route path='/' exact component={Homepage} />
+        <Route path='/' exact component={Homepage} />
           <Route path='/tasks' exact component={TaskList} />
           <Route path='/delete/:id' component={DeleteTask} />
           <Route path='/members' exact component={memberList} />
@@ -61,10 +71,18 @@ class App extends Component {
           <Route path='/slots' exact component={Slots} />
           <Route path='/update/:id' component={UpdateTask} />
           <Route path='/locations' exact component={LocationList} />
-          <Route path='/task/createTask' exact component={CreateTask} />
           <Route path='/put/:id' component={updateLocation} />
-  <Route path='/appointments' exact component={AppointmentList} />
+          <Route path='/appointments' exact component={AppointmentList} />
           <Route path='/appointments/createAppointment' component={BookAppointment} />
+          <Route path='/schedules' exact component={ScheduleList} />
+          <Route path='/schedule/postSchedule' component={PostSchedule} />
+          <Route path='/task/createTask' exact component={CreateTask} />
+
+          <Route path='/lifecoach' component={lifeCoach} />
+          <Route path='/Coachschedule/:id' component={CoachSchedule} />
+          <Route path='/Coachappointments/:id' component={CoachAppointment} />
+          <Route path='/CreateCoach' component={CreateCoach} />
+
 
         </div>
       </Router>

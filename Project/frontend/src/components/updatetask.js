@@ -142,13 +142,13 @@ export default class UpdateTask extends Component {
             partnerName:'',
             monetaryCompensation:'',
             consultency:'',
-            setOfSkills:'',
+            setOfSkills:{},
             memberID:'',
             memberName:'',
             candidates:'',
             negotiation:'',
             Description:'',
-            extraAtt:''
+            extraAtt:{}
                
         });   
         alert("task updated")

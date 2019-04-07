@@ -12,11 +12,30 @@ router.get("/", async (req, res) => {
   res.json({ data: lifecoachs });
 });
 
+
+router.get('/appointments/:id', async (req, res) => {
+  const id = req.params.id
+  const lifecoach = await Lifecoach.findById(id)
+  if(!lifecoach) return res.status(404).send({error: 'Lifecoach does not exist'})
+  const sch= lifecoach.Appointments
+  res.json({ data:sch})
+
+});
+
+router.get('/schedule/:id', async (req, res) => {
+  const id = req.params.id
+  const lifecoach = await Lifecoach.findById(id)
+  if(!lifecoach) return res.status(404).send({error: 'Lifecoach does not exist'})
+  const sch= lifecoach.Schedule
+  res.json({ data:sch})
+
+});
+
 router.get('/notification/:id', async (req, res) => {
   const id = req.params.id
   const lifecoach = await Lifecoach.findById(id)
   if(!lifecoach) return res.status(404).send({error: 'Lifecoach does not exist'})
-  const noti= lifecoach.notification
+  const noti= lifecoach.Notification
   res.json({ data:noti})
 
 });
