@@ -7,9 +7,8 @@ const Schedule = props => (
         <td>{props.schedule.name}</td>
         <td>{props.schedule.specification}</td>
         <td>{props.schedule.slots}</td>
-        <td>
-            <Link to={'/post/'+props.schedule._id}>Post</Link>
-        </td>
+        <td>{props.schedule.lifeCoachID}</td>
+
     </tr>
 )
 
@@ -21,7 +20,7 @@ export default class ScheduleList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/schedules/')
+        axios.get('http://localhost:3001/api/schedules/GetAllSchedule')
             .then(response => {
                 this.setState({schedules: response.data.data});
             })
@@ -40,12 +39,16 @@ export default class ScheduleList extends Component {
         return(
             <div>
                 <h3>Schedule </h3>
+                <div>   <Link to={'/schedule/postSchedule'}>Post a new schedule</Link></div>
+
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Specification</th>
                             <th>Slots</th>
+                            <th>LifeCoach ID</th>
+
                         </tr>
                     </thead>
                     <tbody>

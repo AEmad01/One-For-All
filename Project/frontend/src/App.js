@@ -66,7 +66,7 @@ class App extends Component {
           <Route path='/locations' exact component={LocationList} />
           <Route path='/put/:id' component={updateLocation} />
           <Route path='/schedules' exact component={ScheduleList} />
-          <Route path='/post/:id' component={PostSchedule} />
+          <Route path='/schedule/postSchedule' component={PostSchedule} />
 
         </div>
       </Router>
