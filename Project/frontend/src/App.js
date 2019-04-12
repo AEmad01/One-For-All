@@ -22,6 +22,9 @@ import lifeCoach from './components/lifeCoach'
 import CoachSchedule from './components/coachSchedule'
 import CoachAppointment from './components/coachAppointment'
 import CreateCoach from './components/create-coach'
+import CreateLocation from './components/createLocation'
+import DeleteLocation from './components/deleteLocation'
+
 
 class App extends Component {
   render() {
@@ -85,6 +88,8 @@ class App extends Component {
           <Route path='/Coachschedule/:id' component={CoachSchedule} />
           <Route path='/Coachappointments/:id' component={CoachAppointment} />
           <Route path='/CreateCoach' component={CreateCoach} />
+          <Route path='/locations/CreateLocation' exact component={CreateLocation} />
+          <Route path='/locations/delete/:id' component={DeleteLocation} />
 
 
         </div>
