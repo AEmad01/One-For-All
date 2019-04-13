@@ -12,6 +12,11 @@ const Member = props => (
         <td>{props.member.reviews}</td>
         <td>{props.member.certificates}</td>
         <td>{props.member.notification}</td>
+        <td>
+            <Link to={'/members/delete/'+props.member._id}>Delete</Link>
+        </td>
+        <td><Link to={'/members/update/'+props.member._id}>Update</Link></td> 
+        
         </tr>
 )
 

@@ -22,6 +22,8 @@ import lifeCoach from './components/lifeCoach'
 import CoachSchedule from './components/coachSchedule'
 import CoachAppointment from './components/coachAppointment'
 import CreateCoach from './components/create-coach'
+import DeleteMember from './components/delete-member'
+import UpdateMember from './components/updateMember'
 
 class App extends Component {
   render() {
@@ -85,7 +87,9 @@ class App extends Component {
           <Route path='/Coachschedule/:id' component={CoachSchedule} />
           <Route path='/Coachappointments/:id' component={CoachAppointment} />
           <Route path='/CreateCoach' component={CreateCoach} />
-
+          <Route path='/members/delete/:id' component={DeleteMember} />
+          <Route path='/members/update/:id' component={UpdateMember} />
+         
 
         </div>
       </Router>
