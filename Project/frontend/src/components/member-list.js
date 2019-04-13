@@ -60,6 +60,8 @@ export default class MemberList extends Component {
                             <th>Reviews</th>
                             <th>Certificate</th>
                             <th>Notification</th>
+                            <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
