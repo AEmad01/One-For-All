@@ -1,8 +1,8 @@
 const express = require('express');
-const Joi = require('joi');
 const router = express.Router();
 const admin = require("../../models/Admin.js");
 const validator = require('../../validations/adminValidations');
+const user = require('../../models/User')
 
 // Get all Admins
 router.get("/", async (req, res) => {
@@ -16,6 +16,14 @@ router.get("/", async (req, res) => {
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newadmin = await admin.create(req.body)
+     dataArr = [
+       {
+         username: newadmin.username,
+         password: newadmin.password,
+         type: "admin"
+       }
+     ]
+     const newuser = await user.create(dataArr)
      res.json({msg:'admin was created successfully', data: newadmin})
     }
     catch(error) {
@@ -43,7 +51,8 @@ router.delete('/deleteAdmin/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deleteAdmin = await admin.findByIdAndRemove(id)
-     res.json({msg:'admin was deleted successfully', data: deletedAdmin})
+     const deleteuser = await user.findOneAndDelete({username: deleteAdmin.username})
+     res.json({msg:'admin was deleted successfully', data: deleteAdmin})
     }
     catch(error) {
         // We will be handling the error later

@@ -16,6 +16,9 @@ const Location = props => (
         <td>
             <Link to={'/put/'+props.location._id}>Update</Link>
         </td>
+        <td>
+            <Link to={'/locations/delete/'+props.location._id}>Delete</Link>
+        </td>
     </tr>
 )
 
@@ -36,7 +39,7 @@ export default class LocationList extends Component {
             })
     }
 
-    componentDidUpdate() {
+   componentDidUpdate() {
         axios.get('http://localhost:3000/api/locations/')
             .then(response => {
                 this.setState({locations: response.data.data});
@@ -56,6 +59,7 @@ export default class LocationList extends Component {
         return(
             <div>
                 <h3>Location list</h3>
+                <div>   <Link to={'/locations/CreateLocation/'}>Add New Location</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>

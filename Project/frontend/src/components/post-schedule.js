@@ -1,21 +1,17 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-export default class CreatePartner extends Component {
+export default class PostSchedule extends Component {
   
-       constructor(props){
+        constructor(props){
         super(props)
         this.onChangeName=this.onChangeName.bind(this);
-        this.onChangeAge=this.onChangeAge.bind(this);
-        this.onChangeUsername=this.onChangeUsername.bind(this);
-        this.onChangePassword=this.onChangePassword.bind(this);
+        this.onChangeSlots=this.onChangeSlots.bind(this);
+        this.onChangeLifeCoachID=this.onChangeLifeCoachID.bind(this);
+        this.onChangeSpecification=this.onChangeSpecification.bind(this);
         this.onCreate= this.onCreate.bind(this);
-        this.state ={
-          name: '',
-          age:'',
-          username:'',
-          password: '',
-        }
+
+        this.state ={}
        
     }
     onChangeName(e){
@@ -23,48 +19,49 @@ export default class CreatePartner extends Component {
         name:e.target.value
       });
     }
-    onChangeAge(e){
+    onChangeSlots(e){
       this.setState({
-        age:e.target.value
+        slots:e.target.value
       });
     }
-    onChangeUsername(e){
+    onChangeLifeCoachID(e){
       this.setState({
-        username:e.target.value
+        lifeCoachID:e.target.value
       });
     }
-    onChangePassword(e){
+    onChangeSpecification(e){
       this.setState({
-        password:e.target.value
+        specification:e.target.value
       });
     }
-    
+   
+
     onCreate(e){
       e.preventDefault();
-      const newPartner ={
+      const newSchedule ={
         name: this.state.name,
-        age:this.state.age,
-        username:this.state.username,
-        password:this.state.password
+        slots:this.state.slots,
+        specification:this.state.specification,
+        lifeCoachID:this.state.lifeCoachID,
+
       } 
-      axios.post('http://localhost:3001/api/partners/',newPartner).then(response =>response.data);
+      axios.post('http://localhost:3001/api/schedules/CreateSchedule/'+ this.state.lifeCoachID,newSchedule).then(response =>response.data);
       this.setState({
-        name: '',
-        age:'',
-        username:'',
-        password:'',
+
       });
-      alert("Partner created Successfully")
-      window.location.assign("http://localhost:3000")
+      alert("Schedule Posted")
+      window.history.back();
+
+
     }
       
       render() {
           return (
            <div style={{marginTop: 20}}>
-                <h3>Create New Patner</h3>
+                <h3>Post a new schedule</h3>
                 <form onSubmit={this.onCreate}>
                     <div className="form-group">
-                        <label>Name: </label>
+                        <label>name: </label>
                         <input  type="text"
                                 className="form-control"
                                 value={this.state.name}
@@ -72,31 +69,33 @@ export default class CreatePartner extends Component {
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Age: </label>
+                        <label>Slots: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.age}
-                                onChange={this.onChangeAge}
+                                value={this.state.slots}
+                                onChange={this.onChangeSlots}
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Username: </label>
+                        <label>LifeCoachID: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.username}
-                                onChange={this.onChangeUsername}
+                                value={this.state.lifeCoachID}
+                                onChange={this.onChangeLifeCoachID}
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Password: </label>
+                        <label>specification</label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.password}
-                                onChange={this.onChangePassword}
+                                value={this.state.specification}
+                                onChange={this.onChangeSpecification}
                                 />
                     </div>
+                  
+
                     <div className="form-group">
-                        <input type="submit" value="Create Partner" className="btn btn-primary" />
+                        <input type="submit" value="Post Schedule" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

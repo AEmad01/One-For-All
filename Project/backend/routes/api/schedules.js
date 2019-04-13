@@ -28,7 +28,7 @@ router.post('/CreateSchedule/:id', async (req,res) => {
 
 
     const lifecoachm = await lifecoach.findById(id);
-    if(lifecoachm.id!== undefined){
+    if(lifecoachm!== undefined){
     const newSchedule = await Schedule.create(req.body)
      res.json({msg:'Schedule was created successfully', data: newSchedule})
      lifecoachm.Schedule.push(newSchedule);

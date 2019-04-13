@@ -182,7 +182,7 @@ router.put('/chooseApplication/:mid/:id', async (req,res) => {
   if (!member) return res.status(404).send({ error: 'Member does not exist'})
 
   await Task.findOneAndUpdate({_id : id} , {memberID : candidateID , memberName: candidateName})
-  await Task.findByIdAndUpdate({'_id' : candidateID} , { $push: { 'notification' : 'You have been accepted to the task' } })
+  await Member.findByIdAndUpdate({'_id' : candidateID} , { $push: { 'notification' : 'You have been accepted to the task' } })
   
   res.json({msg: 'Candidate successfully accepted'})
 

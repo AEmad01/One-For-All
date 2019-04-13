@@ -16,21 +16,35 @@ const Task = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.negotiation}</td>
         <td>{props.task.Description}</td>
-        <td>{props.task.extraAtt.toString()}</td>
+        <td>{props.task.extraAtt}</td>
         <td>
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
+        <td><Link to={'/update/'+props.task._id}>Update</Link></td> 
     </tr>
-)
+) 
 
 export default class TaskList extends Component {
 
     constructor(props) {
         super(props)
+        
+        this.forceUpdate()
         this.state = {tasks: []}
     }
 
     componentDidMount() {
+        if(localStorage.getItem('jwtToken')){
+            axios.get('http://localhost:3001/api/task/')
+                .then(response => {
+                    this.setState({tasks: response.data.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+    }
+    componentDidUpdate() {
         axios.get('http://localhost:3000/api/task/')
             .then(response => {
                 this.setState({tasks: response.data.data});
@@ -47,33 +61,104 @@ export default class TaskList extends Component {
     }
 
     render() {
+        if(localStorage.getItem('jwtToken')){
+            if(localStorage.getItem('jwtToken').startsWith('A')){
+                return(
+                    <div>
+                       <h3>Task List</h3>
+                       <table className='table table-striped' style={{ marginTop: 20 }}>
+                           <thead>
+                               <tr>
+                                   <th>Name</th>
+                                   <th>Time</th>
+                                   <th>Effort</th>
+                                   <th>Level of Commitment</th>
+                                   <th>Experience Level</th>
+                                   <th>Partner</th>
+                                   <th>Monetary Compensation</th>
+                                   <th>Consultency</th>
+                                   <th>Set Of Skills</th>
+                                   <th>Assigned Member</th>
+                                   <th>Negotiation</th>
+                                   <th>Description</th>
+                                   <th>Others</th>
+                                   <th>delete</th>
+                                   <th>update</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               { this.taskList() }
+                           </tbody>
+                       </table>
+                   </div>
+               )
+            } else if(localStorage.getItem('jwtToken').startsWith('P')){
+                return(
+                    <div>
+                       <h3>Task List</h3>
+                       <div>   <Link to={'/task/createTask'}>Create a new task</Link></div>
+                       <table className='table table-striped' style={{ marginTop: 20 }}>
+                           <thead>
+                               <tr>
+                                   <th>Name</th>
+                                   <th>Time</th>
+                                   <th>Effort</th>
+                                   <th>Level of Commitment</th>
+                                   <th>Experience Level</th>
+                                   <th>Partner</th>
+                                   <th>Monetary Compensation</th>
+                                   <th>Consultency</th>
+                                   <th>Set Of Skills</th>
+                                   <th>Assigned Member</th>
+                                   <th>Negotiation</th>
+                                   <th>Description</th>
+                                   <th>Others</th>
+                                   <th>delete</th>
+                                   <th>update</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               { this.taskList() }
+                           </tbody>
+                       </table>
+                   </div>
+               )
+            } else {
+                return(
+                    <div>
+                       <h3>Task List</h3>
+                       <table className='table table-striped' style={{ marginTop: 20 }}>
+                           <thead>
+                               <tr>
+                                   <th>Name</th>
+                                   <th>Time</th>
+                                   <th>Effort</th>
+                                   <th>Level of Commitment</th>
+                                   <th>Experience Level</th>
+                                   <th>Partner</th>
+                                   <th>Monetary Compensation</th>
+                                   <th>Consultency</th>
+                                   <th>Set Of Skills</th>
+                                   <th>Assigned Member</th>
+                                   <th>Negotiation</th>
+                                   <th>Description</th>
+                                   <th>Others</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               { this.taskList() }
+                           </tbody>
+                       </table>
+                   </div>
+               )
+            }
+            
+        }
+
         return(
             <div>
-                <h3>Task List</h3>
-                <table className='table table-striped' style={{ marginTop: 20 }}>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Time</th>
-                            <th>Effort</th>
-                            <th>Level of Commitment</th>
-                            <th>Experience Level</th>
-                            <th>Partner</th>
-                            <th>Monetary Compensation</th>
-                            <th>Consultency</th>
-                            <th>Set Of Skills</th>
-                            <th>Assigned Member</th>
-                            <th>Negotiation</th>
-                            <th>Description</th>
-                            <th>Others</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.taskList() }
-                    </tbody>
-                </table>
+                <h4> Please <Link to={'/'}>login</Link> to view tasks </h4>
             </div>
-        )
+            )
     }
 }

@@ -12,6 +12,10 @@ const scheduleSchema = new Schema({
   slots: {
     type: Array,
     required: false
+  }, 
+  lifeCoachID: {
+    type: String,
+    required: true
   }
 })
 module.exports = schedule = mongoose.model('schedule',scheduleSchema);

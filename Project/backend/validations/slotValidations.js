@@ -17,7 +17,7 @@ module.exports = {
         const updateSchema = {
             location: Joi.array(),
             booked: Joi.boolean(),
-            date: Joi.date().required(),
+            date: Joi.date(),
             appointment: Joi.array()
 
         }
