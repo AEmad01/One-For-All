@@ -26,6 +26,7 @@ import DeleteMember from './components/delete-member'
 import UpdateMember from './components/updateMember'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
+import UpdateLifecoach from './components/update-lifecoach'
 
 
 class App extends Component {
@@ -92,9 +93,11 @@ class App extends Component {
           <Route path='/CreateCoach' component={CreateCoach} />
           <Route path='/members/delete/:id' component={DeleteMember} />
           <Route path='/members/update/:id' component={UpdateMember} />
+          <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
          
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
+
 
 
         </div>

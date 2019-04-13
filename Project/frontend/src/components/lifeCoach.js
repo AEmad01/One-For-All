@@ -21,6 +21,11 @@ const LifeCoach = props => (
         <td>
             <Link to={'/Coachappointments/'+props.lifecoach._id}>Appointments</Link>
         </td>
+        <td>
+            <Link to={'/lifecoach/delete/'+props.lifecoach._id}>Delete</Link>
+        </td>
+        <td><Link to={'/update/'+props.lifecoach._id}>Update</Link></td> 
+        
     </tr>
 )
 
@@ -68,6 +73,8 @@ export default class lifeCoach extends Component {
                             <th>Notification</th>
                             <th>Schedule</th>
                             <th>Appointments</th>
+                            <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
