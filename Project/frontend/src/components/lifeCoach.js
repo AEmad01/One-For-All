@@ -24,7 +24,7 @@ const LifeCoach = props => (
         <td>
             <Link to={'/lifecoach/delete/'+props.lifecoach._id}>Delete</Link>
         </td>
-        <td><Link to={'/update/'+props.lifecoach._id}>Update</Link></td> 
+        <td><Link to={'/lifecoach/update/'+props.lifecoach._id}>Update</Link></td> 
         
     </tr>
 )
