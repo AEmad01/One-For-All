@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import Homepage from './components/homepage'
 import TaskList from './components/task-list'
+import adminaccept from './components/admin-accept-task'
+import adminreject from './components/admin-reject-task'
 import DeleteTask from './components/delete-task'
 import memberList from './components/member-list'
 import CreateMember from './components/create-member'
@@ -25,6 +27,9 @@ import CreateCoach from './components/create-coach'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
 import Register from './components/register'
+import AdminList from './components/admin-list'
+import deleteadmin from "./components/delete-admin"
+import updateadmin from "./components/update-admin"
 
 
 class App extends Component {
@@ -43,6 +48,9 @@ class App extends Component {
                 </li>
                 <li className="navbar-item">
                 <Link to="/members" className="nav-link">Members</Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/admins" className="nav-link">admins</Link>
               </li>
               <li className="navbar-item">
                 <Link to="/partners" className="nav-link">Partners</Link>
@@ -85,13 +93,17 @@ class App extends Component {
           <Route path='/schedules' exact component={ScheduleList} />
           <Route path='/schedule/postSchedule' component={PostSchedule} />
           <Route path='/task/createTask' exact component={CreateTask} />
-
+          <Route path='/admins' exact component={AdminList} />
           <Route path='/lifecoach' component={lifeCoach} />
           <Route path='/Coachschedule/:id' component={CoachSchedule} />
           <Route path='/Coachappointments/:id' component={CoachAppointment} />
           <Route path='/CreateCoach' component={CreateCoach} />
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
+          <Route path='/accepttask/:id' exact component={adminaccept} />
+          <Route path='/rejecttask/:id' exact component={adminreject} />
+          <Route path='/deleteadmin/:id' component={deleteadmin} />
+          <Route path='/updateadmin/:id' component={updateadmin} />
   
           </div>
         </Router>

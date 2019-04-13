@@ -14,13 +14,19 @@ const Task = props => (
         <td>{props.task.consultency}</td>
         <td>{props.task.setOfSkills}</td>
         <td>{props.task.memberName}</td>
-        <td>{props.task.negotiation}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
+        <td>{props.task.Status.toString()}</td>
         <td>
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
         <td><Link to={'/update/'+props.task._id}>Update</Link></td> 
+        <td>
+            <Link to={'/accepttask/'+props.task._id}>accept</Link>
+        </td>
+        <td>
+            <Link to={'/rejecttask/'+props.task._id}>reject</Link>
+        </td>
     </tr>
 ) 
 
@@ -79,11 +85,13 @@ export default class TaskList extends Component {
                                    <th>Consultency</th>
                                    <th>Set Of Skills</th>
                                    <th>Assigned Member</th>
-                                   <th>Negotiation</th>
                                    <th>Description</th>
                                    <th>Others</th>
+                                   <th>status</th>
                                    <th>delete</th>
                                    <th>update</th>
+                                   <th>accept</th>
+                                <th>reject</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -110,9 +118,9 @@ export default class TaskList extends Component {
                                    <th>Consultency</th>
                                    <th>Set Of Skills</th>
                                    <th>Assigned Member</th>
-                                   <th>Negotiation</th>
                                    <th>Description</th>
                                    <th>Others</th>
+                                   <th>status</th>
                                    <th>delete</th>
                                    <th>update</th>
                                </tr>
@@ -140,7 +148,6 @@ export default class TaskList extends Component {
                                    <th>Consultency</th>
                                    <th>Set Of Skills</th>
                                    <th>Assigned Member</th>
-                                   <th>Negotiation</th>
                                    <th>Description</th>
                                    <th>Others</th>
                                </tr>

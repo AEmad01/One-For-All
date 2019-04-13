@@ -4,20 +4,20 @@ module.exports = {
   createValidation: request => {
     const createSchema = {
       name: Joi.string().required(),
-      time: Joi.date().required(),
-      effort: Joi.string().required(),
-      levelOfCommitment: Joi.string().required(),
-      experienceLevel: Joi.string().required(),
-      partnerID: Joi.number().required(),
-      partnerName: Joi.string().required(),
-      monetaryCompensation: Joi.string().required(),
-      consultency: Joi.string().required(),
-      setOfSkills: Joi.array().required(),
+      time: Joi.date(),
+      effort: Joi.string(),
+      levelOfCommitment: Joi.string(),
+      experienceLevel: Joi.string(),
+      partnerID: Joi.number(),
+      partnerName: Joi.string(),
+      monetaryCompensation: Joi.string(),
+      consultency: Joi.string(),
+      setOfSkills: Joi.array(),
       memberID: Joi.string(),
       memberName: Joi.string(),
       candidates: Joi.array(),
-      negotiation:Joi.string(),
-      Description: Joi.string().required()
+      Description: Joi.string().required(),
+      Status:Joi.boolean()
     };
 
     return Joi.validate(request, createSchema);
@@ -38,9 +38,9 @@ module.exports = {
         memberID: Joi.number(),
         memberName: Joi.string(),
         candidates: Joi.array(),
-        negotiation:Joi.string(),
         Description: Joi.string(),
-        extraAtt:Joi.array()
+        extraAtt:Joi.array(),
+        Status:Joi.boolean()
         
     };
 

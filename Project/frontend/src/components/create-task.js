@@ -15,21 +15,12 @@ export default class CreateTask extends Component {
         this.onChangeSetOfSkills=this.onChangeSetOfSkills.bind(this)
         this.onChangeMemberID=this.onChangeMemberID.bind(this)
         this.onChangeMemberName=this.onChangeMemberName.bind(this)
-        this.onChangeCandidates=this.onChangeCandidates.bind(this)
-        this.onChangeNegotiation=this.onChangeNegotiation.bind(this)
         this.onChangeDescription=this.onChangeDescription.bind(this)
         this.onChangeExtraAtt=this.onChangeExtraAtt.bind(this)
         this.onSubmit=this.onSubmit.bind(this)
-        this.state={
-           
-               
+        this.state={   
         }
-
-
     }
-    
- 
-   
     onChangeName(e){
         this.setState({
             name:e.target.value
@@ -90,16 +81,6 @@ export default class CreateTask extends Component {
             memberName:e.target.value
         });
     }
-    onChangeCandidates(e){
-        this.setState({
-            candidates:e.target.value
-        });
-    }
-    onChangeNegotiation(e){
-        this.setState({
-            negotiation:e.target.value
-        });
-    }
     onChangeDescription(e){
         this.setState({
             Description:e.target.value
@@ -125,13 +106,11 @@ export default class CreateTask extends Component {
             setOfSkills:this.state.setOfSkills,
             memberID:this.state.memberID,
             memberName:this.state.memberName,
-            candidates:this.state.candidates,
-            negotiation:this.state.negotiation,
             Description:this.state.Description,
             extraAtt:this.state.extraAtt
            
         };
-        axios.post('http://localhost:3000/api/task/admin/5caa4ed1c4f1815004f3f754',newTask).then(response =>response.data);
+        axios.post('http://localhost:3000/api/task/partner/5caa4ed1c4f1815004f3f754',newTask).then(response =>response.data);
         this.setState({
             name:'',
             time:'',
@@ -145,18 +124,14 @@ export default class CreateTask extends Component {
             setOfSkills:'',
             memberID:'',
             memberName:'',
-            candidates:'',
-            negotiation:'',
             Description:'',
-            extraAtt:''
+            extraAtt:'',
                
         });   
         alert("task created")
         window.location.replace("http://localhost:3000/task");
         this.props.history.push('/');
     }
-
-    
     render() {
         return(
             <div>
@@ -164,14 +139,14 @@ export default class CreateTask extends Component {
                 <form onSubmit={this.onSubmit}>
                 
                   <div className="form-group">
-                  <label>NAME:</label>
+                  <label>Name:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.name}
                          onChange={this.onChangeName}/>
                   </div>
                   <div className="form-group">
-                  <label>time:</label>
+                  <label>Time:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.time}
@@ -179,56 +154,56 @@ export default class CreateTask extends Component {
 
                   </div>
                   <div className="form-group">
-                  <label>effort:</label>
+                  <label>Effort:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.effort}
                          onChange={this.onChangeEffort}/>
                   </div>
                   <div className="form-group">
-                  <label>levelOfCommitment:</label>
+                  <label>LevelOfCommitment:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.levelOfCommitment}
                          onChange={this.onChangeLevelOfCommitment}/>
                   </div>
                   <div className="form-group">
-                  <label>experienceLevel:</label>
+                  <label>ExperienceLevel:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.experienceLevel}
                          onChange={this.onChangeExperienceLevel}/>
                   </div>
                   <div className="form-group">
-                  <label>partnerID:</label>
+                  <label>PartnerID:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.partnerID}
                          onChange={this.onChangePartnerID}/>
                   </div>
                   <div className="form-group">
-                  <label>partnerName:</label>
+                  <label>PartnerName:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.partnerName}
                          onChange={this.onChangePartnerName}/>
                   </div>
                   <div className="form-group">
-                  <label>monetaryCompensation:</label>
+                  <label>MonetaryCompensation:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.monetaryCompensation}
                          onChange={this.onChangeMonetaryCompensation}/>
                   </div>
                   <div className="form-group">
-                  <label>consultency:</label>
+                  <label>Consultency:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.consultency}
                          onChange={this.onChangeConsultency}/>
                   </div>
                   <div className="form-group">
-                  <label>setOfSkills:</label>
+                  <label>SetOfSkills:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.setOfSkills}
@@ -236,32 +211,18 @@ export default class CreateTask extends Component {
 
                   </div>
                   <div className="form-group">
-                  <label>memberID:</label>
+                  <label>MemberID:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.memberID}
                          onChange={this.onChangeMemberID}/>
                   </div>
                   <div className="form-group">
-                  <label>memberName:</label>
+                  <label>MemberName:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.memberName}
                          onChange={this.onChangeMemberName}/>
-                  </div>
-                  <div className="form-group">
-                  <label>candidates:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.candidates}
-                         onChange={this.onChangeCandidates}/>
-                  </div>
-                  <div className="form-group">
-                  <label>negotiation:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.negotiation}
-                         onChange={this.onChangeNegotiation}/>
                   </div>
                   <div className="form-group">
                   <label>Description:</label>
@@ -271,7 +232,7 @@ export default class CreateTask extends Component {
                          onChange={this.onChangeDescription}/>
                   </div>
                   <div className="form-group">
-                  <label>extraAtt:</label>
+                  <label>ExtraAtt:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.extraAtt}
@@ -286,7 +247,4 @@ export default class CreateTask extends Component {
             </div>
         )
     }
-
-
-
 }

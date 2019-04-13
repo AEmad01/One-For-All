@@ -9,6 +9,12 @@ router.get("/", async (req, res) => {
     const admin1 = await admin.find();
     res.json({ data: admin1 });
   })
+  //Get a specific admin
+router.get("/getadmin/:id", async (req, res) => {
+  const id = req.params.id
+  const admin2 = await admin.findById(id)
+  res.send(admin2)
+});
 // create new admin(temp)
   router.post('/', async (req,res) => {
     try {
@@ -32,27 +38,30 @@ router.get("/", async (req, res) => {
  })
  //update an admin
  router.put('/updateAdmin/:id', async (req,res) => {
-    try {
-     const id = req.params.id
-     const admin = await Book.findOne({id})
-     if(!admin) return res.status(404).send({error: 'admin does not exist'})
-     const isValidated = validator.updateValidation(req.body)
-     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const updateAdmin = await admin.updateOne(req.body)
-     res.json({msg: 'admin updated successfully'})
-    }
-    catch(error) {
-        // We will be handling the error later
-        console.log(error)
-    }  
- });
+  try {
+   const id = req.params.id
+   const admin1 = await admin.find({id})
+   if (!admin1) return res.status(404).send({ error: "admin does not exist" })
+   const isValidated = validator.updateValidation(req.body)
+   if (isValidated.error)
+     return res
+       .status(400)
+       .send({ error: isValidated.error.details[0].message })
+   const updateAdmin = await admin.findOneAndUpdate({_id: id} , req.body)
+   res.json({msg: 'admin updated successfully',data:updateAdmin})
+  }
+  catch(error) {
+      // We will be handling the error later
+      console.log(error)
+  }  
+});
 //delete an admin 
 router.delete('/deleteAdmin/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deleteAdmin = await admin.findByIdAndRemove(id)
      const deleteuser = await user.findOneAndDelete({username: deleteAdmin.username})
-     res.json({msg:'admin was deleted successfully', data: deleteAdmin})
+     res.json({msg:'admin was deleted successfully', data: deletedAdmin})
     }
     catch(error) {
         // We will be handling the error later
