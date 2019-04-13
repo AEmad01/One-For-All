@@ -19,7 +19,7 @@ const LifeCoach = props => (
             <Link to={'/Coachschedule/'+props.lifecoach._id}>Schedule</Link>
         </td>
         <td>
-            <Link to={'/Coachappointments/'+props.lifecoach._id}>Appointments</Link>
+            <Link to={'/appointments/createAppointment/'+props.lifecoach._id}>Book Appointment</Link>
         </td>
     </tr>
 )

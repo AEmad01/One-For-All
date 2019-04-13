@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Appointment = props => (
     <tr>
@@ -38,6 +39,7 @@ export default class coachAppointment extends Component {
         return(
             <div>
                 <h3>Appointment List</h3>
+                <div>   <Link to={'/appointments/createAppointment'}>Book a new appointment</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
