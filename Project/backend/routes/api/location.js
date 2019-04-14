@@ -6,15 +6,8 @@ const validator = require('../../validations/locationValidations.js');
 router.get('/', async (req, res) => {
     const location = await Location.find();
     res.json({ data: location })
-
-    
-    } 
-
-
+    }
 ,);
-
-
-
 // Create a new location
 router.post('/', async (req,res) => {
     try {

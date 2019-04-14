@@ -8,7 +8,7 @@ module.exports = {
       effort: Joi.string(),
       levelOfCommitment: Joi.string(),
       experienceLevel: Joi.string(),
-      partnerID: Joi.number(),
+      partnerID: Joi.string(),
       partnerName: Joi.string(),
       monetaryCompensation: Joi.string(),
       consultency: Joi.string(),
@@ -16,8 +16,8 @@ module.exports = {
       memberID: Joi.string(),
       memberName: Joi.string(),
       candidates: Joi.array(),
-      Description: Joi.string().required(),
-      Status:Joi.boolean()
+      negotiation:Joi.string(),
+      Description: Joi.string().required()
     };
 
     return Joi.validate(request, createSchema);
@@ -30,7 +30,7 @@ module.exports = {
         effort: Joi.string(),
         levelOfCommitment: Joi.string(),
         experienceLevel: Joi.string(),
-        partnerID: Joi.number(),
+        partnerID: Joi.string(),
         partnerName: Joi.string(),
         monetaryCompensation: Joi.string(),
         consultency: Joi.string(),
@@ -38,12 +38,10 @@ module.exports = {
         memberID: Joi.number(),
         memberName: Joi.string(),
         candidates: Joi.array(),
+        negotiation:Joi.string(),
         Description: Joi.string(),
-        extraAtt:Joi.array(),
-        Status:Joi.boolean()
-        
+        extraAtt:Joi.array()  
     };
-
     return Joi.validate(request, updateSchema);
   }
 };

@@ -318,17 +318,4 @@ export default class UpdateTask extends Component {
             </div>
         )
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -15,10 +15,12 @@ export default class CreateTask extends Component {
         this.onChangeSetOfSkills=this.onChangeSetOfSkills.bind(this)
         this.onChangeMemberID=this.onChangeMemberID.bind(this)
         this.onChangeMemberName=this.onChangeMemberName.bind(this)
+        this.onChangeCandidates=this.onChangeCandidates.bind(this)
+        this.onChangeNegotiation=this.onChangeNegotiation.bind(this)
         this.onChangeDescription=this.onChangeDescription.bind(this)
         this.onChangeExtraAtt=this.onChangeExtraAtt.bind(this)
         this.onSubmit=this.onSubmit.bind(this)
-        this.state={   
+        this.state={      
         }
     }
     onChangeName(e){
@@ -81,6 +83,16 @@ export default class CreateTask extends Component {
             memberName:e.target.value
         });
     }
+    onChangeCandidates(e){
+        this.setState({
+            candidates:e.target.value
+        });
+    }
+    onChangeNegotiation(e){
+        this.setState({
+            negotiation:e.target.value
+        });
+    }
     onChangeDescription(e){
         this.setState({
             Description:e.target.value
@@ -106,11 +118,13 @@ export default class CreateTask extends Component {
             setOfSkills:this.state.setOfSkills,
             memberID:this.state.memberID,
             memberName:this.state.memberName,
+            candidates:this.state.candidates,
+            negotiation:this.state.negotiation,
             Description:this.state.Description,
             extraAtt:this.state.extraAtt
            
         };
-        axios.post('http://localhost:3000/api/task/partner/5caa4ed1c4f1815004f3f754',newTask).then(response =>response.data);
+        axios.post('http://localhost:3000/api/task/admin/5caa4ed1c4f1815004f3f754',newTask).then(response =>response.data);
         this.setState({
             name:'',
             time:'',

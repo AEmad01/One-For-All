@@ -96,6 +96,7 @@ class App extends Component {
           <Route path='/schedule/postSchedule' component={PostSchedule} />
           <Route path='/task/createTask' exact component={CreateTask} />
           <Route path='/admins' exact component={AdminList} />
+
           <Route path='/lifecoach' component={lifeCoach} />
           <Route path='/Coachschedule/:id' component={CoachSchedule} />
           <Route path='/Coachappointments/:id' component={CoachAppointment} />
@@ -130,7 +131,6 @@ class App extends Component {
         </div>
       </Router>
     )
-
   }
 }
 
