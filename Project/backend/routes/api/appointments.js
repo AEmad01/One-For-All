@@ -31,22 +31,24 @@ router.post('/createAppointment/:id', async (req,res) => {
         console.log(error)
     }  
  });
-
-// Update an appointment
-router.put('/:id', async (req,res) => {
-    try {
-     const id = req.params.id
-     const appointments = await appointment.find({id})
-     if(!appointments) return res.status(404).send({error: 'Appointment does not exist'})
-     const isValidated = validator.updateValidation(req.body)
-     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const updatedAppointment = await appointment.updateOne(req.body)
-     res.json({msg: 'Appointment updated successfully', date: updatedAppointment} )
-}
-    catch(error) {
-        // We will be handling the error later
-        console.log(error)
-    } } )
+    router.put("/:id", async (req, res) => {
+        try {
+          const id = req.params.id;
+          const appointments = await appointment.find({id});
+          if (!appointments) return res.status(404).send({ error: "appointments does not exist" });
+          const isValidated = validator.updateValidation(req.body);
+          if (isValidated.error)
+            return res
+              .status(400)
+              .send({ error: isValidated.error.details[0].message });
+          
+          const updatedappointment = await appointment.findOneAndUpdate({_id: id} , req.body);
+          res.json({ msg: "appointment updated successfully" });
+        } catch (error) {
+          // We will be handling the error later
+          console.log(error);
+        }
+      });
 // delete a certain appointment
 router.delete('/:id', async (req,res) => {
     try {

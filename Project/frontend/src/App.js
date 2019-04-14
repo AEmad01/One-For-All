@@ -24,6 +24,7 @@ import CoachAppointment from './components/coachAppointment'
 import CreateCoach from './components/create-coach'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
+import SuggestLocation from './components/Map'
 
 
 class App extends Component {
@@ -90,6 +91,7 @@ class App extends Component {
           <Route path='/CreateCoach' component={CreateCoach} />
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
+          <Route path='/locations/suggest/' component={SuggestLocation} />
 
 
         </div>

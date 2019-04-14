@@ -11,6 +11,9 @@ const Appointment = props => (
         <td>{props.appointment.memberID}</td>
         <td>{props.appointment.memberName}</td>
         <td>{props.appointment.confirm.toString()}</td>
+        <td>
+            <Link to={'/locations/suggest/'+props.appointment._id}>Suggest Location</Link>
+        </td>
     </tr>
 )
 

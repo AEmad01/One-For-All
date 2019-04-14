@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
+import axios from 'axios'
 
 
 
@@ -10,12 +11,16 @@ class MapContainer extends React.Component {
   constructor(props){
     super(props)
     this.onChangeLocation=this.onChangeLocation.bind(this);
-    this.onCreate= this.onCreate.bind(this);
 
+    this.onUpdate= this.onUpdate.bind(this);
+  
   
 
+    
   this.state ={
     location: '',
+    confirm:'false',
+
     markers: [
       {
         name: "Suggested Location",
@@ -33,12 +38,27 @@ onChangeLocation(e){
     location:e.target.value
   });
 }
-onCreate(e){
-  e.preventDefault();
-  const newLocation ={
-    location: this.state.location,
-  }}
 
+  onUpdate(e){
+    e.preventDefault();
+    const upLocation ={
+      location: this.state.location,
+      confirm:this.state.confirm
+    } 
+    alert(window.location.href.match(/\/([^\/]+)\/?$/)[1])
+    axios.put('http://localhost:3001/api/appointments/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upLocation).then(response =>response.data);
+
+    this.setState({
+      location: '',
+      confirm:'false'
+    });
+
+  }
+  
+
+
+
+  
   state = {
     markers: [
       {
@@ -85,8 +105,8 @@ onCreate(e){
       initialCenter={{lat: 30.098580899999998,lng: 31.6434059}}
         google={this.props.google}
         style={{
-          width: "25.5%",
-          height: "300px"
+          width: "45.5%",
+          height: "500px"
         }}
         zoom={14}
       >
@@ -105,7 +125,7 @@ onCreate(e){
 <div key="1">
 <div style={{marginTop: 20}}>
   <h3>Suggest a New Location</h3>
-  <form onSubmit={this.onCreate}>
+  <form onSubmit={this.onUpdate}>
       <div className="form-group" style={{width: 400}}>
           <label>Location: </label>
           <input  type="text"
