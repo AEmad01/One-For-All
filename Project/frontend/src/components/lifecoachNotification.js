@@ -55,7 +55,7 @@ export default class LifecoachNotification extends Component {
         return(
             <div>
                 <h3>Appointments</h3>
-         <div>   <Link to={'/appointments/createAppointment'}>Book a new appointment</Link></div>
+        
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
