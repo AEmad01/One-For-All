@@ -14,12 +14,14 @@ const LifeCoach = props => (
         <td>{props.lifecoach.certificates}</td>
         <td>{props.lifecoach.specification}</td>
         <td>{props.lifecoach.salary}</td>
-        <td>{props.lifecoach.Notification.toString()}</td>
         <td>
             <Link to={'/Coachschedule/'+props.lifecoach._id}>Schedule</Link>
         </td>
         <td>
             <Link to={'/Coachappointments/'+props.lifecoach._id}>Appointments</Link>
+        </td>
+        <td>
+            <Link to={'/LifecoachNotification/'+props.lifecoach._id}>Notifications</Link>
         </td>
     </tr>
 )
@@ -32,7 +34,7 @@ export default class lifeCoach extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/lifecoach/')
+        axios.get('http://localhost:3001/api/lifecoach/')
             .then(response => {
                 this.setState({lifecoachs: response.data.data});
             })
@@ -65,9 +67,10 @@ export default class lifeCoach extends Component {
                             <th>Certificates</th>
                             <th>Specifications</th>
                             <th>Salary</th>
-                            <th>Notification</th>
                             <th>Schedule</th>
                             <th>Appointments</th>
+                            <th>Notifications</th>
+
                         </tr>
                     </thead>
                     <tbody>
