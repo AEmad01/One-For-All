@@ -23,7 +23,9 @@ module.exports = {
             lifeCoachName:Joi.string(),
             memberID:Joi.string(),
             memberName:Joi.string(),
-            confirm:Joi.boolean()
+            confirm:Joi.boolean(),
+            confirmSlot:Joi.boolean()
+
         }
 
         return Joi.validate(request, updateSchema)

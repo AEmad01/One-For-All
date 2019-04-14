@@ -11,12 +11,14 @@ const Appointment = props => (
         <td>{props.appointment.memberID}</td>
         <td>{props.appointment.memberName}</td>
         <td>{props.appointment.confirm.toString()}</td>
+        <td>{props.appointment.confirmSlot.toString()}</td>
+
         <td>
      <button onClick={() =>  axios({
   method: 'put',
   url: 'http://localhost:3001/api/appointments/' + props.appointment._id,
   data: {
-    confirm: 'true', // This is the body part
+    confirmSlot: 'true', // This is the body part
    
   }
 } )    }>
@@ -66,6 +68,8 @@ export default class LifecoachNotification extends Component {
                             <th>MemberID</th>
                             <th>MemberName</th>
                             <th>Confirmed</th>
+                            <th>Confirmed Slot</th>
+
                         </tr>
                     </thead>
                     <tbody>
