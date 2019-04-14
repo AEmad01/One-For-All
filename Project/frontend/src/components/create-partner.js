@@ -55,6 +55,7 @@ export default class CreatePartner extends Component {
         password:'',
       });
       alert("Partner created Successfully")
+      window.location.assign("http://localhost:3000")
     }
       
       render() {
