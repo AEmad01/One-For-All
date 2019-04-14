@@ -16,7 +16,8 @@ const Member = props => (
             <Link to={'/members/delete/'+props.member._id}>Delete</Link>
         </td>
         <td><Link to={'/members/update/'+props.member._id}>Update</Link></td> 
-        
+        <td> <Link to={'/view/'+props.member._id}>View tasks</Link></td>
+
         </tr>
 )
 
@@ -46,8 +47,6 @@ export default class MemberList extends Component {
             <div>
                 
                 <h3>Member List</h3>
-                <div>   <Link to={'/tasks'}>View tasks</Link></div>
-
 <div>   <Link to={'/members/createMember'}>Create a new member</Link></div>
 
                 <table className='table table-striped' style={{ marginTop: 20 }}>
