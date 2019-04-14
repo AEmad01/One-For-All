@@ -5,6 +5,7 @@ const notifier = require('node-notifier');
 const validator = require("../../validations/lifecoachValidations.js");
 const validatorApp = require("../../validations/appointmentValidation")
 const appointment = require('../../models/appointment')
+const user = require('../../models/User')
 var open = require('open');
 // Get all life coaches
 router.get("/", async (req, res) => {
@@ -66,6 +67,14 @@ router.post("/", async (req, res) => {
         .status(400)
         .send({ error: isValidated.error.details[0].message });
     const newlifecoach = await Lifecoach.create(req.body);
+    dataArr = [
+      {
+        username: newlifecoach.username,
+        password: newlifecoach.password,
+        type: "lifecoach"
+      }
+    ]
+    const newuser = await user.create(dataArr)
     res.json({
       msg: "life coach was created successfully",
       data: newlifecoach
@@ -97,7 +106,7 @@ router.put("/booking/:id", async (req, res) => {
 
 
 // Update a lifecoach
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const lifecoach = await Lifecoach.find({id});
@@ -116,10 +125,11 @@ router.put("/:id", async (req, res) => {
   }
 });
 // delete a certain lifecoach
-router.delete('/:id', async (req,res) => {
+router.delete('/delete/:id', async (req,res) => {
   try {
    const id = req.params.id
    const deletedLifecoach = await Lifecoach.findByIdAndDelete(id);
+   const deleteuser = await user.findOneAndDelete({username: deletedLifecoach.username})
    
    res.json({msg:'Lifecoach was deleted successfully', data: deletedLifecoach})
   }

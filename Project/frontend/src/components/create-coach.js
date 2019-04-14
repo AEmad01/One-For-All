@@ -5,6 +5,8 @@ export default class CreateCoach extends Component {
   
        constructor(props){
         super(props)
+        this.onChangeUsername=this.onChangeUsername.bind(this);
+        this.onChangePassword=this.onChangePassword.bind(this);
         this.onChangeName=this.onChangeName.bind(this);
         this.onChangeAge=this.onChangeAge.bind(this);
         this.onChangeSkills=this.onChangeSkills.bind(this);
@@ -17,6 +19,8 @@ export default class CreateCoach extends Component {
         this.onChangeSalary=this.onChangeSalary.bind(this);
         this.onCreate= this.onCreate.bind(this);
         this.state ={
+          username: '',
+          password:'',
           name: '',
           age:'',
           skills:'',
@@ -29,6 +33,16 @@ export default class CreateCoach extends Component {
           salary:'',
         }
        
+    }
+    onChangeUsername(e){
+      this.setState({
+        username:e.target.value
+      });
+    }
+    onChangePassword(e){
+      this.setState({
+        password:e.target.value
+      });
     }
     onChangeName(e){
       this.setState({
@@ -84,6 +98,8 @@ export default class CreateCoach extends Component {
     onCreate(e){
       e.preventDefault();
       const newCoach ={
+        username: this.state.username,
+        password: this.state.password,
         name: this.state.name,
         age:this.state.age,
         skills:this.state.skills,
@@ -97,6 +113,8 @@ export default class CreateCoach extends Component {
       } 
       axios.post('http://localhost:3001/api/lifecoach',newCoach).then(response =>response.data);
       this.setState({
+        username: '',
+        password: '',
         name: '',
         age:'',
         skills:'',
@@ -109,6 +127,7 @@ export default class CreateCoach extends Component {
         salary:'',
       });
       alert("Coach created Successfully")
+      window.location.assign("http://localhost:3000")
     }
       
       render() {
@@ -116,6 +135,22 @@ export default class CreateCoach extends Component {
            <div style={{marginTop: 20}}>
                 <h3>Create New LifeCoach</h3>
                 <form onSubmit={this.onCreate}>
+                <div className="form-group">
+                        <label>Username: </label>
+                        <input  type="text"
+                                className="form-control"
+                                value={this.state.username}
+                                onChange={this.onChangeUsername}
+                                />
+                    </div>
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input  type="text"
+                                className="form-control"
+                                value={this.state.password}
+                                onChange={this.onChangePassword}
+                                />
+                    </div>
                     <div className="form-group">
                         <label>Name: </label>
                         <input  type="text"

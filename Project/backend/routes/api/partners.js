@@ -9,27 +9,25 @@ const validator = require('../../validations/partnerValidations')
 // Models
 const Partner = require('../../models/Partner')
 const Task = require('../../models/Task')
+const User = require('../../models/User')
 router.use(bodyParser.urlencoded({extended:false}));
 
 
 //create partner using mongo 
 router.post('/',async (req, res) => {
-	// var schema = {
-	// 	name: Joi.string().min(3).required(),
-    //     age: Joi.number().required(),
-    //     username: Joi.string().min(8).required(),
-    //     password: Joi.string().min(8).required()
-
-	// }
-
-	// const result = Joi.validate(req.body, schema);
-
-    // if (result.error) return res.status(400).send({ error: result.error.details[0].message });
     try{
     const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
 
     const newUser=await Partner.create(req.body)
+    dataArr = [
+        {
+          username: newUser.username,
+          password: newUser.password,
+          type: "partner"
+        }
+    ]
+    const user = await User.create(dataArr)
     res.json({data:newUser})}
     catch(error) {
         console.log(error)
@@ -84,6 +82,7 @@ router.delete('/:id',async (req, res) => {
     
     partners.splice(index,1)*/
     
+    const deleteuser = await user.findOneAndDelete(partner1.username)
     res.send({msg:"done"})
 })
   

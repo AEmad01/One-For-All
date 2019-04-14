@@ -8,6 +8,15 @@ const Partner = props => (
         <td>{props.partner.age}</td>
         <td>{props.partner.username}</td>
         <td>{props.partner.password}</td>
+        <td>
+            <Link to={'/partners/delete/'+props.partner._id}>Delete</Link>
+        </td>
+        <td>
+            <Link to={'partners/put/'+props.partner._id}>Update</Link>
+        </td>
+        <td>
+            <Link to={'partners/task/'+props.partner._id}>Create new Task</Link>
+        </td>
         
 
     </tr>

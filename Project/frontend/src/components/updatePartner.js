@@ -1,23 +1,24 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-export default class CreatePartner extends Component {
+export default class updatePartner extends Component {
   
        constructor(props){
         super(props)
         this.onChangeName=this.onChangeName.bind(this);
-        this.onChangeAge=this.onChangeAge.bind(this);
-        this.onChangeUsername=this.onChangeUsername.bind(this);
-        this.onChangePassword=this.onChangePassword.bind(this);
-        this.onCreate= this.onCreate.bind(this);
+        this.onChangeAge = this.onChangeAge.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+
+
+        this.onUpdate= this.onUpdate.bind(this);
+
         this.state ={
-          name: '',
-          age:'',
-          username:'',
-          password: '',
+
         }
        
     }
+    
     onChangeName(e){
       this.setState({
         name:e.target.value
@@ -38,31 +39,31 @@ export default class CreatePartner extends Component {
         password:e.target.value
       });
     }
-    
-    onCreate(e){
+    onUpdate(e){
       e.preventDefault();
-      const newPartner ={
+      const upPartner ={
         name: this.state.name,
         age:this.state.age,
         username:this.state.username,
-        password:this.state.password
+        password:this.state.password,
       } 
-      axios.post('http://localhost:3001/api/partners/',newPartner).then(response =>response.data);
+      axios.put('http://localhost:3000/api/partners/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upPartner).then(response =>response.data);
+     
       this.setState({
         name: '',
         age:'',
         username:'',
         password:'',
       });
-      alert("Partner created Successfully")
-      window.location.assign("http://localhost:3000")
+      alert("Partner updated")
+  window.location.replace("http://localhost:3000/partners");
     }
       
       render() {
           return (
            <div style={{marginTop: 20}}>
-                <h3>Create New Patner</h3>
-                <form onSubmit={this.onCreate}>
+                <h3>Update Partner</h3>
+                <form onSubmit={this.onUpdate}>
                     <div className="form-group">
                         <label>Name: </label>
                         <input  type="text"
@@ -96,7 +97,7 @@ export default class CreatePartner extends Component {
                                 />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Partner" className="btn btn-primary" />
+                        <input type="submit" value="Update Partner" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

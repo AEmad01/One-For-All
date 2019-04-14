@@ -15,10 +15,10 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            name: Joi.string().required(),
-            age: Joi.number().required(),
-            username: Joi.string().required(),
-            password: Joi.string().required(),
+            name: Joi.string(),
+            age: Joi.number(),
+            username: Joi.string(),
+            password: Joi.string(),
            
         }
 
