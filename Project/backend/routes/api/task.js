@@ -11,6 +11,16 @@ router.get("/", async (req, res) => {
   const tasks = await Task.find()
   res.json({ data: tasks })
 });
+
+router.get('/accepted', async (req,res) => {
+  const tasks = await Task.find({Status: true})
+  res.json({ data: tasks })
+})
+
+router.get('/rejected', async (req,res) => {
+  const tasks = await Task.find({Status: false})
+  res.json({ data: tasks })
+})
 // search for task with name
 router.get("/search", async (req, res) => {
   const name = req.body.name
@@ -76,7 +86,6 @@ router.post("/partner/:id", async (req, res) => {
       res.send(partnerm)
     }
   } catch (error) {
-    // We will be handling the error later
     res.status(404).send({ error: "Only Partner can post" })
     console.log(error)
   }
@@ -133,13 +142,12 @@ router.put("/addattributeAD/:id", async (req, res) => {
     const id = req.params.id
     const tasks = await Task.findById(id)  
     if(!tasks) return res.status(400).send({error:result.error.details[0].message})
-    const name1 =req.body.name1
-    const data1 =req.body.data1
+    const name1 =req.body.name1 +': '
+    const data1 =req.body.data1 + ', '
     tasks.extraAtt.push(name1)
     tasks.extraAtt.push(data1) 
     const temp = await tasks.save()
-    res.send(tasks) 
-    res.json({ msg: "Task attribute added successfully" })
+    res.send(tasks)
   } catch (error) {
     // We will be handling the error later
     console.log(error)

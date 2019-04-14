@@ -25,16 +25,23 @@ router.post('/createMember', async (req,res) => {
     
      const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const newMember = await Member.create(req.body)
-     res.json({msg:'Member was created successfully', data: newMember})
-     dataArr = [
-       {
-         username: newMember.username,
-         password: newMember.password,
-         type: "member"
-       }
-     ]
-     const newuser = await user.create(dataArr)
+     const u = await user.findOne({username: req.body.username})
+     if(!u){
+
+        const newMember = await Member.create(req.body)
+        res.json({msg:'Member was created successfully', data: newMember})
+        dataArr = [
+          {
+            username: newMember.username,
+            password: newMember.password,
+            type: "member",
+            id: newMember._id
+          }
+        ]
+        const newuser = await user.create(dataArr)
+      } else {
+        res.status(400).send({ error: 'Username already exists' })
+      }
     }
     catch(error) {
         console.log(error)

@@ -94,7 +94,11 @@ export default class CreateMember extends Component {
         reviews:this.state.reviews,
         certificates:this.state.certificates
       } 
-      axios.post('http://localhost:3001/api/members/createMember',newMember).then(response =>response.data);
+      axios.post('http://localhost:3001/api/members/createMember',newMember).then(response =>response.data).catch( error => {
+        if(error == 'Error: Request failed with status code 400'){
+            alert('Username already exists')
+        }
+      })
       this.setState({
         username: '',
         password: '',
@@ -107,7 +111,6 @@ export default class CreateMember extends Component {
         reviews:'',
         certificates:''
       });
-      alert("Member created Successfully")
       window.location.assign("http://localhost:3000")
     }
       

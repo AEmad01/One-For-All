@@ -37,10 +37,12 @@ export default class Homepage extends Component {
             password:this.state.password
            
         };
-
+        
         axios.post('http://localhost:3001/api/user/login',login)
         .then( response => {
-            const { token } = response.data
+            const token = response.data.token
+            const id = response.data.userid
+            localStorage.setItem('userid',id)
             localStorage.setItem('jwtToken',token)
             setAuthToken(token)
             window.location.assign('http://localhost:3000/tasks')

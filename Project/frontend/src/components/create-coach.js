@@ -111,7 +111,13 @@ export default class CreateCoach extends Component {
         specification:this.state.specification,
         salary:this.state.salary
       } 
-      axios.post('http://localhost:3001/api/lifecoach',newCoach).then(response =>response.data);
+      axios.post('http://localhost:3001/api/lifecoach',newCoach).then(response =>
+      response.data)
+      .catch( error => {
+        if(error == 'Error: Request failed with status code 400'){
+            alert('Username already exists')
+        }
+      })
       this.setState({
         username: '',
         password: '',
@@ -126,7 +132,6 @@ export default class CreateCoach extends Component {
         specification:'',
         salary:'',
       });
-      alert("Coach created Successfully")
       window.location.assign("http://localhost:3000")
     }
       

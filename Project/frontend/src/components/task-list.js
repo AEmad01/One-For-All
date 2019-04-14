@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const Task = props => (
+const TaskA = props => (
     <tr>
         <td>{props.task.name}</td>
         <td>{props.task.time}</td>
@@ -16,7 +16,7 @@ const Task = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
-        <td>{props.task.Status}</td>
+        <td>{props.task.Status.toString()}</td>
         <td>
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
@@ -30,6 +30,40 @@ const Task = props => (
         <td><Link to={'/addATT/'+props.task._id}>Update</Link></td> 
     </tr>
 ) 
+const TaskP = props => (
+    <tr>
+        <td>{props.task.name}</td>
+        <td>{props.task.time}</td>
+        <td>{props.task.effort}</td>
+        <td>{props.task.levelOfCommitment}</td>
+        <td>{props.task.experienceLevel}</td>
+        <td>{props.task.partnerName}</td>
+        <td>{props.task.monetaryCompensation}</td>
+        <td>{props.task.consultency}</td>
+        <td>{props.task.setOfSkills}</td>
+        <td>{props.task.memberName}</td>
+        <td>{props.task.Description}</td>
+        <td>{props.task.extraAtt}</td>
+        <td><Link to={'/addATT/'+props.task._id}>Update</Link></td> 
+    </tr>
+) 
+
+const TaskM = props => (
+    <tr>
+        <td>{props.task.name}</td>
+        <td>{props.task.time}</td>
+        <td>{props.task.effort}</td>
+        <td>{props.task.levelOfCommitment}</td>
+        <td>{props.task.experienceLevel}</td>
+        <td>{props.task.partnerName}</td>
+        <td>{props.task.monetaryCompensation}</td>
+        <td>{props.task.consultency}</td>
+        <td>{props.task.setOfSkills}</td>
+        <td>{props.task.memberName}</td>
+        <td>{props.task.Description}</td>
+        <td>{props.task.extraAtt}</td>
+    </tr>
+) 
 
 export default class TaskList extends Component {
 
@@ -41,8 +75,24 @@ export default class TaskList extends Component {
     }
 
     componentDidMount() {
-        if(localStorage.getItem('jwtToken')){
-            axios.get('http://localhost:3001/api/task/')
+        if(localStorage.getItem('jwtToken').startsWith('A')){
+            axios.get('http://localhost:3001/api/task')
+                .then(response => {
+                    this.setState({tasks: response.data.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else if(localStorage.getItem('jwtToken').startsWith('P')){
+            axios.get('http://localhost:3001/api/task/accepted')
+                .then(response => {
+                    this.setState({tasks: response.data.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else {
+            axios.get('http://localhost:3001/api/task/accepted')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -51,20 +101,50 @@ export default class TaskList extends Component {
                 })
         }
     }
+
     componentDidUpdate() {
-        axios.get('http://localhost:3000/api/task/')
-            .then(response => {
-                this.setState({tasks: response.data.data});
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        if(localStorage.getItem('jwtToken').startsWith('A')){
+            axios.get('http://localhost:3001/api/task')
+                .then(response => {
+                    this.setState({tasks: response.data.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else if(localStorage.getItem('jwtToken').startsWith('P')){
+            axios.get('http://localhost:3001/api/task/accepted')
+                .then(response => {
+                    this.setState({tasks: response.data.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else {
+            axios.get('http://localhost:3001/api/task/accepted')
+                .then(response => {
+                    this.setState({tasks: response.data.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
     }
 
+
     taskList() {
-        return this.state.tasks.map(function(currentTask, i) {
-            return <Task task={currentTask} key={i} />;
-        });
+        if(localStorage.getItem('jwtToken').startsWith('A')){
+            return this.state.tasks.map(function(currentTask, i) {
+                return <TaskA task={currentTask} key={i} />;
+            });
+        } else if(localStorage.getItem('jwtToken').startsWith('P')){
+            return this.state.tasks.map(function(currentTask, i) {
+                return <TaskP task={currentTask} key={i} />;
+            });
+        } else {
+            return this.state.tasks.map(function(currentTask, i) {
+                return <TaskM task={currentTask} key={i} />;
+            });
+        }
     }
 
     render() {
@@ -87,14 +167,14 @@ export default class TaskList extends Component {
                                    <th>Set Of Skills</th>
                                    <th>Assigned Member</th>
                                    <th>Description</th>
-                                   <th>Others</th>
-                                   <th>status</th>
-                                   <th>delete</th>
-                                   <th>update</th>
-                                   <th>accept</th>
+                                   <th>Extra Attributes</th>
+                                   <th>Status</th>
+                                   <th>Delete</th>
+                                   <th>Update</th>
+                                   <th>Accept</th>
                                    
-                                <th>reject</th>
-                                <th>addATTribute</th>
+                                <th>Reject</th>
+                                <th>Add Attribute</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -107,7 +187,6 @@ export default class TaskList extends Component {
                 return(
                     <div>
                        <h3>Task List</h3>
-                       <div>   <Link to={'/task/createTask'}>Create a new task</Link></div>
                        <table className='table table-striped' style={{ marginTop: 20 }}>
                            <thead>
                                <tr>
@@ -122,11 +201,8 @@ export default class TaskList extends Component {
                                    <th>Set Of Skills</th>
                                    <th>Assigned Member</th>
                                    <th>Description</th>
-                                   <th>Others</th>
-                                   <th>status</th>
-                                   <th>delete</th>
-                                   <th>update</th>
-                                   <th>addATTribute</th>
+                                   <th>Extra Attribute</th>
+                                <th>Add Attribute</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -153,7 +229,7 @@ export default class TaskList extends Component {
                                    <th>Set Of Skills</th>
                                    <th>Assigned Member</th>
                                    <th>Description</th>
-                                   <th>Others</th>
+                                   <th>Extra Attribute</th>
                                </tr>
                            </thead>
                            <tbody>

@@ -47,7 +47,7 @@ export default class MemberList extends Component {
                 
                 <h3>Member List</h3>
                 <div>   <Link to={'/tasks'}>View tasks</Link></div>
-
+                
 <div>   <Link to={'/members/createMember'}>Create a new member</Link></div>
 
                 <table className='table table-striped' style={{ marginTop: 20 }}>

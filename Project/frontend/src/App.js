@@ -103,6 +103,7 @@ class App extends Component {
           <Route path='/appointments/createAppointment' component={BookAppointment} />
           <Route path='/schedules' exact component={ScheduleList} />
           <Route path='/schedule/postSchedule' component={PostSchedule} />
+          <Route path='/task/createTask' exact component={CreateTask} />
           <Route path='/admins' exact component={AdminList} />
 
           <Route path='/lifecoach' component={lifeCoach} />
@@ -113,7 +114,7 @@ class App extends Component {
           <Route path='/members/update/:id' component={UpdateMember} />
           <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
           <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
-         
+
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
           <Route path='/LifecoachNotification/:id' component={LifecoachNotification} />
