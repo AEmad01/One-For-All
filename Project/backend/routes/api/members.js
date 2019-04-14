@@ -3,6 +3,7 @@ const router = express.Router();
 const Member = require('../../models/Member.js');
 const validator = require('../../validations/memberValidations.js')
 const notifier= require('node-notifier');
+const user = require('../../models/User')
 const open= require('open');
 // Get all members
 router.get('/', async (req, res) => {
@@ -26,6 +27,14 @@ router.post('/createMember', async (req,res) => {
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newMember = await Member.create(req.body)
      res.json({msg:'Member was created successfully', data: newMember})
+     dataArr = [
+       {
+         username: newMember.username,
+         password: newMember.password,
+         type: "member"
+       }
+     ]
+     const newuser = await user.create(dataArr)
     }
     catch(error) {
         console.log(error)
@@ -47,7 +56,7 @@ router.post('/createMember', async (req,res) => {
     }
 )
 // Update a member
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
     try {
       const id = req.params.id;
       const member = await Member.find({id});
@@ -66,10 +75,11 @@ router.put("/:id", async (req, res) => {
     }
   });
 // delete a certain member
-router.delete('/:id', async (req,res) => {
+router.delete('/delete/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deletedMember = await Member.findByIdAndDelete(id);
+     const deleteuser = await user.findOneAndDelete(deletedMember.username)
      
      res.json({msg:'Member was deleted successfully', data: deletedMember})
     }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-export default class UpdateTask extends Component {
+
+export default class Createtask extends Component {
     constructor(props){
         super(props)
         this.onChangeName=this.onChangeName.bind(this)
@@ -19,181 +20,142 @@ export default class UpdateTask extends Component {
         this.onChangeNegotiation=this.onChangeNegotiation.bind(this)
         this.onChangeDescription=this.onChangeDescription.bind(this)
         this.onChangeExtraAtt=this.onChangeExtraAtt.bind(this)
-        this.onSubmit=this.onSubmit.bind(this)
+        this.onCreate=this.onCreate.bind(this)
         this.state={
            
-               
-        }
-
-
-    }
-    componentDidMount() {
-        axios.get('http://localhost:3001/api/task/' + this.props.match.params.id )
-        .then(response=>{
+            name: ''
+        } }
+        onChangeName(e){
             this.setState({
- 
-             name:response.data.name,
-             time:response.data.time,
-             effort:response.data.effort,
-             levelOfCommitment:response.data.levelOfCommitment,
-             experienceLevel:response.data.experienceLevel,
-             partnerID:response.data.partnerID,
-             partnerName:response.data.partnerName,
-             monetaryCompensation:response.data.monetaryCompensation,
-             consultency:response.data.consultency,
-             setOfSkills:response.data.setOfSkills,
-             memberID:response.data.memberID,
-             memberName:response.data.memberName,
-             candidates:response.data.candidates,
-             negotiation:response.data.negotiation,
-             Description:response.data.Description,
-             extraAtt:response.data.extraAtt
- 
-            })
- 
-        })
-         .catch(function(error){
-            console.log(error)
- 
-        })
-    
-    
-     }
-    
- 
-   
-    onChangeName(e){
-        this.setState({
-            name:e.target.value
-        });
-    }
-    onChangeTime(e){
-        this.setState({
-            time:e.target.value
-        });
-    }
-    onChangeEffort(e){
-        this.setState({
-            effort:e.target.value
-        });
-    }
-    onChangeLevelOfCommitment(e){
-        this.setState({
-            levelOfCommitment:e.target.value
-        });
-    }
-    onChangeExperienceLevel(e){
-        this.setState({
-            experienceLevel:e.target.value
-        });
-    }
-    onChangePartnerID(e){
-        this.setState({
-            partnerID:e.target.value
-        });
-    }
-    onChangePartnerName(e){
-        this.setState({
-            partnerName:e.target.value
-        });
-    }
-    onChangeMonetaryCompensation(e){
-        this.setState({
-            monetaryCompensation:e.target.value
-        });
-    }
-    onChangeConsultency(e){
-        this.setState({
-            consultency:e.target.value
-        });
-    }
-    onChangeSetOfSkills(e){
-        this.setState({
-            setOfSkills:e.target.value
-        });
-    }
-    onChangeMemberID(e){
-        this.setState({
-            memberID:e.target.value
-        });
-    }
-    onChangeMemberName(e){
-        this.setState({
-            memberName:e.target.value
-        });
-    }
-    onChangeCandidates(e){
-        this.setState({
-            candidates:e.target.value
-        });
-    }
-    onChangeNegotiation(e){
-        this.setState({
-            negotiation:e.target.value
-        });
-    }
-    onChangeDescription(e){
-        this.setState({
-            Description:e.target.value
-        });
-    }
-    onChangeExtraAtt(e){
-        this.setState({
-            extraAtt:e.target.value
-        });
-    }
-    onSubmit(e) {
-        e.preventDefault();
-        const obj = {
-            name:this.state.name,
-            time:this.state.time,
-            effort:this.state.effort,
-            levelOfCommitment:this.state.levelOfCommitment,
-            experienceLevel:this.state.experienceLevel,
-            partnerID:this.state.partnerID,
-            partnerName:this.state.partnerName,
-            monetaryCompensation:this.state.monetaryCompensation,
-            consultency:this.state.consultency,
-            setOfSkills:this.state.setOfSkills,
-            memberID:this.state.memberID,
-            memberName:this.state.memberName,
-            candidates:this.state.candidates,
-            negotiation:this.state.negotiation,
-            Description:this.state.Description,
-            extraAtt:this.state.extraAtt
-           
-        };
-        axios.put('http://localhost:3000/api/task/updatetask/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],obj).then(response =>response.data);
-        this.setState({
-            name:'',
-            time:'',
-            effort:'',
-            levelOfCommitment:'',
-            experienceLevel:'',
-            partnerID:'',
-            partnerName:'',
-            monetaryCompensation:'',
-            consultency:'',
-            setOfSkills:{},
-            memberID:'',
-            memberName:'',
-            candidates:'',
-            negotiation:'',
-            Description:'',
-            extraAtt:{}
+                name:e.target.value
+            });
+        }
+        onChangeTime(e){
+            this.setState({
+                time:e.target.value
+            });
+        }
+        onChangeEffort(e){
+            this.setState({
+                effort:e.target.value
+            });
+        }
+        onChangeLevelOfCommitment(e){
+            this.setState({
+                levelOfCommitment:e.target.value
+            });
+        }
+        onChangeExperienceLevel(e){
+            this.setState({
+                experienceLevel:e.target.value
+            });
+        }
+        onChangePartnerID(e){
+            this.setState({
+                partnerID:e.target.value
+            });
+        }
+        onChangePartnerName(e){
+            this.setState({
+                partnerName:e.target.value
+            });
+        }
+        onChangeMonetaryCompensation(e){
+            this.setState({
+                monetaryCompensation:e.target.value
+            });
+        }
+        onChangeConsultency(e){
+            this.setState({
+                consultency:e.target.value
+            });
+        }
+        onChangeSetOfSkills(e){
+            this.setState({
+                setOfSkills:e.target.value
+            });
+        }
+        onChangeMemberID(e){
+            this.setState({
+                memberID:e.target.value
+            });
+        }
+        onChangeMemberName(e){
+            this.setState({
+                memberName:e.target.value
+            });
+        }
+        onChangeCandidates(e){
+            this.setState({
+                candidates:e.target.value
+            });
+        }
+        onChangeNegotiation(e){
+            this.setState({
+                negotiation:e.target.value
+            });
+        }
+        onChangeDescription(e){
+            this.setState({
+                Description:e.target.value
+            });
+        }
+        onChangeExtraAtt(e){
+            this.setState({
+                extraAtt:e.target.value
+            });
+        }
+        onCreate(e) {
+            e.preventDefault();
+            const newTask = {
+                name:this.state.name,
+                time:this.state.time,
+                effort:this.state.effort,
+                levelOfCommitment:this.state.levelOfCommitment,
+                experienceLevel:this.state.experienceLevel,
+                partnerID:this.state.partnerID,
+                partnerName:this.state.partnerName,
+                monetaryCompensation:this.state.monetaryCompensation,
+                consultency:this.state.consultency,
+                setOfSkills:this.state.setOfSkills,
+                memberID:this.state.memberID,
+                memberName:this.state.memberName,
+                candidates:this.state.candidates,
+                negotiation:this.state.negotiation,
+                Description:this.state.Description,
+                extraAtt:this.state.extraAtt
                
-        });   
-        alert("task updated")
-        window.location.replace("http://localhost:3000/task");
+            };
+            axios.post('http://localhost:3001/api/task/partner/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newTask).then(response =>response.data);
+            this.setState({
+                name:'',
+                time:'',
+                effort:'',
+                levelOfCommitment:'',
+                experienceLevel:'',
+                partnerID:'',
+                partnerName:'',
+                monetaryCompensation:'',
+                consultency:'',
+                setOfSkills:'',
+                memberID:'',
+                memberName:'',
+                candidates:'',
+                negotiation:'',
+                Description:'',
+                extraAtt:''
+                   
+            });
+            alert("task created")
+        //window.location.replace("http://localhost:3000/task");
         this.props.history.push('/');
     }
 
-    
     render() {
         return(
             <div>
-                <h3>Update task</h3>
-                <form onSubmit={this.onSubmit}>
+                <h3>create task</h3>
+                <form onSubmit={this.onCreate}>
                 
                   <div className="form-group">
                   <label>NAME:</label>
@@ -311,11 +273,12 @@ export default class UpdateTask extends Component {
                   </div>
                   <br/>
                   <div className="form-group">
-                            <input type="submit" value="Update Task" className="btn btn-primary" />
+                            <input type="submit" value="create Task" className="btn btn-primary" />
                         </div>
 
                 </form>
             </div>
         )
     }
-}
+
+    }
