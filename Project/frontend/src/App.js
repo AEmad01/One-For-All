@@ -44,7 +44,6 @@ import deleteadmin from "./components/delete-admin"
 import updateadmin from "./components/update-admin"
 import searchedTask from "./components/searchedTask"
 
-
 class App extends Component {
   render() {
     if(localStorage.getItem('jwtToken')){
