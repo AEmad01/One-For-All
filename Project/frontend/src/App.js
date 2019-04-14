@@ -31,11 +31,12 @@ import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
 import UpdateLifecoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
-
+import SearchTask from './components/search-task'
 import Register from './components/register'
 import AdminList from './components/admin-list'
 import deleteadmin from "./components/delete-admin"
 import updateadmin from "./components/update-admin"
+import searchedTask from "./components/searchedTask"
 
 
 class App extends Component {
@@ -117,6 +118,9 @@ class App extends Component {
           <Route path='/rejecttask/:id' exact component={adminreject} />
           <Route path='/deleteadmin/:id' component={deleteadmin} />
           <Route path='/updateadmin/:id' component={updateadmin} />
+          <Route path='/search/' component={SearchTask} />
+          <Route path='/searched/:id' component={searchedTask} />
+
   
           </div>
         </Router>

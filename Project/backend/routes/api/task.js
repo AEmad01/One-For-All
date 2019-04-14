@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   res.json({ data: tasks })
 });
 // search for task with name
-router.get("/search", async (req, res) => {
+router.post("/search", async (req, res) => {
   const name = req.body.name
   const tasks = await Task.find({ name: name })
   res.json({ data: tasks })
