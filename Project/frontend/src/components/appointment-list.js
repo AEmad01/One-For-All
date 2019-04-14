@@ -11,6 +11,20 @@ const Appointment = props => (
         <td>{props.appointment.memberID}</td>
         <td>{props.appointment.memberName}</td>
         <td>{props.appointment.confirm.toString()}</td>
+        <td>
+     <button onClick={() =>  axios({
+  method: 'put',
+  url: 'http://localhost:3000/api/lifecoach/booking/' + props.appointment._id, 
+  data: {
+    confirm: 'false', // This is the body part
+    date: props.appointment.date,
+  }
+})}>
+        Confirm
+      </button>
+
+
+        </td>
     </tr>
 )
 
@@ -22,6 +36,16 @@ export default class AppointmentList extends Component {
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3000/api/appointments')
+            .then(response => {
+                this.setState({appointments: response.data.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    componentDidUpdate() {
         axios.get('http://localhost:3000/api/appointments')
             .then(response => {
                 this.setState({appointments: response.data.data});

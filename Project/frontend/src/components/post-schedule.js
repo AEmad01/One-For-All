@@ -7,7 +7,6 @@ export default class PostSchedule extends Component {
         super(props)
         this.onChangeName=this.onChangeName.bind(this);
         this.onChangeSlots=this.onChangeSlots.bind(this);
-        this.onChangeLifeCoachID=this.onChangeLifeCoachID.bind(this);
         this.onChangeSpecification=this.onChangeSpecification.bind(this);
         this.onCreate= this.onCreate.bind(this);
 
@@ -24,11 +23,6 @@ export default class PostSchedule extends Component {
         slots:e.target.value
       });
     }
-    onChangeLifeCoachID(e){
-      this.setState({
-        lifeCoachID:e.target.value
-      });
-    }
     onChangeSpecification(e){
       this.setState({
         specification:e.target.value
@@ -42,10 +36,10 @@ export default class PostSchedule extends Component {
         name: this.state.name,
         slots:this.state.slots,
         specification:this.state.specification,
-        lifeCoachID:this.state.lifeCoachID,
+        lifeCoachID:window.location.href.match(/\/([^\/]+)\/?$/)[1],
 
       } 
-      axios.post('http://localhost:3001/api/schedules/CreateSchedule/'+ this.state.lifeCoachID,newSchedule).then(response =>response.data);
+      axios.post('http://localhost:3001/api/schedules/CreateSchedule/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newSchedule).then(response =>response.data);
       this.setState({
 
       });
@@ -74,14 +68,6 @@ export default class PostSchedule extends Component {
                                 className="form-control"
                                 value={this.state.slots}
                                 onChange={this.onChangeSlots}
-                                />
-                    </div>
-                    <div className="form-group">
-                        <label>LifeCoachID: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.lifeCoachID}
-                                onChange={this.onChangeLifeCoachID}
                                 />
                     </div>
                     <div className="form-group">

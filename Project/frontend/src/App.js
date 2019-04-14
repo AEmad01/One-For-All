@@ -40,7 +40,7 @@ import Register from './components/register'
 import AdminList from './components/admin-list'
 import deleteadmin from "./components/delete-admin"
 import updateadmin from "./components/update-admin"
-
+import UpdateSchedule from './components/update-schedule'
 
 class App extends Component {
   render() {
