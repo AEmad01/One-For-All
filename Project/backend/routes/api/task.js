@@ -81,45 +81,30 @@ router.post("/partner/:id", async (req, res) => {
     console.log(error)
   }
 });
-//admin posting task and defining other attributes
+//admin accepting or rejecting the task
 //ID of Admin ONLY ENTERED IN THE POST OF THE TASK, MUST BE admin
-router.post("/admin/:id", async (req, res) => {
-  const id = req.params.id
+router.put("/accepttask/:id", async (req, res) => {
   try {
-    const isValidated = validator.createValidation(req.body)
-    if (isValidated.error)
-      return res.status(400).send({ error: isValidated.error.details[0].message })
-    //const newTask = await Task.create(req.body);
-
-    const admin1 = await admins.findById(id);
-    if (admin1.id !== undefined) {
-      const task = await Task.create(req.body);
-      res.json({ msg: "Task was created successfully", data: task })
-      admin1.Task.push(task)
-
-      const temp = await admin1.save()
-      res.send(admin1)
-    }
-  } catch (error) {
-    // We will be handling the error later
-    res.status(404).send({ error: "Only admin can post" })
-    console.log(error)
+    const id = req.params.id
+    const task =await Task.find({id})
+    if  (!task) return res.status(404).send({ error: 'task does not exist' })
+        const updatedTask = await Task.findOneAndUpdate({_id: id} , {Status:true})
+        res.json({ msg: "Status successfully set" })
+      } catch (error) {
+        // We will be handling the error later
+        console.log(error)
   }
 });
-// post a task
-router.post("/", async (req, res) => {
+router.put("/rejecttask/:id", async (req, res) => {
   try {
-    const isValidated = validator.createValidation(req.body)
-    if (isValidated.error)
-      return res
-        .status(400)
-        .send({ error: isValidated.error.details[0].message })
-    const newTask = await Task.create(req.body);
-    res.json({ msg: "Task was created successfully", data: newTask })
-  } catch (error) {
-    // We will be handling the error later
-    res.status(404).send({ error: "Only Partner can post" })
-    console.log(error);
+    const id = req.params.id
+    const task =await Task.find({id})
+    if  (!task) return res.status(404).send({ error: 'task does not exist' })
+        const updatedTask = await Task.findOneAndUpdate({_id: id} , {Status:false})
+        res.json({ msg: "Status successfully set" })
+      } catch (error) {
+        // We will be handling the error later
+        console.log(error)
   }
 });
 // Update a task
@@ -150,9 +135,8 @@ router.put("/addattributeAD/:id", async (req, res) => {
     if(!tasks) return res.status(400).send({error:result.error.details[0].message})
     const name1 =req.body.name1
     const data1 =req.body.data1
-    const all = name1+":"+data1 
-    
-    tasks.extraAtt.push(all)
+    tasks.extraAtt.push(name1)
+    tasks.extraAtt.push(data1) 
     const temp = await tasks.save()
     res.send(tasks) 
     res.json({ msg: "Task attribute added successfully" })
@@ -182,7 +166,7 @@ router.put('/chooseApplication/:mid/:id', async (req,res) => {
   if (!member) return res.status(404).send({ error: 'Member does not exist'})
 
   await Task.findOneAndUpdate({_id : id} , {memberID : candidateID , memberName: candidateName})
-  await Task.findByIdAndUpdate({'_id' : candidateID} , { $push: { 'notification' : 'You have been accepted to the task' } })
+  await Member.findByIdAndUpdate({'_id' : candidateID} , { $push: { 'notification' : 'You have been accepted to the task' } })
   
   res.json({msg: 'Candidate successfully accepted'})
 

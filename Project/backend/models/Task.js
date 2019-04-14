@@ -22,7 +22,7 @@ experienceLevel: {
     required: true
 },
 partnerID: {
-    type: Number,
+    type: String,
     required: true
 },
 partnerName:{
@@ -53,10 +53,7 @@ candidates:{
     type:Array,
     required: false
 },
-negotiation:{
-    type:String,
-    required: false
-},
+
 Description:{
     type:String,
     required: true 
@@ -64,7 +61,10 @@ Description:{
 extraAtt:{
     type: [String],
     required: true
+},
+Status:{
+    type:Boolean,
+    required: false
 }
-
 })
   module.exports = Task = mongoose.model('Task',TaskSchema);
