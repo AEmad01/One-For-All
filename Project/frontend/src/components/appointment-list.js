@@ -15,7 +15,7 @@ const Appointment = props => (
             <Link to={'/locations/suggest/'+props.appointment._id}>Suggest Location</Link>
      <button onClick={() =>  axios({
   method: 'put',
-  url: 'http://localhost:3000/api/lifecoach/booking/' + props.appointment._id, 
+  url: 'http://localhost:3001/api/lifecoach/booking/' + props.appointment._id, 
   data: {
     confirm: 'false', // This is the body part
     date: props.appointment.date,
@@ -66,7 +66,6 @@ export default class AppointmentList extends Component {
         return(
             <div>
                 <h3>Appointment List</h3>
-         <div>   <Link to={'/appointments/createAppointment'}>Book a new appointment</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>

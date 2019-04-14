@@ -10,16 +10,26 @@ router.get('/', async (req, res) => {
     res.json({ data: appointments })
 });
 
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const appointments = await appointment.findById(id);
+  res.json({ data: appointments })
+});
+
 // Create a new appointment
 
 router.post('/createAppointment/:id', async (req,res) => {
     const id = req.params.id
     try {
+    
     const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const lifecoachm = await lifecoach.findById(id);
+     const namelife = lifecoachm.name
      if(lifecoachm!== undefined){
+        req.body.lifeCoachName = namelife
      const newAppointment = await appointment.create(req.body)
+     
      res.json({msg:'Appointment was created successfully', data: newAppointment})
      lifecoachm.Appointments.push(newAppointment);
      const temp = await lifecoachm.save();
@@ -30,7 +40,9 @@ router.post('/createAppointment/:id', async (req,res) => {
         res.status(404).send({error: 'You need a LifeCoach to create an appointment'})
         console.log(error)
     }  
+    
  });
+
     router.put("/:id", async (req, res) => {
         try {
           const id = req.params.id;
@@ -80,7 +92,7 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
-     const appointments = await appointment.find({id})
+     const appointments = await appointment.findById(id)
      const appo = appointments._id
      const deletedAppointment = await appointment.findOneAndDelete(appo)
      res.json({msg:'Appointment was deleted successfully', data: deletedAppointment})
