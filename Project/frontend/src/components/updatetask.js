@@ -130,7 +130,7 @@ export default class UpdateTask extends Component {
                
         });   
         alert("task updated")
-        window.location.assign("http://localhost:3000/task");
+        window.location.assign("http://localhost:3000/tasks");
     }
 
     
