@@ -29,6 +29,7 @@ import DeleteMember from './components/delete-member'
 import UpdateMember from './components/updateMember'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
+import LifecoachNotification from './components/lifecoachNotification'
 import UpdateLifecoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
 import DeletePartner from './components/delete-partner'
@@ -115,6 +116,7 @@ class App extends Component {
          
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
+          <Route path='/LifecoachNotification/:id' component={LifecoachNotification} />
           <Route path='/accepttask/:id' exact component={adminaccept} />
           <Route path='/rejecttask/:id' exact component={adminreject} />
           <Route path='/deleteadmin/:id' component={deleteadmin} />
