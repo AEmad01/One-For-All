@@ -34,7 +34,7 @@ import UpdateLifecoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
 import DeletePartner from './components/delete-partner'
 import updatePartner from './components/updatePartner'
-import Createtask from './components/create task'
+import CreateTask from './components/create task'
 
 import Register from './components/register'
 import AdminList from './components/admin-list'
@@ -124,7 +124,7 @@ class App extends Component {
           <Route path='/updateadmin/:id' component={updateadmin} />
           <Route path='/partners/delete/:id' component={DeletePartner} />
           <Route path='/partners/put/:id' component={updatePartner} />
-          <Route path='/partners/task/:id' component={Createtask} />
+          <Route path='/partners/task/:id' component={CreateTask} />
   
           </div>
         </Router>
