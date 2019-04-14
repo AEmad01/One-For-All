@@ -41,6 +41,8 @@ import AdminList from './components/admin-list'
 import deleteadmin from "./components/delete-admin"
 import updateadmin from "./components/update-admin"
 
+import Candidates from './components/candidates'
+import pickCandidate from './components/pickcandidate'
 
 class App extends Component {
   render() {
@@ -125,6 +127,8 @@ class App extends Component {
           <Route path='/partners/delete/:id' component={DeletePartner} />
           <Route path='/partners/put/:id' component={updatePartner} />
           <Route path='/partners/task/:id' component={CreateTask} />
+          <Route path='/candidates/:id' component={Candidates} />
+          <Route path='/pickcandidate/:mid/:id' component={pickCandidate} />
   
           </div>
         </Router>

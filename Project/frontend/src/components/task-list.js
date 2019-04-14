@@ -28,6 +28,7 @@ const TaskA = props => (
             <Link to={'/rejecttask/'+props.task._id}>reject</Link>
         </td>
         <td><Link to={'/addATT/'+props.task._id}>Update</Link></td> 
+        <td><Link to={'/candidates/'+props.task._id}>Choose Candidate</Link></td>
     </tr>
 ) 
 const TaskP = props => (
@@ -172,6 +173,7 @@ export default class TaskList extends Component {
                                    <th>Delete</th>
                                    <th>Update</th>
                                    <th>Accept</th>
+                                   <th>Choose Applicant</th>
                                    
                                 <th>Reject</th>
                                 <th>Add Attribute</th>

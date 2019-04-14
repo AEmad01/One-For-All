@@ -157,19 +157,14 @@ router.put("/addattributeAD/:id", async (req, res) => {
 router.put('/chooseApplication/:mid/:id', async (req,res) => {
 
   try {
-
-  var schema = Joi.string().min(3).required()
-
-  const result = Joi.validate(req.body.candidateName, schema)
-  if (result.error) return res.status(400).send({ error: 'Candidate name has to be of length 3 or more' })
   
   const id = req.params.id
   const candidateID = req.params.mid
   const task = await Task.find({ _id : id })
-  const member = await Member.find({ _id : candidateID })
-  const candidateName = req.body.candidateName
+  const member = await Member.find({ _id : candidateID },{_id:0,name : 1})
+  const candidateName = member.pop().name
 
-  if (!candidateName) return res.status(404).send({ error: 'Name cannot be empty' })
+  if (!candidateName) return res.status(404).send({ error: 'Name does not exist' })
   if (!task) return res.status(404).send({ error: 'Task does not exist' })
   if (!member) return res.status(404).send({ error: 'Member does not exist'})
 
