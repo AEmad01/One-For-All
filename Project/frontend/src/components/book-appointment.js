@@ -5,30 +5,11 @@ export default class BookAppointment extends Component {
   
         constructor(props){
         super(props)
-        this.onChangeLocation=this.onChangeLocation.bind(this);
-        this.onChangeSlot=this.onChangeSlot.bind(this);
-        this.onChangeLifeCoachName=this.onChangeLifeCoachName.bind(this);
         this.onChangeMemberID=this.onChangeMemberID.bind(this);
         this.onChangeMemberName=this.onChangeMemberName.bind(this);
         this.onCreate= this.onCreate.bind(this);
         this.state ={}
        
-    }
-    onChangeLocation(e){
-      this.setState({
-        location:e.target.value
-      });
-    }
-    onChangeSlot(e){
-      this.setState({
-        slot:e.target.value
-      });
-    }
-
-    onChangeLifeCoachName(e){
-      this.setState({
-        lifeCoachName:e.target.value
-      });
     }
     onChangeMemberID(e){
       this.setState({
@@ -44,10 +25,7 @@ export default class BookAppointment extends Component {
     onCreate(e){
       e.preventDefault();
       const newAppointment ={
-        location: this.state.location,
-        slot:this.state.slot,
         lifeCoachID:window.location.href.match(/\/([^\/]+)\/?$/)[1],
-        lifeCoachName:this.state.lifeCoachName,
         memberID:this.state.memberID,
         memberName:this.state.memberName,
         confirm:this.state.confirm,
@@ -66,30 +44,6 @@ export default class BookAppointment extends Component {
            <div style={{marginTop: 20}}>
                 <h3>Book a new appointment</h3>
                 <form onSubmit={this.onCreate}>
-                    <div className="form-group">
-                        <label>Location: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.location}
-                                onChange={this.onChangeLocation}
-                                />
-                    </div>
-                    <div className="form-group">
-                        <label>Slot: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.slot}
-                                onChange={this.onChangeSlot}
-                                />
-                    </div>
-                    <div className="form-group">
-                        <label>LifeCoach Name: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.lifeCoachName}
-                                onChange={this.onChangeLifeCoachName}
-                                />
-                    </div>
                     <div className="form-group">
                         <label>MemberID: </label>
                         <input  type="text"
