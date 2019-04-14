@@ -9,6 +9,7 @@ const location = require("./routes/api/locations");
 const mongoose = require("mongoose");
 const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
+const user = require('./routes/api/user')
 const cors = require('cors')
 
 const db = require('./config/keys').mongoURI;
@@ -49,6 +50,7 @@ app.use("/api/schedules", schedules);
 app.use("/api/locations", location);
 app.use("/api/lifecoach", lifecoach);
 app.use("/api/slots", slot);
+app.use("/api/user", user)
 
 // Handling 404
 app.use((req, res) => {

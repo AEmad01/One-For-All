@@ -49,6 +49,33 @@ router.post('/createAppointment/:id', async (req,res) => {
           console.log(error);
         }
       });
+
+// Update an appointment
+router.put('/:id', async (req,res) => {
+    try {
+        const id = req.params.id
+        try {
+        const picked = await appointment.findById(id);
+        if (!picked)
+          return res.status(404).send({ error: "appointment does not exist" });
+          const isValidated = validator.updateValidation(req.body);
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message }) ;
+      
+          const updatedappointment = await picked.updateOne(req.body);
+           res.json({msg:'appointment updated successfully', data: updatedappointment  })
+        
+          }
+          catch(error) {
+              res.status(404).send({error: 'Only appointment can be updated'})
+              console.log(error)
+        }
+        
+    
+     }
+    catch(error) {
+        // We will be handling the error later
+        console.log(error)
+    } } )
 // delete a certain appointment
 router.delete('/:id', async (req,res) => {
     try {

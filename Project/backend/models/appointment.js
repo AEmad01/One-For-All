@@ -28,5 +28,9 @@ const appointmentSchema = new Schema({
     default: false,
 
   },
+  confirmSlot:{
+    type: Boolean,
+    default: false
+  }
 });
   module.exports = appointment = mongoose.model('appointment',appointmentSchema);

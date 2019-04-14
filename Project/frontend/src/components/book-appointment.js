@@ -7,7 +7,6 @@ export default class BookAppointment extends Component {
         super(props)
         this.onChangeLocation=this.onChangeLocation.bind(this);
         this.onChangeSlot=this.onChangeSlot.bind(this);
-        this.onChangeLifeCoachID=this.onChangeLifeCoachID.bind(this);
         this.onChangeLifeCoachName=this.onChangeLifeCoachName.bind(this);
         this.onChangeMemberID=this.onChangeMemberID.bind(this);
         this.onChangeMemberName=this.onChangeMemberName.bind(this);
@@ -25,11 +24,7 @@ export default class BookAppointment extends Component {
         slot:e.target.value
       });
     }
-    onChangeLifeCoachID(e){
-      this.setState({
-        lifeCoachID:e.target.value
-      });
-    }
+
     onChangeLifeCoachName(e){
       this.setState({
         lifeCoachName:e.target.value
@@ -51,13 +46,13 @@ export default class BookAppointment extends Component {
       const newAppointment ={
         location: this.state.location,
         slot:this.state.slot,
-        lifeCoachID:this.state.lifeCoachID,
+        lifeCoachID:window.location.href.match(/\/([^\/]+)\/?$/)[1],
         lifeCoachName:this.state.lifeCoachName,
         memberID:this.state.memberID,
         memberName:this.state.memberName,
         confirm:this.state.confirm,
       } 
-      axios.post('http://localhost:3000/api/appointments/createAppointment/'+ this.state.lifeCoachID,newAppointment).then(response =>response.data);
+      axios.post('http://localhost:3000/api/appointments/createAppointment/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newAppointment).then(response =>response.data);
       this.setState({
 
       });
@@ -85,14 +80,6 @@ export default class BookAppointment extends Component {
                                 className="form-control"
                                 value={this.state.slot}
                                 onChange={this.onChangeSlot}
-                                />
-                    </div>
-                    <div className="form-group">
-                        <label>LifeCoachID: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.lifeCoachID}
-                                onChange={this.onChangeLifeCoachID}
                                 />
                     </div>
                     <div className="form-group">

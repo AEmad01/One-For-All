@@ -3,6 +3,8 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
+            username: Joi.string().required(),
+            password: Joi.string().required(),
             name: Joi.string().required(),
             age: Joi.number().required(),
             skills: Joi.string().required(),
@@ -21,6 +23,8 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
+            username: Joi.string().required(),
+            password: Joi.string().required(),
             name: Joi.string().required(),
             age: Joi.number().required(),
             skills: Joi.string().required(),
