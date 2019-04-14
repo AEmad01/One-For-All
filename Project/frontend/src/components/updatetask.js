@@ -27,6 +27,38 @@ export default class UpdateTask extends Component {
 
 
     }
+    componentDidMount() {
+        axios.get('http://localhost:3001/api/task/' + this.props.match.params.id )
+        .then(response=>{
+            this.setState({
+ 
+             name:response.data.name,
+             time:response.data.time,
+             effort:response.data.effort,
+             levelOfCommitment:response.data.levelOfCommitment,
+             experienceLevel:response.data.experienceLevel,
+             partnerID:response.data.partnerID,
+             partnerName:response.data.partnerName,
+             monetaryCompensation:response.data.monetaryCompensation,
+             consultency:response.data.consultency,
+             setOfSkills:response.data.setOfSkills,
+             memberID:response.data.memberID,
+             memberName:response.data.memberName,
+             candidates:response.data.candidates,
+             negotiation:response.data.negotiation,
+             Description:response.data.Description,
+             extraAtt:response.data.extraAtt
+ 
+            })
+ 
+        })
+         .catch(function(error){
+            console.log(error)
+ 
+        })
+    
+    
+     }
     
  
    

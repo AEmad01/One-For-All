@@ -16,7 +16,7 @@ const Task = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
-        <td>{props.task.Status.toString()}</td>
+        <td>{props.task.Status}</td>
         <td>
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
@@ -27,6 +27,7 @@ const Task = props => (
         <td>
             <Link to={'/rejecttask/'+props.task._id}>reject</Link>
         </td>
+        <td><Link to={'/addATT/'+props.task._id}>Update</Link></td> 
     </tr>
 ) 
 
@@ -91,7 +92,9 @@ export default class TaskList extends Component {
                                    <th>delete</th>
                                    <th>update</th>
                                    <th>accept</th>
+                                   
                                 <th>reject</th>
+                                <th>addATTribute</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -123,6 +126,7 @@ export default class TaskList extends Component {
                                    <th>status</th>
                                    <th>delete</th>
                                    <th>update</th>
+                                   <th>addATTribute</th>
                                </tr>
                            </thead>
                            <tbody>

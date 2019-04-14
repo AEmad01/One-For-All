@@ -135,9 +135,8 @@ router.put("/addattributeAD/:id", async (req, res) => {
     if(!tasks) return res.status(400).send({error:result.error.details[0].message})
     const name1 =req.body.name1
     const data1 =req.body.data1
-    const all = name1+":"+data1 
-    
-    tasks.extraAtt.push(all)
+    tasks.extraAtt.push(name1)
+    tasks.extraAtt.push(data1) 
     const temp = await tasks.save()
     res.send(tasks) 
     res.json({ msg: "Task attribute added successfully" })

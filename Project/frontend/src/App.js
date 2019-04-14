@@ -17,6 +17,7 @@ import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
 import BookAppointment from './components/book-appointment'
 import UpdateTask from './components/updatetask'
+import addATT from './components/addATT'
 import ScheduleList from './components/show-schedule'
 import PostSchedule from './components/post-schedule'
 import CreateTask from './components/create-task'
@@ -86,6 +87,7 @@ class App extends Component {
           <Route path='/partners/createPartner' exact component={CreatePartner} />
           <Route path='/slots' exact component={Slots} />
           <Route path='/update/:id' component={UpdateTask} />
+          <Route path='/addATT/:id' component={addATT} />
           <Route path='/locations' exact component={LocationList} />
           <Route path='/put/:id' component={updateLocation} />
           <Route path='/appointments' exact component={AppointmentList} />
