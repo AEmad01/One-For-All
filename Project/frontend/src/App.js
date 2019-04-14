@@ -31,6 +31,7 @@ import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
 import UpdateLifecoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
+import viewTask from "./components/viewTask"
 
 import Register from './components/register'
 import AdminList from './components/admin-list'
@@ -110,14 +111,15 @@ class App extends Component {
           <Route path='/members/update/:id' component={UpdateMember} />
           <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
           <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
-         
+          <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
+
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
           <Route path='/accepttask/:id' exact component={adminaccept} />
           <Route path='/rejecttask/:id' exact component={adminreject} />
           <Route path='/deleteadmin/:id' component={deleteadmin} />
-          <Route path='/updateadmin/:id' component={updateadmin} />
-  
+          <Route path='/view' component={viewTask} />
+        
           </div>
         </Router>
       )
