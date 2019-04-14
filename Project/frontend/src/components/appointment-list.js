@@ -12,6 +12,7 @@ const Appointment = props => (
         <td>{props.appointment.memberName}</td>
         <td>{props.appointment.confirm.toString()}</td>
         <td>
+            <Link to={'/locations/suggest/'+props.appointment._id}>Suggest Location</Link>
      <button onClick={() =>  axios({
   method: 'put',
   url: 'http://localhost:3000/api/lifecoach/booking/' + props.appointment._id, 

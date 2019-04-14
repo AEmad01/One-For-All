@@ -59,6 +59,7 @@ export default class LocationList extends Component {
         return(
             <div>
                 <h3>Location list</h3>
+                
                 <div>   <Link to={'/locations/CreateLocation/'}>Add New Location</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
