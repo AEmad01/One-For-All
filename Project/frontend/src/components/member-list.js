@@ -16,7 +16,8 @@ const Member = props => (
             <Link to={'/members/delete/'+props.member._id}>Delete</Link>
         </td>
         <td><Link to={'/members/update/'+props.member._id}>Update</Link></td> 
-        
+        <td> <Link to={'/view/'+props.member._id}>View tasks</Link></td>
+
         </tr>
 )
 

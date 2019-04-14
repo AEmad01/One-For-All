@@ -28,6 +28,16 @@ export default class ScheduleList extends Component {
                 console.log(error);
             })
     }
+    componentDidUpdate() {
+        axios.get('http://localhost:3001/api/schedules/GetAllSchedule')
+            .then(response => {
+                this.setState({schedules: response.data.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
 
     scheduleList() {
         return this.state.schedules.map(function(currentSchedule, i) {

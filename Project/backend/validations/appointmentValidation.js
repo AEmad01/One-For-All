@@ -3,12 +3,13 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
-            location: Joi.string().required(),
-            slot: Joi.string().required(),
-            lifeCoachID:Joi.string().required(),
-            lifeCoachName:Joi.string().required(),
+            location: Joi.string(),
+            slot: Joi.string(),
+            lifeCoachID:Joi.string(),
+            lifeCoachName:Joi.string(),
             memberID:Joi.string().required(),
-            memberName:Joi.string().required()
+            memberName:Joi.string().required(),
+           
 
         }
 
@@ -25,7 +26,6 @@ module.exports = {
             memberName:Joi.string(),
             confirm:Joi.boolean(),
             confirmSlot:Joi.boolean()
-
         }
 
         return Joi.validate(request, updateSchema)

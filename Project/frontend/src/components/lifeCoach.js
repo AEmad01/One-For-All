@@ -18,7 +18,7 @@ const LifeCoach = props => (
             <Link to={'/Coachschedule/'+props.lifecoach._id}>Schedule</Link>
         </td>
         <td>
-            <Link to={'/Coachappointments/'+props.lifecoach._id}>Appointments</Link>
+            <Link to={'/appointments/createAppointment/'+props.lifecoach._id}>Book Appointment</Link>
         </td>
         <td>
             <Link to={'/LifecoachNotification/'+props.lifecoach._id}>Notifications</Link>
@@ -27,6 +27,12 @@ const LifeCoach = props => (
             <Link to={'/lifecoach/delete/'+props.lifecoach._id}>Delete</Link>
         </td>
         <td><Link to={'/lifecoach/update/'+props.lifecoach._id}>Update</Link></td> 
+        <td>
+            <Link to={'/Coachappointments/'+props.lifecoach._id}>Appointments</Link>
+        </td>
+        <td>
+            <Link to={'/schedule/postSchedule/'+props.lifecoach._id}>Post my schedule</Link>
+        </td>
         
     </tr>
 )
@@ -39,6 +45,15 @@ export default class lifeCoach extends Component {
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3001/api/lifecoach/')
+            .then(response => {
+                this.setState({lifecoachs: response.data.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+    componentDidUpdate() {
         axios.get('http://localhost:3001/api/lifecoach/')
             .then(response => {
                 this.setState({lifecoachs: response.data.data});
@@ -75,9 +90,10 @@ export default class lifeCoach extends Component {
                             <th>Schedule</th>
                             <th>Appointments</th>
                             <th>Notifications</th>
-
                             <th>Delete</th>
                             <th>Update</th>
+                            <th>View my Appointment</th>
+                            <th>Create my schedule</th>
                         </tr>
                     </thead>
                     <tbody>

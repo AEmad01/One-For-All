@@ -217,6 +217,8 @@ export default class TaskList extends Component {
                 return(
                     <div>
                        <h3>Task List</h3>
+                       <Link to={'/search/'}>Search tasks</Link>
+
                        <table className='table table-striped' style={{ marginTop: 20 }}>
                            <thead>
                                <tr>

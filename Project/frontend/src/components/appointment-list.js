@@ -11,6 +11,21 @@ const Appointment = props => (
         <td>{props.appointment.memberID}</td>
         <td>{props.appointment.memberName}</td>
         <td>{props.appointment.confirm.toString()}</td>
+        <td>
+            <Link to={'/locations/suggest/'+props.appointment._id}>Suggest Location</Link>
+     <button onClick={() =>  axios({
+  method: 'put',
+  url: 'http://localhost:3001/api/lifecoach/booking/' + props.appointment._id, 
+  data: {
+    confirm: 'false', // This is the body part
+    date: props.appointment.date,
+  }
+})}>
+        Confirm
+      </button>
+
+
+        </td>
     </tr>
 )
 
@@ -31,6 +46,16 @@ export default class AppointmentList extends Component {
             })
     }
 
+    componentDidUpdate() {
+        axios.get('http://localhost:3000/api/appointments')
+            .then(response => {
+                this.setState({appointments: response.data.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     appointmentList() {
         return this.state.appointments.map(function(currentAppointment, i) {
             return <Appointment appointment={currentAppointment} key={i} />;
@@ -41,7 +66,6 @@ export default class AppointmentList extends Component {
         return(
             <div>
                 <h3>Appointment List</h3>
-         <div>   <Link to={'/appointments/createAppointment'}>Book a new appointment</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>

@@ -29,12 +29,17 @@ import DeleteMember from './components/delete-member'
 import UpdateMember from './components/updateMember'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
+
 import LifecoachNotification from './components/lifecoachNotification'
 import UpdateLifecoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
+import SearchTask from './components/search-task'
+import viewTask from "./components/viewTask"
 import DeletePartner from './components/delete-partner'
 import updatePartner from './components/updatePartner'
 import CreateTask from './components/create task'
+import Createtask from './components/create task'
+import SuggestLocation from './components/Map'
 
 import Register from './components/register'
 import AdminList from './components/admin-list'
@@ -43,6 +48,7 @@ import updateadmin from "./components/update-admin"
 
 import Candidates from './components/candidates'
 import pickCandidate from './components/pickcandidate'
+import searchedTask from "./components/searchedTask"
 
 class App extends Component {
   render() {
@@ -116,20 +122,30 @@ class App extends Component {
           <Route path='/members/update/:id' component={UpdateMember} />
           <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
           <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
+          <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
 
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
+
           <Route path='/LifecoachNotification/:id' component={LifecoachNotification} />
           <Route path='/accepttask/:id' exact component={adminaccept} />
           <Route path='/rejecttask/:id' exact component={adminreject} />
           <Route path='/deleteadmin/:id' component={deleteadmin} />
+          <Route path='/view' component={viewTask} />
+        
           <Route path='/updateadmin/:id' component={updateadmin} />
+          <Route path='/search/' component={SearchTask} />
+          <Route path='/searched/:id' component={searchedTask} />
+
           <Route path='/partners/delete/:id' component={DeletePartner} />
           <Route path='/partners/put/:id' component={updatePartner} />
           <Route path='/partners/task/:id' component={CreateTask} />
           <Route path='/candidates/:id' component={Candidates} />
           <Route path='/pickcandidate/:mid/:id' component={pickCandidate} />
   
+          <Route path='/partners/task/:id' component={Createtask} />
+            <Route path='/locations/suggest/' component={SuggestLocation} />
+
           </div>
         </Router>
       )
@@ -148,7 +164,6 @@ class App extends Component {
           <Route path='/CreateCoach' component={CreateCoach} />
           <Route path='/members/createMember' exact component={CreateMember} />
           <Route path='/partners/createPartner' exact component={CreatePartner} />
-
 
 
         </div>
