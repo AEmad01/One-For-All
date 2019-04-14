@@ -61,24 +61,31 @@ open("http://localhost:3000/api/lifecoach/notification/"+lifecoachID);
 // Create a new lifecoach
 router.post("/", async (req, res) => {
   try {
+    const username1 = req.body.username
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message });
-    const newlifecoach = await Lifecoach.create(req.body);
-    dataArr = [
-      {
-        username: newlifecoach.username,
-        password: newlifecoach.password,
-        type: "lifecoach"
-      }
-    ]
-    const newuser = await user.create(dataArr)
-    res.json({
-      msg: "life coach was created successfully",
-      data: newlifecoach
-    });
+    const u = await user.findOne({username: username1})
+    if(!u){
+        const newlifecoach = await Lifecoach.create(req.body);
+        dataArr = [
+          {
+            username: newlifecoach.username,
+            password: newlifecoach.password,
+            type: "lifecoach",
+            id: newlifecoach._id
+          }
+        ]
+        const newuser = await user.create(dataArr)
+        res.json({
+          msg: "life coach was created successfully",
+          data: newlifecoach
+        });
+    } else {
+      res.status(400).send({ error: 'Username already exists' })
+    }
   } catch (error) {
     // We will be handling the error later
     console.log(error);

@@ -26,7 +26,8 @@ router.get("/getadmin/:id", async (req, res) => {
        {
          username: newadmin.username,
          password: newadmin.password,
-         type: "admin"
+         type: "admin",
+         id: newadmin._id
        }
      ]
      const newuser = await user.create(dataArr)
@@ -61,7 +62,7 @@ router.delete('/deleteAdmin/:id', async (req,res) => {
      const id = req.params.id
      const deleteAdmin = await admin.findByIdAndRemove(id)
      const deleteuser = await user.findOneAndDelete({username: deleteAdmin.username})
-     res.json({msg:'admin was deleted successfully', data: deletedAdmin})
+     res.json({msg:'admin was deleted successfully', data: deleteAdmin})
     }
     catch(error) {
         // We will be handling the error later

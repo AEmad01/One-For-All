@@ -7,7 +7,6 @@ const tokenKey = require('../../config/keys').secretOrKey
 const validator = require('../../validations/userValidations')
 
 
-// Get all Admins
 router.get("/", async (req, res) => {
     const users = await User.find();
     res.json({ data: users });
@@ -29,7 +28,7 @@ router.get("/", async (req, res) => {
             username: user.username
           }
           const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-          return res.json({token: `A ${token}`})
+          return res.json({token: `A ${token}`,userid: user.id})
         } else if( user.type === 'partner') {
             const payload = {
               id: user._id,
@@ -37,7 +36,7 @@ router.get("/", async (req, res) => {
               username: user.username
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({token: `P ${token}`})
+            return res.json({token: `P ${token}`,userid: user.id})
         } else if( user.type === 'lifecoach') {
             const payload = {
               id: user._id,
@@ -45,7 +44,7 @@ router.get("/", async (req, res) => {
               username: user.username
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({token: `L ${token}`})
+            return res.json({token: `L ${token}`,userid: user.id})
         } else if( user.type === 'member') {
             const payload = {
               id: user._id,
@@ -53,7 +52,7 @@ router.get("/", async (req, res) => {
               username: user.username
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({token: `M ${token}`})
+            return res.json({token: `M ${token}`,userid: user.id})
         }
       }
       else return res.status(400).send({ password: 'Wrong password' });

@@ -19,16 +19,23 @@ router.post('/',async (req, res) => {
     const isValidated = validator.createValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
 
-    const newUser=await Partner.create(req.body)
-    dataArr = [
-        {
-          username: newUser.username,
-          password: newUser.password,
-          type: "partner"
-        }
-    ]
-    const user = await User.create(dataArr)
-    res.json({data:newUser})}
+    const u = await User.findOne({username: req.body.username})
+    if(!u){
+        const newUser=await Partner.create(req.body)
+        dataArr = [
+            {
+            username: newUser.username,
+            password: newUser.password,
+            type: "partner",
+            id: newUser._id
+            }
+        ]
+        const user = await User.create(dataArr)
+        res.json({data:newUser})
+    } else {
+        res.status(400).send({ error: 'Username already exists' })
+    }
+    }
     catch(error) {
         console.log(error)
     }
