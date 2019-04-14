@@ -22,7 +22,7 @@ experienceLevel: {
     required: true
 },
 partnerID: {
-    type: Number,
+    type: String,
     required: true
 },
 partnerName:{
