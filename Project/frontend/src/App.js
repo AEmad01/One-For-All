@@ -20,7 +20,7 @@ import UpdateTask from './components/updatetask'
 import addATT from './components/addATT'
 import ScheduleList from './components/show-schedule'
 import PostSchedule from './components/post-schedule'
-import CreateTask from './components/create-task'
+
 import lifeCoach from './components/lifeCoach'
 import CoachSchedule from './components/coachSchedule'
 import CoachAppointment from './components/coachAppointment'
@@ -29,9 +29,13 @@ import DeleteMember from './components/delete-member'
 import UpdateMember from './components/updateMember'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
+import LifecoachNotification from './components/lifecoachNotification'
 import UpdateLifecoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
 import viewTask from "./components/viewTask"
+import DeletePartner from './components/delete-partner'
+import updatePartner from './components/updatePartner'
+import Createtask from './components/create task'
 
 import Register from './components/register'
 import AdminList from './components/admin-list'
@@ -100,7 +104,6 @@ class App extends Component {
           <Route path='/appointments/createAppointment' component={BookAppointment} />
           <Route path='/schedules' exact component={ScheduleList} />
           <Route path='/schedule/postSchedule' component={PostSchedule} />
-          <Route path='/task/createTask' exact component={CreateTask} />
           <Route path='/admins' exact component={AdminList} />
 
           <Route path='/lifecoach' component={lifeCoach} />
@@ -115,11 +118,17 @@ class App extends Component {
 
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
+          <Route path='/LifecoachNotification/:id' component={LifecoachNotification} />
           <Route path='/accepttask/:id' exact component={adminaccept} />
           <Route path='/rejecttask/:id' exact component={adminreject} />
           <Route path='/deleteadmin/:id' component={deleteadmin} />
           <Route path='/view' component={viewTask} />
         
+          <Route path='/updateadmin/:id' component={updateadmin} />
+          <Route path='/partners/delete/:id' component={DeletePartner} />
+          <Route path='/partners/put/:id' component={updatePartner} />
+          <Route path='/partners/task/:id' component={Createtask} />
+  
           </div>
         </Router>
       )
