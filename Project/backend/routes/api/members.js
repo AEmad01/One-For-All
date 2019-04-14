@@ -56,7 +56,7 @@ router.post('/createMember', async (req,res) => {
     }
 )
 // Update a member
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
     try {
       const id = req.params.id;
       const member = await Member.find({id});
@@ -75,7 +75,7 @@ router.put("/:id", async (req, res) => {
     }
   });
 // delete a certain member
-router.delete('/:id', async (req,res) => {
+router.delete('/delete/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deletedMember = await Member.findByIdAndDelete(id);

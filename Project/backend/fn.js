@@ -105,7 +105,7 @@ DeleteSchedule: async (id) =>{
             return tasks
         },
         postMember: async (body) => {
-            const member = await axios.post('http://localhost:3000/api/members/',{
+            const member = await axios.post('http://localhost:3000/api/members/createMember',{
                 "name":body.name,
                 "age": body.age,
                 "skills": body.skills,
@@ -201,7 +201,7 @@ DeleteSchedule: async (id) =>{
         },
         
         UpdateLifecoach: async (id,body) =>{
-            const Lifecoach = await axios.put('http://localhost:3000/api/lifecoach/'+id, {
+            const Lifecoach = await axios.put('http://localhost:3000/api/lifecoach/update/'+id, {
             "name" :body.name,
             "age" : body.age,
             "skills": body.skills,
@@ -218,11 +218,11 @@ DeleteSchedule: async (id) =>{
         },
 
         DeleteLifecoach: async (id) =>{
-            const Lifecoach = await axios.delete('http://localhost:3000/api/lifecoach/'+id )
+            const Lifecoach = await axios.delete('http://localhost:3000/api/lifecoach/delete/'+id )
         },
         
         updateMember: async (id,body) => {
-            const member = await axios.put('http://localhost:3000/api/members/'+ id,{
+            const member = await axios.put('http://localhost:3000/api/members/update/'+ id,{
                 "name":body.name,
                 "age": body.age,
                 "skills": body.skills,
@@ -234,7 +234,7 @@ DeleteSchedule: async (id) =>{
             })
         },
         deleteMember: async (id) => {
-            const member = await axios.delete('http://localhost:3000/api/members/'+ id)
+            const member = await axios.delete('http://localhost:3000/api/members/delete/'+ id)
         },
         PostAppointment: async (id,body) =>{
             const Appointment = await axios.post('http://localhost:3000/api/appointments'+id, {

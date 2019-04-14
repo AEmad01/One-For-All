@@ -25,8 +25,13 @@ import lifeCoach from './components/lifeCoach'
 import CoachSchedule from './components/coachSchedule'
 import CoachAppointment from './components/coachAppointment'
 import CreateCoach from './components/create-coach'
+import DeleteMember from './components/delete-member'
+import UpdateMember from './components/updateMember'
 import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
+import UpdateLifecoach from './components/update-lifecoach'
+import DeleteLifecoach from './components/delete-lifecoach'
+
 import Register from './components/register'
 import AdminList from './components/admin-list'
 import deleteadmin from "./components/delete-admin"
@@ -101,6 +106,11 @@ class App extends Component {
           <Route path='/Coachschedule/:id' component={CoachSchedule} />
           <Route path='/Coachappointments/:id' component={CoachAppointment} />
           <Route path='/CreateCoach' component={CreateCoach} />
+          <Route path='/members/delete/:id' component={DeleteMember} />
+          <Route path='/members/update/:id' component={UpdateMember} />
+          <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
+          <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
+         
           <Route path='/locations/CreateLocation' exact component={CreateLocation} />
           <Route path='/locations/delete/:id' component={DeleteLocation} />
           <Route path='/accepttask/:id' exact component={adminaccept} />
@@ -126,6 +136,7 @@ class App extends Component {
           <Route path='/CreateCoach' component={CreateCoach} />
           <Route path='/members/createMember' exact component={CreateMember} />
           <Route path='/partners/createPartner' exact component={CreatePartner} />
+
 
 
         </div>

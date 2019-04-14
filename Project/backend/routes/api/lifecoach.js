@@ -106,7 +106,7 @@ router.put("/booking/:id", async (req, res) => {
 
 
 // Update a lifecoach
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const lifecoach = await Lifecoach.find({id});
@@ -125,7 +125,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 // delete a certain lifecoach
-router.delete('/:id', async (req,res) => {
+router.delete('/delete/:id', async (req,res) => {
   try {
    const id = req.params.id
    const deletedLifecoach = await Lifecoach.findByIdAndDelete(id);
