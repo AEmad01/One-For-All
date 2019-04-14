@@ -37,6 +37,7 @@ import SearchTask from './components/search-task'
 import viewTask from "./components/viewTask"
 import DeletePartner from './components/delete-partner'
 import updatePartner from './components/updatePartner'
+import CreateTask from './components/create task'
 import Createtask from './components/create task'
 import SuggestLocation from './components/Map'
 
@@ -44,6 +45,9 @@ import Register from './components/register'
 import AdminList from './components/admin-list'
 import deleteadmin from "./components/delete-admin"
 import updateadmin from "./components/update-admin"
+
+import Candidates from './components/candidates'
+import pickCandidate from './components/pickcandidate'
 import searchedTask from "./components/searchedTask"
 
 class App extends Component {
@@ -107,6 +111,7 @@ class App extends Component {
           <Route path='/appointments/createAppointment' component={BookAppointment} />
           <Route path='/schedules' exact component={ScheduleList} />
           <Route path='/schedule/postSchedule' component={PostSchedule} />
+          <Route path='/task/createTask' exact component={CreateTask} />
           <Route path='/admins' exact component={AdminList} />
 
           <Route path='/lifecoach' component={lifeCoach} />
@@ -134,6 +139,10 @@ class App extends Component {
 
           <Route path='/partners/delete/:id' component={DeletePartner} />
           <Route path='/partners/put/:id' component={updatePartner} />
+          <Route path='/partners/task/:id' component={CreateTask} />
+          <Route path='/candidates/:id' component={Candidates} />
+          <Route path='/pickcandidate/:mid/:id' component={pickCandidate} />
+  
           <Route path='/partners/task/:id' component={Createtask} />
             <Route path='/locations/suggest/' component={SuggestLocation} />
 

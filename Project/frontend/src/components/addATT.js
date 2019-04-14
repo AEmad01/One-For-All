@@ -33,8 +33,7 @@ export default class addATT extends Component {
         des:''
       });
       alert("attribute added")
-      window.location.replace("http://localhost:3000/task");
-        this.props.history.push('/');
+      window.location.assign('http://localhost:3000/tasks')
     }
 
 
@@ -46,7 +45,7 @@ render(){
             <form onSubmit={this.onSubmit}>
 
             <div className="form-group">
-                  <label>NAME:</label>
+                  <label>Name:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.name}
@@ -54,7 +53,7 @@ render(){
                   </div>
 
                   <div className="form-group">
-                  <label>des:</label>
+                  <label>Description:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.des}

@@ -63,6 +63,7 @@ extraAtt:{
     required: true
 },
 Status:{
+    default: false,
     type:Boolean,
     required: false
 }

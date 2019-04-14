@@ -8,15 +8,9 @@ export default class UpdateTask extends Component {
         this.onChangeEffort=this.onChangeEffort.bind(this)
         this.onChangeLevelOfCommitment=this.onChangeLevelOfCommitment.bind(this)
         this.onChangeExperienceLevel=this.onChangeExperienceLevel.bind(this)
-        this.onChangePartnerID=this.onChangePartnerID.bind(this)
-        this.onChangePartnerName=this.onChangePartnerName.bind(this)
         this.onChangeMonetaryCompensation=this.onChangeMonetaryCompensation.bind(this)
         this.onChangeConsultency=this.onChangeConsultency.bind(this)
         this.onChangeSetOfSkills=this.onChangeSetOfSkills.bind(this)
-        this.onChangeMemberID=this.onChangeMemberID.bind(this)
-        this.onChangeMemberName=this.onChangeMemberName.bind(this)
-        this.onChangeCandidates=this.onChangeCandidates.bind(this)
-        this.onChangeNegotiation=this.onChangeNegotiation.bind(this)
         this.onChangeDescription=this.onChangeDescription.bind(this)
         this.onChangeExtraAtt=this.onChangeExtraAtt.bind(this)
         this.onSubmit=this.onSubmit.bind(this)
@@ -37,15 +31,9 @@ export default class UpdateTask extends Component {
              effort:response.data.effort,
              levelOfCommitment:response.data.levelOfCommitment,
              experienceLevel:response.data.experienceLevel,
-             partnerID:response.data.partnerID,
-             partnerName:response.data.partnerName,
              monetaryCompensation:response.data.monetaryCompensation,
              consultency:response.data.consultency,
              setOfSkills:response.data.setOfSkills,
-             memberID:response.data.memberID,
-             memberName:response.data.memberName,
-             candidates:response.data.candidates,
-             negotiation:response.data.negotiation,
              Description:response.data.Description,
              extraAtt:response.data.extraAtt
  
@@ -87,16 +75,6 @@ export default class UpdateTask extends Component {
             experienceLevel:e.target.value
         });
     }
-    onChangePartnerID(e){
-        this.setState({
-            partnerID:e.target.value
-        });
-    }
-    onChangePartnerName(e){
-        this.setState({
-            partnerName:e.target.value
-        });
-    }
     onChangeMonetaryCompensation(e){
         this.setState({
             monetaryCompensation:e.target.value
@@ -110,26 +88,6 @@ export default class UpdateTask extends Component {
     onChangeSetOfSkills(e){
         this.setState({
             setOfSkills:e.target.value
-        });
-    }
-    onChangeMemberID(e){
-        this.setState({
-            memberID:e.target.value
-        });
-    }
-    onChangeMemberName(e){
-        this.setState({
-            memberName:e.target.value
-        });
-    }
-    onChangeCandidates(e){
-        this.setState({
-            candidates:e.target.value
-        });
-    }
-    onChangeNegotiation(e){
-        this.setState({
-            negotiation:e.target.value
         });
     }
     onChangeDescription(e){
@@ -150,15 +108,9 @@ export default class UpdateTask extends Component {
             effort:this.state.effort,
             levelOfCommitment:this.state.levelOfCommitment,
             experienceLevel:this.state.experienceLevel,
-            partnerID:this.state.partnerID,
-            partnerName:this.state.partnerName,
             monetaryCompensation:this.state.monetaryCompensation,
             consultency:this.state.consultency,
             setOfSkills:this.state.setOfSkills,
-            memberID:this.state.memberID,
-            memberName:this.state.memberName,
-            candidates:this.state.candidates,
-            negotiation:this.state.negotiation,
             Description:this.state.Description,
             extraAtt:this.state.extraAtt
            
@@ -170,22 +122,15 @@ export default class UpdateTask extends Component {
             effort:'',
             levelOfCommitment:'',
             experienceLevel:'',
-            partnerID:'',
-            partnerName:'',
             monetaryCompensation:'',
             consultency:'',
             setOfSkills:{},
-            memberID:'',
-            memberName:'',
-            candidates:'',
-            negotiation:'',
             Description:'',
             extraAtt:{}
                
         });   
         alert("task updated")
-        window.location.replace("http://localhost:3000/task");
-        this.props.history.push('/');
+        window.location.assign("http://localhost:3000/tasks");
     }
 
     
@@ -196,14 +141,14 @@ export default class UpdateTask extends Component {
                 <form onSubmit={this.onSubmit}>
                 
                   <div className="form-group">
-                  <label>NAME:</label>
+                  <label>Name:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.name}
                          onChange={this.onChangeName}/>
                   </div>
                   <div className="form-group">
-                  <label>time:</label>
+                  <label>Time:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.time}
@@ -211,89 +156,47 @@ export default class UpdateTask extends Component {
 
                   </div>
                   <div className="form-group">
-                  <label>effort:</label>
+                  <label>Effort:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.effort}
                          onChange={this.onChangeEffort}/>
                   </div>
                   <div className="form-group">
-                  <label>levelOfCommitment:</label>
+                  <label>Level of Commitment:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.levelOfCommitment}
                          onChange={this.onChangeLevelOfCommitment}/>
                   </div>
                   <div className="form-group">
-                  <label>experienceLevel:</label>
+                  <label>Experience Level:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.experienceLevel}
                          onChange={this.onChangeExperienceLevel}/>
                   </div>
                   <div className="form-group">
-                  <label>partnerID:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.partnerID}
-                         onChange={this.onChangePartnerID}/>
-                  </div>
-                  <div className="form-group">
-                  <label>partnerName:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.partnerName}
-                         onChange={this.onChangePartnerName}/>
-                  </div>
-                  <div className="form-group">
-                  <label>monetaryCompensation:</label>
+                  <label>Monetary Compensation:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.monetaryCompensation}
                          onChange={this.onChangeMonetaryCompensation}/>
                   </div>
                   <div className="form-group">
-                  <label>consultency:</label>
+                  <label>Consultency:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.consultency}
                          onChange={this.onChangeConsultency}/>
                   </div>
                   <div className="form-group">
-                  <label>setOfSkills:</label>
+                  <label>Set of Skills:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.setOfSkills}
                          onChange={this.onChangeSetOfSkills}/>
 
-                  </div>
-                  <div className="form-group">
-                  <label>memberID:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.memberID}
-                         onChange={this.onChangeMemberID}/>
-                  </div>
-                  <div className="form-group">
-                  <label>memberName:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.memberName}
-                         onChange={this.onChangeMemberName}/>
-                  </div>
-                  <div className="form-group">
-                  <label>candidates:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.candidates}
-                         onChange={this.onChangeCandidates}/>
-                  </div>
-                  <div className="form-group">
-                  <label>negotiation:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.negotiation}
-                         onChange={this.onChangeNegotiation}/>
                   </div>
                   <div className="form-group">
                   <label>Description:</label>
@@ -303,7 +206,7 @@ export default class UpdateTask extends Component {
                          onChange={this.onChangeDescription}/>
                   </div>
                   <div className="form-group">
-                  <label>extraAtt:</label>
+                  <label>Extra Attributes:</label>
                   <input type="text"
                         className="form-control"
                          value={this.state.extraAtt}
@@ -318,4 +221,17 @@ export default class UpdateTask extends Component {
             </div>
         )
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
