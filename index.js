@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(db,{ useMongoClient:true })
+  .connect(db)
   .then(() => console.log("connected to MongoDB"))
   .catch(err => console.log(err));
 // Direct routes to appropriate files
@@ -54,7 +54,4 @@ app.use("/api/user", user)
 app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
 });
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
-})
 app.listen(port, () => console.log(`Server up and running on port ${port}`));
