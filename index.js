@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(db)
+  .connect(db,{ useNewUrlParser: true })
   .then(() => console.log("connected to MongoDB"))
   .catch(err => console.log(err));
 // Direct routes to appropriate files
