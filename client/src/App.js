@@ -63,6 +63,7 @@ class App extends Component {
     this.connecToServer();
   }
   render() {
+    if(localStorage.getItem('jwtToken')){
       return (  
         <Router>
           <div className='container'>
@@ -159,6 +160,7 @@ class App extends Component {
           </div>
         </Router>
       )
+    }
 
 
     return (  

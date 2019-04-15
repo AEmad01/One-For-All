@@ -45,7 +45,6 @@ export default class Homepage extends Component {
             localStorage.setItem('userid',id)
             localStorage.setItem('jwtToken',token)
             setAuthToken(token)
-            alert(token)
             window.location.assign('/tasks')
         })
         .catch( error => {
