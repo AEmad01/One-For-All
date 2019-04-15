@@ -38,13 +38,14 @@ export default class Homepage extends Component {
            
         };
         
-        axios.post('http://localhost:3001/api/user/login',login)
+        axios.post('/api/user/login',login)
         .then( response => {
             const token = response.data.token
             const id = response.data.userid
             localStorage.setItem('userid',id)
             localStorage.setItem('jwtToken',token)
             setAuthToken(token)
+            alert(token)
             window.location.assign('/tasks')
         })
         .catch( error => {
