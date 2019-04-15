@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json());
 
 
-const db = require('./config/keys').mongoURI;
+const db = 'mongodb+srv://hazem9999:gemseldeen@one-for-all-eoozu.mongodb.net/test?';
 
 mongoose
   .connect(db)
