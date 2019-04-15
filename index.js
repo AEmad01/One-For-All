@@ -17,14 +17,14 @@ const db = require('./config/keys').mongoURI;
 const port = process.env.PORT || 3001;
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(express.json());
 app.use(cors())
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
   //
   app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname = 'client/build/index.html'));
+    res.sendfile(path.join(__dirname = 'frontend/build/index.html'));
   })
 }
 
@@ -55,6 +55,6 @@ app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
 });
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/public/index.html'));
+  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
 })
 app.listen(port, () => console.log(`Server up and running on port ${port}`));
