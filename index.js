@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json());
 
 
-const db = 'mongodb+srv://hazem9999:gemseldeen@one-for-all-eoozu.mongodb.net/test?';
+const db = process.env.MONGO_URI || 'mongodb+srv://hazem9999:gemseldeen@one-for-all-eoozu.mongodb.net/test?';
 
 mongoose
   .connect(db)
