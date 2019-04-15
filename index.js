@@ -11,7 +11,7 @@ const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const user = require('./routes/api/user')
 const path = require('path')
-const passport = require('./config/passport')
+const passport = require('passport')
 const cors = require('cors')
 const port = process.env.PORT || 3001;
 
