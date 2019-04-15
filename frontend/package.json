@@ -11,8 +11,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "babel-jest": "23.6.0",
-    "jest": "23.6.0",
     "react-scripts": "2.1.8",
     "typescript": "^3.4.3"
   },
@@ -32,4 +30,4 @@
     "not ie <= 11",
     "not op_mini all"
   ]
-} 
+}

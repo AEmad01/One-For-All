@@ -10,42 +10,27 @@ const mongoose = require("mongoose");
 const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const user = require('./routes/api/user')
-const path = require('path')
 const cors = require('cors')
-const port = process.env.PORT || 3001;
 
 const db = require('./config/keys').mongoURI;
+const port = process.env.PORT || 3001;
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 const app = express();
 app.use(express.json());
 app.use(cors())
-
-
-app.use(express.json());
-app.get("/", (req, res) => {
-  res.send(`<h1>Welcome to Litren Hub</h1>
-    <a href="/api/partners">Partners</a>
-    <a href="/api/appointments">Appointments</a>
-    <a href="/api/members">Members</a>
-    <a href="/api/schedules">schedules</a>
-    <a href="/api/locations">locations</a>           
-    <a href="/api/admin">Admins</a>
-    <a href="/api/task">tasks</a>
-    <a href="/api/lifecoach">lifecoach</a>
-    <a href="/api/slots//getslots">slots</a>
-    `);
-});
-
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'frontend/build')));
+  app.use(express.static(path.join(__dirname, 'client/build')));
   //
   app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname = 'frontend/build/index.html'));
+    res.sendfile(path.join(__dirname = 'client/build/index.html'));
   })
 }
 
+app.use(express.json());
+app.get("/", (req, res) => {
+  res.send('root route');
+});
 
 mongoose
   .connect(db)
@@ -68,9 +53,7 @@ app.use("/api/user", user)
 app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
 });
-
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
 })
-
 app.listen(port, () => console.log(`Server up and running on port ${port}`));
