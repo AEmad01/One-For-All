@@ -11,12 +11,13 @@ const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const user = require('./routes/api/user')
 const cors = require('cors')
+const path = require('path')
 
 const db = require('./config/keys').mongoURI;
 const port = process.env.PORT || 3001;
 
-app.use(express.static(path.join(__dirname, 'client/build')));
 const app = express();
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.json());
 app.use(cors())
 if(process.env.NODE_ENV === 'production') {
