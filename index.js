@@ -10,9 +10,9 @@ const mongoose = require("mongoose");
 const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const user = require('./routes/api/user')
+const path = require('path')
 const cors = require('cors')
 const port = process.env.PORT || 3001;
-const path = require('path');
 
 const db = require('./config/keys').mongoURI;
 
@@ -33,7 +33,6 @@ app.get("/", (req, res) => {
     <a href="/api/task">tasks</a>
     <a href="/api/lifecoach">lifecoach</a>
     <a href="/api/slots//getslots">slots</a>
-
     `);
 });
 
@@ -59,6 +58,7 @@ app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
 });
 
+
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 if(process.env.NODE_ENV === 'production') {
@@ -72,6 +72,4 @@ if(process.env.NODE_ENV === 'production') {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
 })
-
-
 app.listen(port, () => console.log(`Server up and running on port ${port}`));

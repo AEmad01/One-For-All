@@ -4,8 +4,8 @@
   "description": "Introduction to node",
   "main": "index.js",
   "engines": {
-    "node":"10.15.1",
-    "npm":"6.4.1"
+    "node": "10.15.1",
+    "npm": "6.4.1"
   },
   "scripts": {
     "test": "jest",
@@ -16,8 +16,7 @@
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "One-For-All",
   "license": "ISC",
   "dependencies": {
