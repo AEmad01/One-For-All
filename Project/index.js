@@ -11,6 +11,8 @@ const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const user = require('./routes/api/user')
 const cors = require('cors')
+const port = process.env.PORT || 3001;
+const path = require('path');
 
 const db = require('./config/keys').mongoURI;
 
@@ -57,5 +59,19 @@ app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });
 });
 
-const port = 3001;
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'frontend/build/index.html'));
+  })
+}
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
+})
+
+
 app.listen(port, () => console.log(`Server up and running on port ${port}`));
