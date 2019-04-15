@@ -15,9 +15,9 @@ export default class adminaccept extends Component {
     //     });
     // }
     componentDidMount() {
-        axios.put('http://localhost:3001/api/task/accepttask/' + this.props.match.params.id )
+        axios.put('/api/task/accepttask/' + this.props.match.params.id )
         .catch(error => alert(error))
-        window.location.assign('http://localhost:3001/tasks')
+        window.location.assign('/tasks')
     }
 
     render() {

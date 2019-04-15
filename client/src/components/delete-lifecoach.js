@@ -4,10 +4,10 @@ import axios from 'axios'
 export default class DeleteLifecoach extends Component {
 
     componentDidMount() {
-        axios.delete('http://localhost:3001/api/lifecoach/delete/' + this.props.match.params.id )
+        axios.delete('/api/lifecoach/delete/' + this.props.match.params.id )
         
         alert("Coach updated Successfully")
-      window.location.replace("http://localhost:3001/lifecoach");
+      window.location.replace("/lifecoach");
     }
     
 

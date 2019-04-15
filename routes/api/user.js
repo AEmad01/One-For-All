@@ -3,9 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const User = require('../../models/User')
-const tokenKey = require('../../config/keys').secretOrKey
 const validator = require('../../validations/userValidations')
 
+const tokenKey = process.env.SECRET || 'verysecretkey'
 
 router.get("/", async (req, res) => {
     const users = await User.find();

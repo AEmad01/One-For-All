@@ -31,7 +31,7 @@ export default class TaskList extends Component {
     }
 
     componentDidMount() {
-            axios.get('http://localhost:3001/api/task/')
+            axios.get('/api/task/')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -41,7 +41,7 @@ export default class TaskList extends Component {
         
     }
     componentDidUpdate() {
-        axios.get('http://localhost:3001/api/task/')
+        axios.get('/api/task/')
             .then(response => {
                 this.setState({tasks: response.data.data});
             })

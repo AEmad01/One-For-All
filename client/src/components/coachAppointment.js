@@ -20,7 +20,7 @@ export default class coachAppointment extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/lifecoach/appointments/'+ this.props.match.params.id )
+        axios.get('/api/lifecoach/appointments/'+ this.props.match.params.id )
             .then(response => {
                 this.setState({appointments: response.data.data});
             })

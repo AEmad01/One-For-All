@@ -45,7 +45,7 @@ export default class lifeCoach extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/lifecoach/')
+        axios.get('/api/lifecoach/')
             .then(response => {
                 this.setState({lifecoachs: response.data.data});
             })
@@ -54,7 +54,7 @@ export default class lifeCoach extends Component {
             })
     }
     componentDidUpdate() {
-        axios.get('http://localhost:3001/api/lifecoach/')
+        axios.get('/api/lifecoach/')
             .then(response => {
                 this.setState({lifecoachs: response.data.data});
             })

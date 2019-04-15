@@ -30,7 +30,7 @@ export default class ParnterList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/partners/')
+        axios.get('/api/partners/')
             .then(response => {
                 //alert(response.data.data[0])
                 this.setState({partners: response.data.data});

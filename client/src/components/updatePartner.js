@@ -47,7 +47,7 @@ export default class updatePartner extends Component {
         username:this.state.username,
         password:this.state.password,
       } 
-      axios.put('http://localhost:3001/api/partners/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upPartner).then(response =>response.data);
+      axios.put('/api/partners/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upPartner).then(response =>response.data);
      
       this.setState({
         name: '',
@@ -56,7 +56,7 @@ export default class updatePartner extends Component {
         password:'',
       });
       alert("Partner updated")
-  window.location.replace("http://localhost:3001/partners");
+  window.location.replace("/partners");
     }
       
       render() {

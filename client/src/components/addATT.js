@@ -27,13 +27,13 @@ export default class addATT extends Component {
         data1:this.state.des
         };
        
-        axios.put('http://localhost:3001/api/task/addattributeAD/'+this.props.match.params.id,obj).then(response =>response.data);
+        axios.put('/api/task/addattributeAD/'+this.props.match.params.id,obj).then(response =>response.data);
       this.setState({
         name:'',
         des:''
       });
       alert("attribute added")
-      window.location.assign('http://localhost:3001/tasks')
+      window.location.assign('/tasks')
     }
 
 

@@ -80,7 +80,7 @@ export default class CreateLocation extends Component {
         lifecoach:this.state.lifecoach,
         confirmedLocation:this.state.confirmedLocation
       } 
-      axios.post('http://localhost:3001/api/locations/CreateLocation/',newLocation).then(response =>response.data);
+      axios.post('/api/locations/CreateLocation/',newLocation).then(response =>response.data);
       this.setState({
         name: '',
         address:'',

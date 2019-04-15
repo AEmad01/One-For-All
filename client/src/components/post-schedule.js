@@ -39,7 +39,7 @@ export default class PostSchedule extends Component {
         lifeCoachID:window.location.href.match(/\/([^\/]+)\/?$/)[1],
 
       } 
-      axios.post('http://localhost:3001/api/schedules/CreateSchedule/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newSchedule).then(response =>response.data);
+      axios.post('/api/schedules/CreateSchedule/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newSchedule).then(response =>response.data);
       this.setState({
 
       });

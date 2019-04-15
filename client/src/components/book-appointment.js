@@ -30,7 +30,7 @@ export default class BookAppointment extends Component {
         memberName:this.state.memberName,
         confirm:this.state.confirm,
       } 
-      axios.post('http://localhost:3001/api/appointments/createAppointment/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newAppointment).then(response =>response.data);
+      axios.post('/api/appointments/createAppointment/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newAppointment).then(response =>response.data);
       this.setState({
 
       });

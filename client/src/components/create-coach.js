@@ -111,7 +111,7 @@ export default class CreateCoach extends Component {
         specification:this.state.specification,
         salary:this.state.salary
       } 
-      axios.post('http://localhost:3001/api/lifecoach',newCoach).then(response =>
+      axios.post('/api/lifecoach',newCoach).then(response =>
       response.data)
       .catch( error => {
         if(error == 'Error: Request failed with status code 400'){

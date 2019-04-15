@@ -28,7 +28,7 @@ export default class MemberList extends Component {
         this.state = {members: []}
     }
     componentDidMount() {
-        axios.get('http://localhost:3001/api/members/')
+        axios.get('/api/members/')
             .then(response => {
                 this.setState({members: response.data.data});
             })

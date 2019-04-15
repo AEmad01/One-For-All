@@ -77,7 +77,7 @@ export default class TaskList extends Component {
 
     componentDidMount() {
         if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('http://localhost:3001/api/task')
+            axios.get('/api/task')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -85,7 +85,7 @@ export default class TaskList extends Component {
                     console.log(error);
                 })
         } else if(localStorage.getItem('jwtToken').startsWith('P')){
-            axios.get('http://localhost:3001/api/task/accepted')
+            axios.get('/api/task/accepted')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -93,7 +93,7 @@ export default class TaskList extends Component {
                     console.log(error);
                 })
         } else {
-            axios.get('http://localhost:3001/api/task/accepted')
+            axios.get('/api/task/accepted')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -105,7 +105,7 @@ export default class TaskList extends Component {
 
     componentDidUpdate() {
         if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('http://localhost:3001/api/task')
+            axios.get('/api/task')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -113,7 +113,7 @@ export default class TaskList extends Component {
                     console.log(error);
                 })
         } else if(localStorage.getItem('jwtToken').startsWith('P')){
-            axios.get('http://localhost:3001/api/task/accepted')
+            axios.get('/api/task/accepted')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })
@@ -121,7 +121,7 @@ export default class TaskList extends Component {
                     console.log(error);
                 })
         } else {
-            axios.get('http://localhost:3001/api/task/accepted')
+            axios.get('/api/task/accepted')
                 .then(response => {
                     this.setState({tasks: response.data.data});
                 })

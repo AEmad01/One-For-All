@@ -69,13 +69,13 @@ export default class updateMember extends Component {
         reviews:this.state.reviews,
         certificates:this.state.certificates
       } 
-      axios.put('http://localhost:3001/api/members/update/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upMember).then(response =>response.data);
+      axios.put('/api/members/update/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upMember).then(response =>response.data);
       
       this.setState({
 
       });
       alert("Member updated Successfully")
-      window.location.assign("http://localhost:3001/members");
+      window.location.assign("/members");
     }
       
       render() {

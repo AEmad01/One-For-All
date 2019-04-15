@@ -126,7 +126,7 @@ export default class Createtask extends Component {
                 extraAtt:this.state.extraAtt
                
             };
-            axios.post('http://localhost:3001/api/task/partner/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newTask).then(response =>response.data);
+            axios.post('/api/task/partner/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newTask).then(response =>response.data);
             this.setState({
                 name:'',
                 time:'',
@@ -147,7 +147,7 @@ export default class Createtask extends Component {
                    
             });
             alert("task created")
-        //window.location.replace("http://localhost:3001/task");
+        //window.location.replace("/task");
         this.props.history.push('/');
     }
 

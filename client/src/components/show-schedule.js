@@ -20,7 +20,7 @@ export default class ScheduleList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/schedules/GetAllSchedule')
+        axios.get('/api/schedules/GetAllSchedule')
             .then(response => {
                 this.setState({schedules: response.data.data});
             })
@@ -29,7 +29,7 @@ export default class ScheduleList extends Component {
             })
     }
     componentDidUpdate() {
-        axios.get('http://localhost:3001/api/schedules/GetAllSchedule')
+        axios.get('/api/schedules/GetAllSchedule')
             .then(response => {
                 this.setState({schedules: response.data.data});
             })

@@ -30,7 +30,7 @@ export default class LocationList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/locations/')
+        axios.get('/api/locations/')
             .then(response => {
                 this.setState({locations: response.data.data});
             })
@@ -40,7 +40,7 @@ export default class LocationList extends Component {
     }
 
    componentDidUpdate() {
-        axios.get('http://localhost:3001/api/locations/')
+        axios.get('/api/locations/')
             .then(response => {
                 this.setState({locations: response.data.data});
             })

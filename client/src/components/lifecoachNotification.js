@@ -16,7 +16,7 @@ const Appointment = props => (
         <td>
      <button onClick={() =>  axios({
   method: 'put',
-  url: 'http://localhost:3001/api/appointments/' + props.appointment._id,
+  url: '/api/appointments/' + props.appointment._id,
   data: {
     confirmSlot: 'true', // This is the body part
    
@@ -38,7 +38,7 @@ export default class LifecoachNotification extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/appointments')
+        axios.get('/api/appointments')
             .then(response => {
                 this.setState({appointments: response.data.data});
             })

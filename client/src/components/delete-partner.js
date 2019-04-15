@@ -4,9 +4,9 @@ import axios from 'axios'
 export default class DeletePartner extends Component {
 
     componentDidMount() {
-        axios.delete('http://localhost:3001/api/partners/' + this.props.match.params.id )
+        axios.delete('/api/partners/' + this.props.match.params.id )
         alert('Partner Deleted Successfully!')
-        window.location.replace("http://localhost:3001/partners");
+        window.location.replace("/partners");
     }
 
     render() {

@@ -25,7 +25,7 @@ export default class updateadmin extends Component {
             name:this.state.name,
             age:this.state.age
      };
-     axios.put('http://localhost:3001/api/admin/updateAdmin/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],obj).then(response =>response.data);
+     axios.put('/api/admin/updateAdmin/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],obj).then(response =>response.data);
         this.setState({
             name:'',
             age:'',

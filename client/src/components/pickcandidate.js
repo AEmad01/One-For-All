@@ -4,8 +4,8 @@ import axios from 'axios'
 export default class pickCandidate extends Component {
 
     componentDidMount() {
-        axios.put('http://localhost:3001/api/task/chooseApplication/' + this.props.match.params.mid + '/' + this.props.match.params.id )
-        window.location.assign('http://localhost:3001/tasks')
+        axios.put('/api/task/chooseApplication/' + this.props.match.params.mid + '/' + this.props.match.params.id )
+        window.location.assign('/tasks')
     }
 
     render() {

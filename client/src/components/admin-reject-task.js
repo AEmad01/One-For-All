@@ -14,8 +14,8 @@ export default class adminreject extends Component {
     // }
     
     componentDidMount() {
-        axios.put('http://localhost:3001/api/task/rejecttask/' + this.props.match.params.id )
-        window.location.assign('http://localhost:3001/tasks')
+        axios.put('/api/task/rejecttask/' + this.props.match.params.id )
+        window.location.assign('/tasks')
     }
 
     render() {

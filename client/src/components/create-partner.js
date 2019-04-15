@@ -47,7 +47,7 @@ export default class CreatePartner extends Component {
         username:this.state.username,
         password:this.state.password
       } 
-      axios.post('http://localhost:3001/api/partners/',newPartner).then(response =>response.data).catch( error => {
+      axios.post('/api/partners/',newPartner).then(response =>response.data).catch( error => {
         if(error == 'Error: Request failed with status code 400'){
             alert('Username already exists')
         }

@@ -4,7 +4,7 @@ import axios from 'axios'
 export default class DeleteLocation extends Component {
 
     componentDidMount() {
-        axios.delete('http://localhost:3001/api/locations/DeleteLocation/' + this.props.match.params.id )
+        axios.delete('/api/locations/DeleteLocation/' + this.props.match.params.id )
     }
 
     render() {

@@ -5,7 +5,7 @@ export default class deleteadmin extends Component {
 
 
     componentDidMount() {
-        axios.delete('http://localhost:3001/api/admin/deleteadmin/' + this.props.match.params.id )
+        axios.delete('/api/admin/deleteadmin/' + this.props.match.params.id )
     }
 
   render() {

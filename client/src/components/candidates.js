@@ -12,7 +12,7 @@ export default class Candidates extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/task/' + this.props.match.params.id)
+        axios.get('/api/task/' + this.props.match.params.id)
             .then(response => {
                 this.setState({candidates: response.data.candidates});
             })

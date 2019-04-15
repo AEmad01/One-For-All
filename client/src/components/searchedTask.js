@@ -35,7 +35,7 @@ onLoad(e) {
 
         axios({
             method: 'post',
-            url: 'http://localhost:3001/api/task/search/',
+            url: '/api/task/search/',
             data: {
               name: this.props.match.params.id, // This is the body part
             }

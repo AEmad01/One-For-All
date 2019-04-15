@@ -46,7 +46,7 @@ onChangeLocation(e){
       confirm:this.state.confirm
     } 
     alert(window.location.href.match(/\/([^\/]+)\/?$/)[1])
-    axios.put('http://localhost:3001/api/appointments/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upLocation).then(response =>response.data);
+    axios.put('/api/appointments/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upLocation).then(response =>response.data);
 
     this.setState({
       location: '',

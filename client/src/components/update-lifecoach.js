@@ -86,11 +86,11 @@ export default class updateCoach extends Component {
         specification:this.state.specification,
         salary:this.state.salary
       } 
-      axios.put('http://localhost:3001/api/lifecoach/update/'+ window.location.href.match(/\/([^\/]+)\/?$/)[1],updatedCoach).then(response =>response.data);
+      axios.put('/api/lifecoach/update/'+ window.location.href.match(/\/([^\/]+)\/?$/)[1],updatedCoach).then(response =>response.data);
       this.setState({
       });
       alert("Coach updated Successfully")
-      window.location.replace("http://localhost:3001/lifecoach");
+      window.location.replace("/lifecoach");
 
     }
       
