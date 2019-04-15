@@ -51,6 +51,17 @@ import pickCandidate from './components/pickcandidate'
 import searchedTask from "./components/searchedTask"
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+    this.connecToServer = this.connecToServer.bind(this)
+  }
+  connecToServer(){
+    fetch('/')
+  }
+  componentDidMount() {
+    this.connecToServer();
+  }
   render() {
     if(localStorage.getItem('jwtToken')){
       return (  
