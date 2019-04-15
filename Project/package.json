@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Introduction to node",
   "main": "index.js",
+  "engines": {
+    "node":"10.15.1",
+    "npm":"6.4.1"
+  },
   "scripts": {
     "test": "jest",
     "frontend-install": "npm install --prefix frontend",
