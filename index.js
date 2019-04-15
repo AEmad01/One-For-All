@@ -37,9 +37,12 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(db,{ useNewUrlParser: true })
-  .then(() => console.log("connected to MongoDB"))
-  .catch(err => console.log(err));
+  .connect(db+ 'retryWrites=true', {useNewUrlParser: true})
+  mongoose.connection.once('open', function(){
+    console.log("connected to MongoDB");
+        }).on('error', function(error){
+     console.log('Error is: ', error);
+      });
 // Direct routes to appropriate files
 
 app.use("/api/admin", admins);
