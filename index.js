@@ -11,7 +11,6 @@ const lifecoach = require("./routes/api/lifecoach")
 const slot = require("./routes/api/slots")
 const user = require('./routes/api/user')
 const path = require('path')
-const passport = require('passport')
 const cors = require('cors')
 const port = process.env.PORT || 3001;
 
@@ -20,9 +19,7 @@ const db = require('./config/keys').mongoURI;
 const app = express();
 app.use(express.json());
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
 app.use(cors())
-app.use(passport.initialize())
 
 
 app.use(express.json());
