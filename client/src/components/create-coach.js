@@ -132,7 +132,7 @@ export default class CreateCoach extends Component {
         specification:'',
         salary:'',
       });
-      window.location.assign("http://localhost:3001")
+      window.location.assign("/")
     }
       
       render() {
