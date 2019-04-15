@@ -17,10 +17,9 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [
-    "server"
   ],
   "author": "One-For-All",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
