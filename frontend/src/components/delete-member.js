@@ -5,7 +5,7 @@ export default class DeleteMember extends Component {
 
     componentDidMount() {
         axios.delete('http://localhost:3001/api/members/delete/' + this.props.match.params.id )
-        window.location.replace("http://localhost:3000/members");
+        window.location.replace("http://localhost:3001/members");
     }
 
     render() {

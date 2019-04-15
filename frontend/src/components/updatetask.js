@@ -115,7 +115,7 @@ export default class UpdateTask extends Component {
             extraAtt:this.state.extraAtt
            
         };
-        axios.put('http://localhost:3000/api/task/updatetask/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],obj).then(response =>response.data);
+        axios.put('http://localhost:3001/api/task/updatetask/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],obj).then(response =>response.data);
         this.setState({
             name:'',
             time:'',
@@ -130,7 +130,7 @@ export default class UpdateTask extends Component {
                
         });   
         alert("task updated")
-        window.location.assign("http://localhost:3000/tasks");
+        window.location.assign("http://localhost:3001/tasks");
     }
 
     

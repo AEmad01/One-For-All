@@ -19,7 +19,7 @@ export default class AdminList extends Component {
 }
 
 componentDidMount() {
-    axios.get('http://localhost:3000/api/admin/')
+    axios.get('http://localhost:3001/api/admin/')
         .then(response => {
             this.setState({admins: response.data.data});
         })
@@ -28,7 +28,7 @@ componentDidMount() {
         })
 }
 componentDidUpdate() {
-    axios.get('http://localhost:3000/api/admin/')
+    axios.get('http://localhost:3001/api/admin/')
         .then(response => {
             this.setState({admins: response.data.data});
         })

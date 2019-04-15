@@ -17,7 +17,7 @@ export default class coachSchedule extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/lifecoach/schedule/'+ this.props.match.params.id )
+        axios.get('http://localhost:3001/api/lifecoach/schedule/'+ this.props.match.params.id )
             .then(response => {
                 this.setState({schedules: response.data.data});
             })

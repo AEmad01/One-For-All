@@ -75,7 +75,7 @@ export default class updateLocation extends Component {
         lifecoach:this.state.lifecoach,
         confirmedLocation:this.state.confirmedLocation
       } 
-      axios.put('http://localhost:3000/api/locations/UpdateLocation/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upLocation).then(response =>response.data);
+      axios.put('http://localhost:3001/api/locations/UpdateLocation/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],upLocation).then(response =>response.data);
      
       this.setState({
         name: '',
@@ -88,7 +88,7 @@ export default class updateLocation extends Component {
         confirmedLocation:''
       });
       alert("Location updated")
-window.location.replace("http://localhost:3000/locations");
+window.location.replace("http://localhost:3001/locations");
     }
       
       render() {

@@ -147,7 +147,7 @@ export default class Createtask extends Component {
                    
             });
             alert("task created")
-        //window.location.replace("http://localhost:3000/task");
+        //window.location.replace("http://localhost:3001/task");
         this.props.history.push('/');
     }
 

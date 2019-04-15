@@ -33,7 +33,7 @@ export default class addATT extends Component {
         des:''
       });
       alert("attribute added")
-      window.location.assign('http://localhost:3000/tasks')
+      window.location.assign('http://localhost:3001/tasks')
     }
 
 

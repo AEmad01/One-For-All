@@ -37,7 +37,7 @@ export default class AppointmentList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/appointments')
+        axios.get('http://localhost:3001/api/appointments')
             .then(response => {
                 this.setState({appointments: response.data.data});
             })
@@ -47,7 +47,7 @@ export default class AppointmentList extends Component {
     }
 
     componentDidUpdate() {
-        axios.get('http://localhost:3000/api/appointments')
+        axios.get('http://localhost:3001/api/appointments')
             .then(response => {
                 this.setState({appointments: response.data.data});
             })
