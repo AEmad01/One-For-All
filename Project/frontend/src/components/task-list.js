@@ -63,6 +63,7 @@ const TaskM = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
+        <td><Link to={'task/apply/'+props.task._id+'/'+localStorage.getItem('userid')}>Apply</Link></td>
     </tr>
 ) 
 
@@ -173,10 +174,10 @@ export default class TaskList extends Component {
                                    <th>Delete</th>
                                    <th>Update</th>
                                    <th>Accept</th>
-                                   <th>Choose Applicant</th>
-                                   
                                 <th>Reject</th>
                                 <th>Add Attribute</th>
+                                   <th>Choose Applicant</th>
+                                   
                                </tr>
                            </thead>
                            <tbody>

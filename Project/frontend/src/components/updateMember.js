@@ -75,7 +75,7 @@ export default class updateMember extends Component {
 
       });
       alert("Member updated Successfully")
-      window.location.assign("http://localhost:3000/members");
+      window.location.assign("http://localhost:3000/profile");
     }
       
       render() {
