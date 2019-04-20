@@ -262,6 +262,89 @@ class App extends Component {
             </Router>
           )
       }
+      else if(localStorage.getItem('jwtToken').startsWith('P')){
+        return (  
+          <Router>
+            <div className='container'>
+    
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+         
+          <a className="navbar-brand"  target="_blank">
+                <img src={logo} width="200" height="141" alt="CodingTheSmartWay.com" />
+              </a>
+              <div className="collpase nav-collapse">
+                <ul className="navbar-nav mr-auto">
+                  <li className="navbar-item">
+                    <Link to="/profile" className="nav-link">Profile</Link>
+                  </li>
+                  <li className="navbar-item">
+                  <Link to="/partners" className="nav-link">Partners</Link>
+                </li>
+                  <li className="navbar-item">
+                    <Link to="/tasks" className="nav-link">Tasks</Link>
+                  </li>
+                  <li className="navbar-item">
+                    <Link to="/" className="nav-link">Logout</Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+    
+            <Route path='/' exact component={Homepage} />
+            <Route path='/tasks' exact component={TaskList} />
+            <Route path='/delete/:id' component={DeleteTask} />
+            <Route path='/members' exact component={memberList} />
+            <Route path='/members/createMember' exact component={CreateMember} />
+            <Route path='/partners' exact component={PartnerList} />
+            <Route path='/partners/createPartner' exact component={CreatePartner} />
+            <Route path='/slots' exact component={Slots} />
+            <Route path='/update/:id' component={UpdateTask} />
+            <Route path='/addATT/:id' component={addATT} />
+            <Route path='/locations' exact component={LocationList} />
+            <Route path='/put/:id' component={updateLocation} />
+            <Route path='/appointments' exact component={AppointmentList} />
+            <Route path='/appointments/createAppointment' component={BookAppointment} />
+            <Route path='/schedules' exact component={ScheduleList} />
+            <Route path='/schedule/postSchedule' component={PostSchedule} />
+            <Route path='/task/createTask' exact component={CreateTask} />
+            <Route path='/members/notification/:id' component={memberNotification} />
+
+
+            <Route path='/lifecoach' component={lifeCoach} />
+            <Route path='/Coachschedule/:id' component={CoachSchedule} />
+            <Route path='/Coachappointments/:id' component={CoachAppointment} />
+            <Route path='/CreateCoach' component={CreateCoach} />
+            <Route path='/members/delete/:id' component={DeleteMember} />
+            <Route path='/members/update/:id' component={UpdateMember} />
+            <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
+            <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
+            <Route path='/task/apply/:id/:mid' component={ApplyForTask} />
+
+            <Route path='/locations/CreateLocation' exact component={CreateLocation} />
+            <Route path='/locations/delete/:id' component={DeleteLocation} />
+
+            <Route path='/LifecoachNotification/:id' component={LifecoachNotification} />
+            <Route path='/accepttask/:id' exact component={adminaccept} />
+            <Route path='/rejecttask/:id' exact component={adminreject} />
+            <Route path='/view' component={viewTask} />
+          
+            <Route path='/search/' component={SearchTask} />
+            <Route path='/searched/:id' component={searchedTask} />
+
+            <Route path='/partners/delete/:id' component={DeletePartner} />
+            <Route path='/partners/put/:id' component={updatePartner} />
+            
+            <Route path='/candidates/:id' component={Candidates} />
+            <Route path='/pickcandidate/:mid/:id' component={pickCandidate} />
+    
+            <Route path='/partners/task/:id' component={Createtask} />
+              <Route path='/locations/suggest/' component={SuggestLocation} />
+              <Route path='/profile' component={Profile} />
+
+            </div>
+          </Router>
+        )
+    }
       else{
         return (  
           <Router>
