@@ -232,7 +232,6 @@ class App extends Component {
               <Route path='/members/update/:id' component={UpdateMember} />
               <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
               <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
-              <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
 
               <Route path='/locations/CreateLocation' exact component={CreateLocation} />
               <Route path='/locations/delete/:id' component={DeleteLocation} />

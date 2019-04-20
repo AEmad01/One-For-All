@@ -56,7 +56,7 @@ export default class updatePartner extends Component {
         password:'',
       });
       alert("Partner updated")
-  window.location.assign("http://localhost:3000/partners");
+  window.location.assign("http://localhost:3000/profile");
     }
       
       render() {

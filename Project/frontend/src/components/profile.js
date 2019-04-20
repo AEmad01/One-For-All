@@ -21,12 +21,13 @@ const ProP = props => (
         <td>{props.profile.age}</td>
         <td>{props.profile.Task}</td>
         <td>
-            <Link to={'/updateadmin/'+localStorage.getItem('userid')}>Update</Link>
+            <Link to={'/partners/put/'+localStorage.getItem('userid')}>Update</Link>
         </td>
         <td>
-            <Link to={'/deleteadmin/'+localStorage.getItem('userid')}>Delete</Link>
-        </td><td>
-            <Link to={'/deleteadmin/'+localStorage.getItem('userid')}>Task</Link>
+            <Link to={'/partners/delete/'+localStorage.getItem('userid')}>Delete</Link>
+        </td>
+        <td>
+            <Link to={'/deleteadmin'}>Task</Link>
         </td>
     </tr>
 )
@@ -43,10 +44,10 @@ const ProM = props => (
         <td>{props.profile.certificates}</td>
         <td>{props.profile.notification}</td>
         <td>
-            <Link to={'/updateadmin/'+localStorage.getItem('userid')}>Update</Link>
+            <Link to={'/members/update/'+localStorage.getItem('userid')}>Update</Link>
         </td>
         <td>
-            <Link to={'/deleteadmin/'+localStorage.getItem('userid')}>Delete</Link>
+            <Link to={'/members/delete/'+localStorage.getItem('userid')}>Delete</Link>
         </td>
     </tr>
 )
@@ -67,10 +68,10 @@ const ProL = props => (
         <td>{props.profile.Appointments}</td>
         <td>{props.profile.Notification}</td>
         <td>
-            <Link to={'/updateadmin/'+localStorage.getItem('userid')}>Update</Link>
+            <Link to={'/lifecoach/update/'+localStorage.getItem('userid')}>Update</Link>
         </td>
         <td>
-            <Link to={'/deleteadmin/'+localStorage.getItem('userid')}>Delete</Link>
+            <Link to={'/lifecoach/delete/'+localStorage.getItem('userid')}>Delete</Link>
         </td>
     </tr>
 )
@@ -265,8 +266,8 @@ export default class Profile extends Component {
                             <th>Reviews</th>
                             <th>Certificate</th>
                             <th>Notification</th>
-                            <th>Delete</th>
                             <th>Update</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
