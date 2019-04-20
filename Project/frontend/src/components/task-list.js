@@ -63,6 +63,7 @@ const TaskM = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
+        <td><Link to={'task/apply/'+props.task._id+'/'+localStorage.getItem('userid')}>Apply</Link></td>
     </tr>
 ) 
 

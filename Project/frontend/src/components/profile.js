@@ -42,7 +42,9 @@ const ProM = props => (
         <td>{props.profile.completedProjects}</td>
         <td>{props.profile.reviews}</td>
         <td>{props.profile.certificates}</td>
-        <td>{props.profile.notification}</td>
+        <td>
+            <Link to={'/members/notification/'+localStorage.getItem('userid')}>View Notifications</Link>
+        </td>
         <td>
             <Link to={'/members/update/'+localStorage.getItem('userid')}>Update</Link>
         </td>

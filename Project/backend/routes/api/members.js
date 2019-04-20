@@ -53,14 +53,15 @@ router.post('/createMember', async (req,res) => {
     const newMember = await Member.findById(id)  
     if(!newMember) return res.status(400).send({error:result.error.details[0].message});
     res.send(newMember)
+    if(newMember.notification.length!=0){
     notifier.notify({
         'title': 'Alert',
         'message': 'You have new Notifications',
-        'wait': true,
-        'open':'/api/members/notification/:id'
-        }, function() {open('http://localhost:3000/api/members/notification/'+id) } 
+        'wait': true
+        }
       );
     }
+  }
 )
 // Update a member
 router.put("/update/:id", async (req, res) => {
