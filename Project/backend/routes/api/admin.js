@@ -49,6 +49,8 @@ router.get("/getadmin/:id", async (req, res) => {
        .status(400)
        .send({ error: isValidated.error.details[0].message })
    const updateAdmin = await admin.findOneAndUpdate({_id: id} , req.body)
+   if(req.body.username) await user.findOneAndUpdate({id: updateAdmin._id},{username: req.body.username})
+   if(req.body.password) await user.findOneAndUpdate({id: updateAdmin._id},{password: req.body.password})
    res.json({msg: 'admin updated successfully',data:updateAdmin})
   }
   catch(error) {

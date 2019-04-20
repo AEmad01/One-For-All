@@ -173,10 +173,10 @@ export default class TaskList extends Component {
                                    <th>Delete</th>
                                    <th>Update</th>
                                    <th>Accept</th>
-                                   <th>Choose Applicant</th>
-                                   
                                 <th>Reject</th>
                                 <th>Add Attribute</th>
+                                   <th>Choose Applicant</th>
+                                   
                                </tr>
                            </thead>
                            <tbody>

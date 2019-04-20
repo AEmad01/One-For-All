@@ -75,6 +75,8 @@ router.put("/update/:id", async (req, res) => {
           .send({ error: isValidated.error.details[0].message });
       
       const updatedMember = await Member.findOneAndUpdate({_id: id} , req.body);
+      if(req.body.username) await user.findOneAndUpdate({id: updatedMember._id},{username: req.body.username})
+      if(req.body.password) await user.findOneAndUpdate({id: updatedMember._id},{password: req.body.password})
       res.json({ msg: "Member updated successfully" });
     } catch (error) {
       // We will be handling the error later

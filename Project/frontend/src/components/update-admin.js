@@ -31,7 +31,7 @@ export default class updateadmin extends Component {
             age:'',
         }); 
         alert("admin updated")
-        this.props.history.push('/');
+        window.location.assign('/profile')
     }
 
   render() {

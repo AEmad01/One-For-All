@@ -73,7 +73,9 @@ router.put('/:id',async (req, res) => {
     if(!partnerup) return  res.status(400).send({ error: result.error.details[0].message });
     const isValidated = validator.updateValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-    const partner = await Partner.findOneAndUpdate({"_id":id},req.body)
+     const partner = await Partner.findOneAndUpdate({"_id":id},req.body)
+     if(req.body.username) await User.findOneAndUpdate({id: partner._id},{username: req.body.username})
+     if(req.body.password) await User.findOneAndUpdate({id: partner._id},{password: req.body.password})
     res.send({data:partner})}
 
     catch(error){
