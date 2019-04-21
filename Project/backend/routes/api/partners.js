@@ -55,6 +55,15 @@ router.get('/:id',async (req, res) => {
     const partner = await Partner.findById(partnerId)  
     if(!partner) return res.status(400).send({error:result.error.details[0].message});
     res.send(partner)
+   
+})
+//gets the tasks of a user
+router.get('/task/:id',async (req, res) => {
+    const partnerId = req.params.id
+    const partner = await Partner.findById(partnerId)  
+    const tasks = partner.Task
+    if(!partner) return res.status(400).send({error:result.error.details[0].message});
+    res.json({data:tasks})
 })
 
 // Update a partner's name using mongo

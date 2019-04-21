@@ -21,6 +21,7 @@ import addATT from './components/addATT'
 import ScheduleList from './components/show-schedule'
 import PostSchedule from './components/post-schedule'
 import ApplyForTask from './components/Apply'
+import certainTask from './components/certain-task'
 
 
 import lifeCoach from './components/lifeCoach'
@@ -333,6 +334,8 @@ class App extends Component {
 
             <Route path='/partners/delete/:id' component={DeletePartner} />
             <Route path='/partners/put/:id' component={updatePartner} />
+            <Route path='/partners/certaintask/:id' component={certainTask} />
+
             
             <Route path='/candidates/:id' component={Candidates} />
             <Route path='/pickcandidate/:mid/:id' component={pickCandidate} />

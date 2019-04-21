@@ -27,7 +27,7 @@ const ProP = props => (
             <Link to={'/partners/delete/'+localStorage.getItem('userid')}>Delete</Link>
         </td>
         <td>
-            <Link to={'/deleteadmin'}>Task</Link>
+            <Link to={'/partners/certaintask/'+localStorage.getItem('userid')}>Task</Link>
         </td>
         <td>
             <Link to={'partners/task/'+localStorage.getItem('userid')}>Create new Task</Link>
