@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Schedule = props => (
     <tr>
         <td>{props.schedule.name}</td>
         <td>{props.schedule.specification}</td>
-        <td>{props.schedule.slots}</td>
+        <td>            <Link to={'/slots/'+props.schedule._id}>View Slots</Link>
+</td>
     </tr>
 )
 
@@ -17,7 +19,7 @@ export default class coachSchedule extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/lifecoach/schedule/'+ this.props.match.params.id )
+        axios.get('http://localhost:3000/api/schedules/getSchLifecoach/'+ this.props.match.params.id )
             .then(response => {
                 this.setState({schedules: response.data.data});
             })
@@ -41,7 +43,6 @@ export default class coachSchedule extends Component {
                         <tr>
                             <th>Name</th>
                             <th>Specification</th>
-                            <th>Slots</th>
                         </tr>
                     </thead>
                     <tbody>

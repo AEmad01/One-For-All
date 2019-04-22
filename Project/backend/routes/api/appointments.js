@@ -139,4 +139,32 @@ router.delete('/:id', async (req,res) => {
     }  
  })
 
+
+// get all appointments for a certain member
+
+router.get("/getapps/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const appointments = await appointment.find();
+   const filtered= appointments.filter(appointments => appointments.memberID===id);
+    res.json({data:filtered});
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error);
+  }
+});
+
+// get all appointments for a certain lifecoach
+router.get("/getappsL/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const appointments = await appointment.find();
+   const filtered= appointments.filter(appointments => appointments.lifeCoachID===id);
+    res.json({data:filtered});
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error);
+  }
+});
+
 module.exports = router;

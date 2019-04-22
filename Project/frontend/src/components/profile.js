@@ -70,7 +70,7 @@ const ProL = props => (
         <td>{props.profile.specification}</td>
         <td>{props.profile.salary}</td>
         <td>{props.profile.Schedule}</td>
-        <td>{props.profile.Appointments}</td>
+        <td>{props.profile.Appointments.toString()}</td>
         <td>{props.profile.Notification}</td>
         <td>
             <Link to={'/lifecoach/update/'+localStorage.getItem('userid')}>Update</Link>
