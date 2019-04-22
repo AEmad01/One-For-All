@@ -61,7 +61,6 @@ export default class ScheduleList extends Component {
         return(
             <div>
                 <h3>Schedule </h3>
-                <div>   <Link to={'/schedule/postSchedule'}>Post a new schedule</Link></div>
 
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>

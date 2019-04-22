@@ -14,15 +14,15 @@ const Appointment = props => (
         <td>{props.appointment.confirmSlot.toString()}</td>
 
         <td>
-     <button onClick={() =>  axios({
+        <button onClick={() =>  axios({
   method: 'put',
-  url: 'http://localhost:3001/api/appointments/' + props.appointment._id,
+  url: 'http://localhost:3001/api/lifecoach/booking/' + props.appointment._id, 
   data: {
     confirmSlot: 'true', // This is the body part
-   
+    date: props.appointment.date,
   }
-} )    }>
-        Confirm
+})}>
+        Confirm Slot
       </button>
 
 
@@ -38,9 +38,14 @@ export default class LifecoachNotification extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/appointments')
+        axios.get('http://localhost:3000/api/lifecoach/appointments/'+ this.props.match.params.id)
             .then(response => {
+                if(this.props.appointment.location!=null){
                 this.setState({appointments: response.data.data});
+                }
+                else{
+                alert("No location found")
+                }
             })
             .catch(function (error) {
                 console.log(error);
