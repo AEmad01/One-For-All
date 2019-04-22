@@ -27,7 +27,10 @@ const ProP = props => (
             <Link to={'/partners/delete/'+localStorage.getItem('userid')}>Delete</Link>
         </td>
         <td>
-            <Link to={'/deleteadmin'}>Task</Link>
+            <Link to={'/partners/certaintask/'+localStorage.getItem('userid')}>Task</Link>
+        </td>
+        <td>
+            <Link to={'partners/task/'+localStorage.getItem('userid')}>Create new Task</Link>
         </td>
     </tr>
 )
@@ -240,7 +243,7 @@ export default class Profile extends Component {
                                     <th>Age</th>
                                     <th>Task</th>
                                    <th>Update</th>
-                                   <th>Delete</th>
+                                   <th>Delete My Account</th>
                                 </tr>
                             </thead>
                             <tbody>

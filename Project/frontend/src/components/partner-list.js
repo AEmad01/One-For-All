@@ -7,16 +7,7 @@ const Partner = props => (
         <td>{props.partner.name}</td>
         <td>{props.partner.age}</td>
         <td>{props.partner.username}</td>
-        <td>{props.partner.password}</td>
-        <td>
-            <Link to={'/partners/delete/'+props.partner._id}>Delete</Link>
-        </td>
-        <td>
-            <Link to={'partners/put/'+props.partner._id}>Update</Link>
-        </td>
-        <td>
-            <Link to={'partners/task/'+props.partner._id}>Create new Task</Link>
-        </td>
+        {/* <td>{props.partner.password}</td> */}
         
 
     </tr>
@@ -52,14 +43,13 @@ export default class ParnterList extends Component {
             <div>
                 <h3>Partner List</h3>
 
-                <div>   <Link to={'/partners/createPartner'}>Create a new Partner</Link></div>
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Username</th>
-                            <th>Password</th>
+                            {/* <th>Password</th> */}
                        
                         </tr>
                     </thead>
