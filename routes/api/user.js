@@ -7,10 +7,10 @@ const Admin = require('../../models/Admin')
 const Lifecoach = require('../../models/lifecoach')
 const Partner = require('../../models/Partner')
 const Member = require('../../models/Member')
-const tokenKey = require('../../config/keys').secretOrKey
 const validator = require('../../validations/userValidations')
 
 
+const tokenKey = process.env.SECRET || 'verysecretkey'
 router.get("/", async (req, res) => {
     const users = await User.find();
     res.json({ data: users });
