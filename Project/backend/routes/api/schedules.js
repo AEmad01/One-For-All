@@ -71,6 +71,32 @@ router.put('/UpdateSchedule/:id', async (req,res) => {
     
     res.send({msg:"done"})
 })
+router.get("/getSchLifecoach/:id", async (req, res) => {
+    try {
+      const id = req.params.id;
+      const schedules = await Schedule.find();
+     const filtered= schedules.filter(schedules => schedules.lifeCoachID===id);
+      res.json({data:filtered});
+    } catch (error) {
+      // We will be handling the error later
+      console.log(error);
+    }
+  });
+
+
+  router.get("/getsch/:id", async (req, res) => {
+    try {
+      const lifeid = req.params.id;
+      const schedules = await Schedule.find();
+     const filtered= schedules.filter(schedules => schedules.lifeCoachID===id);
+      res.json({data:filtered});
+    } catch (error) {
+      // We will be handling the error later
+      console.log(error);
+    }
+  });
+
+
 
 module.exports = router;
 

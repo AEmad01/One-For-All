@@ -21,12 +21,7 @@ const TaskA = props => (
             <Link to={'/delete/'+props.task._id}>Delete</Link>
         </td>
         <td><Link to={'/update/'+props.task._id}>Update</Link></td> 
-        <td>
-            <Link to={'/accepttask/'+props.task._id}>accept</Link>
-        </td>
-        <td>
-            <Link to={'/rejecttask/'+props.task._id}>reject</Link>
-        </td>
+      
         <td><Link to={'/addATT/'+props.task._id}>Update</Link></td> 
         <td><Link to={'/candidates/'+props.task._id}>Choose Candidate</Link></td>
     </tr>
@@ -45,6 +40,11 @@ const TaskP = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
+        <td><Link to={'/addATT/'+props.task._id}>Add Attribute</Link></td> 
+        <td>
+            <Link to={'/delete/'+props.task._id}>Delete</Link>
+        </td>
+        <td><Link to={'/update/'+props.task._id}>Update</Link></td> 
     </tr>
 ) 
 
@@ -77,22 +77,29 @@ export default class TaskList extends Component {
 
     componentDidMount() {
         if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('http://localhost:3001/api/task')
+            axios.get('http://localhost:3001/api/partners/task/'+localStorage.getItem('userid'))
                 .then(response => {
-                    this.setState({tasks: response.data.data});
+                    let details = [];
+                    details.push({ name: response.data.name, time: response.data.time,effort:response.data.effort, levelOfCommitment: response.data.levelOfCommitment,
+                        experienceLevel: response.data.experienceLevel, partnerName: response.data.partnerName, monetaryCompensation:response.data.monetaryCompensation, consultency: response.data.consultency,
+                        setOfSkills: response.data.setOfSkills, memberName: response.data.memberName, Description: response.data.Description,
+                        extraAtt: response.data.extraAtt})
+                    this.setState({tasks: details});
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
-        } else if(localStorage.getItem('jwtToken').startsWith('P')){
-            axios.get('http://localhost:3001/api/task/accepted')
-                .then(response => {
-                    this.setState({tasks: response.data.data});
-                })
+        } 
+        else if(localStorage.getItem('jwtToken').startsWith('P')){
+            axios.get('http://localhost:3001/api/partners/task/'+this.props.match.params.id )
+            .then(response => {
+                this.setState({tasks: response.data.data});
+            })
                 .catch(function (error) {
                     console.log(error);
                 })
-        } else {
+        }
+        else {
             axios.get('http://localhost:3001/api/task/accepted')
                 .then(response => {
                     this.setState({tasks: response.data.data});
@@ -103,33 +110,6 @@ export default class TaskList extends Component {
         }
     }
 
-    componentDidUpdate() {
-        if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('http://localhost:3001/api/task')
-                .then(response => {
-                    this.setState({tasks: response.data.data});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        } else if(localStorage.getItem('jwtToken').startsWith('P')){
-            axios.get('http://localhost:3001/api/task/accepted')
-                .then(response => {
-                    this.setState({tasks: response.data.data});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        } else {
-            axios.get('http://localhost:3001/api/task/accepted')
-                .then(response => {
-                    this.setState({tasks: response.data.data});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
 
 
     taskList() {
@@ -204,6 +184,9 @@ export default class TaskList extends Component {
                                    <th>Assigned Member</th>
                                    <th>Description</th>
                                    <th>Extra Attribute</th>
+                                <th>Add Attribute</th>
+                                   <th>Delete</th>
+                                   <th>Update</th>
                                </tr>
                            </thead>
                            <tbody>

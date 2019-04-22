@@ -55,6 +55,14 @@ router.get('/:id',async (req, res) => {
     const partner = await Partner.findById(partnerId)  
     if(!partner) return res.status(400).send({error:result.error.details[0].message});
     res.send(partner)
+   
+})
+//gets the tasks of a user
+router.get('/task/:id',async (req, res) => {
+    const partnerId = req.params.id
+    const tasks = await Task.find({partnerID: partnerId}) 
+    if(!tasks) return res.status(400).send({error:result.error.details[0].message});
+    res.json({data:tasks})
 })
 
 // Update a partner's name using mongo
@@ -73,7 +81,9 @@ router.put('/:id',async (req, res) => {
     if(!partnerup) return  res.status(400).send({ error: result.error.details[0].message });
     const isValidated = validator.updateValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-    const partner = await Partner.findOneAndUpdate({"_id":id},req.body)
+     const partner = await Partner.findOneAndUpdate({"_id":id},req.body)
+     if(req.body.username) await User.findOneAndUpdate({id: partner._id},{username: req.body.username})
+     if(req.body.password) await User.findOneAndUpdate({id: partner._id},{password: req.body.password})
     res.send({data:partner})}
 
     catch(error){
@@ -89,8 +99,8 @@ router.delete('/:id',async (req, res) => {
     
     partners.splice(index,1)*/
     
-    const deleteuser = await user.findOneAndDelete(partner1.username)
-    res.send({msg:"done"})
+    const deleteuser = await User.findOneAndDelete({username: partner1.username})
+    res.send({msg:deleteuser})
 })
   
 router.put('/addAttribute/:id', async (req,res) => {

@@ -53,14 +53,15 @@ router.post('/createMember', async (req,res) => {
     const newMember = await Member.findById(id)  
     if(!newMember) return res.status(400).send({error:result.error.details[0].message});
     res.send(newMember)
+    if(newMember.notification.length!=0){
     notifier.notify({
         'title': 'Alert',
         'message': 'You have new Notifications',
-        'wait': true,
-        'open':'/api/members/notification/:id'
-        }, function() {open('http://localhost:3000/api/members/notification/'+id) } 
+        'wait': true
+        }
       );
     }
+  }
 )
 // Update a member
 router.put("/update/:id", async (req, res) => {
@@ -75,6 +76,8 @@ router.put("/update/:id", async (req, res) => {
           .send({ error: isValidated.error.details[0].message });
       
       const updatedMember = await Member.findOneAndUpdate({_id: id} , req.body);
+      if(req.body.username) await user.findOneAndUpdate({id: updatedMember._id},{username: req.body.username})
+      if(req.body.password) await user.findOneAndUpdate({id: updatedMember._id},{password: req.body.password})
       res.json({ msg: "Member updated successfully" });
     } catch (error) {
       // We will be handling the error later
@@ -86,7 +89,7 @@ router.delete('/delete/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deletedMember = await Member.findByIdAndDelete(id);
-     const deleteuser = await user.findOneAndDelete(deletedMember.username)
+     const deleteuser = await user.findOneAndDelete({username: deletedMember.username})
      
      res.json({msg:'Member was deleted successfully', data: deletedMember})
     }
