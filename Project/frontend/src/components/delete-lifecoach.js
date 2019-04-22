@@ -6,7 +6,7 @@ export default class DeleteLifecoach extends Component {
     componentDidMount() {
         axios.delete('http://localhost:3001/api/lifecoach/delete/' + this.props.match.params.id )
         
-        alert("Coach updated Successfully")
+        alert("LifeCoach Deleted Successfully")
       window.location.replace("http://localhost:3000/lifecoach");
     }
     
