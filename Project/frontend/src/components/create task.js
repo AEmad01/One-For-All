@@ -264,11 +264,7 @@ export default class Createtask extends Component {
                          onChange={this.onChangeDescription}/>
                   </div>
                   <div className="form-group">
-                  <label>extraAtt:</label>
-                  <input type="text"
-                        className="form-control"
-                         value={this.state.extraAtt}
-                         onChange={this.onChangeExtraAtt}/>
+               
                   </div>
                   <br/>
                   <div className="form-group">
