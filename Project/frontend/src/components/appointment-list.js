@@ -17,7 +17,7 @@ const Appointment = props => (
   method: 'put',
   url: 'http://localhost:3001/api/lifecoach/booking/' + props.appointment._id, 
   data: {
-    confirm: 'false', // This is the body part
+    confirm: 'true', // This is the body part
     date: props.appointment.date,
   }
 })}>

@@ -35,7 +35,7 @@ import CreateLocation from './components/createLocation'
 import DeleteLocation from './components/deleteLocation'
 
 import LifecoachNotification from './components/lifecoachNotification'
-import UpdateLifecoach from './components/update-lifecoach'
+import updateCoach from './components/update-lifecoach'
 import DeleteLifecoach from './components/delete-lifecoach'
 import SearchTask from './components/search-task'
 import viewTask from "./components/viewTask"
@@ -135,7 +135,7 @@ class App extends Component {
             <Route path='/members/delete/:id' component={DeleteMember} />
             <Route path='/members/update/:id' component={UpdateMember} />
 
-            <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
+            <Route path='/updateCoach/:id' component={updateCoach} />
             <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
             <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
 
@@ -161,6 +161,67 @@ class App extends Component {
             <Route path='/partners/task/:id' component={Createtask} />
               <Route path='/locations/suggest/' component={SuggestLocation} />
               <Route path='/profile' component={Profile} />
+
+            </div>
+          </Router>
+        )
+      } else if(localStorage.getItem('jwtToken').startsWith('L')){
+        return (  
+          <Router>
+            <div className='container'>
+    
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+         
+          <a className="navbar-brand"  target="_blank">
+                <img src={logo} width="200" height="141" alt="CodingTheSmartWay.com" />
+              </a>
+              <div className="collpase nav-collapse">
+                <ul className="navbar-nav mr-auto">
+                  <li className="navbar-item">
+                    <Link to="/profile" className="nav-link">Profile</Link>
+                  </li>
+                <li className="navbar-item">
+                  <Link to="/lifecoach" className="nav-link">Life Coach</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/slots" className="nav-link">Slots</Link>
+                </li>
+              <li className="navbar-item">
+                  <Link to="/locations" className="nav-link">Locations</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/appointments" className="nav-link">Appointments</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/schedules" className="nav-link">Schedules</Link>
+                </li>
+                  <li className="navbar-item">
+                    <Link to="/" className="nav-link">Logout</Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <Route path='/' exact component={Homepage} />
+            <Route path='/slots' exact component={Slots} />
+            <Route path='/addATT/:id' component={addATT} />
+            <Route path='/locations' exact component={LocationList} />
+            <Route path='/put/:id' component={updateLocation} />
+            <Route path='/appointments' exact component={AppointmentList} />
+            <Route path='/appointments/createAppointment' component={BookAppointment} />
+            <Route path='/schedules' exact component={ScheduleList} />
+            <Route path='/schedule/postSchedule' component={PostSchedule} />
+            <Route path='/lifecoach' component={lifeCoach} />
+            <Route path='/Coachschedule/:id' component={CoachSchedule} />
+            <Route path='/Coachappointments/:id' component={CoachAppointment} />
+            <Route path='/CreateCoach' component={CreateCoach} />
+            <Route path='/updateCoach/:id' component={updateCoach} />
+            <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
+            <Route path='/locations/CreateLocation' exact component={CreateLocation} />
+            <Route path='/locations/delete/:id' component={DeleteLocation} />
+            <Route path='/LifecoachNotification/:id' component={LifecoachNotification} />
+              <Route path='/locations/suggest/' component={SuggestLocation} />
+              <Route path='/profile' component={Profile} />
+   
 
             </div>
           </Router>
@@ -234,7 +295,7 @@ class App extends Component {
               <Route path='/CreateCoach' component={CreateCoach} />
               <Route path='/members/delete/:id' component={DeleteMember} />
               <Route path='/members/update/:id' component={UpdateMember} />
-              <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
+              <Route path='/updateCoach/:id' component={updateCoach} />
               <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
               <Route path='/task/apply/:id/:mid' component={ApplyForTask} />
 
@@ -317,7 +378,7 @@ class App extends Component {
             <Route path='/CreateCoach' component={CreateCoach} />
             <Route path='/members/delete/:id' component={DeleteMember} />
             <Route path='/members/update/:id' component={UpdateMember} />
-            <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
+            <Route path='/updateCoach/:id' component={updateCoach} />
             <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
             <Route path='/task/apply/:id/:mid' component={ApplyForTask} />
 
@@ -418,7 +479,7 @@ class App extends Component {
             <Route path='/CreateCoach' component={CreateCoach} />
             <Route path='/members/delete/:id' component={DeleteMember} />
             <Route path='/members/update/:id' component={UpdateMember} />
-            <Route path='/lifecoach/update/:id' component={UpdateLifecoach} />
+            <Route path='/updateCoach/:id' component={updateCoach} />
             <Route path='/lifecoach/delete/:id' component={DeleteLifecoach} />
 
             <Route path='/locations/CreateLocation' exact component={CreateLocation} />

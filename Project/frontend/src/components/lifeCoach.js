@@ -26,12 +26,8 @@ const LifeCoach = props => (
         <td>
             <Link to={'/lifecoach/delete/'+props.lifecoach._id}>Delete</Link>
         </td>
-        <td><Link to={'/lifecoach/update/'+props.lifecoach._id}>Update</Link></td> 
         <td>
-            <Link to={'/Coachappointments/'+props.lifecoach._id}>Appointments</Link>
-        </td>
-        <td>
-            <Link to={'/schedule/postSchedule/'+props.lifecoach._id}>Post my schedule</Link>
+            <Link to={'/updateCoach/'+props.lifecoach._id}>Update</Link>
         </td>
         
     </tr>

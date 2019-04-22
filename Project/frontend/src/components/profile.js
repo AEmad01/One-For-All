@@ -68,16 +68,29 @@ const ProL = props => (
         <td>{props.profile.reviews}</td>
         <td>{props.profile.certificates}</td>
         <td>{props.profile.specification}</td>
-        <td>{props.profile.salary}</td>
-        <td>{props.profile.Schedule}</td>
-        <td>{props.profile.Appointments}</td>
-        <td>{props.profile.Notification}</td>
+        <td>{props.profile.Schedule}
+        <Link to= {'/coachschedule/'+localStorage.getItem('userid')}>Schedule</Link>
+
+        </td>
+       
+        <td>{props.profile.Notification}
+        <Link to= {'/LifecoachNotification/'+localStorage.getItem('userid')}>Notifications</Link>
+        </td>
+
         <td>
-            <Link to={'/lifecoach/update/'+localStorage.getItem('userid')}>Update</Link>
+            <Link to={'/updateCoach/'+localStorage.getItem('userid')}>Update</Link>
         </td>
         <td>
             <Link to={'/lifecoach/delete/'+localStorage.getItem('userid')}>Delete</Link>
         </td>
+    
+        <td>
+            <Link to={'/Coachappointments/'+localStorage.getItem('userid')}>Appointments</Link>
+        </td>
+        <td>
+            <Link to={'/schedule/postSchedule/'+localStorage.getItem('userid')}>Post my schedule</Link>
+        </td>
+        
     </tr>
 )
 
@@ -217,12 +230,13 @@ export default class Profile extends Component {
                                     <th>Reviews</th>
                                     <th>Certificates</th>
                                     <th>Specifications</th>
-                                    <th>Salary</th>
-                                    <th>Schedule</th>
-                                    <th>Appointments</th>
+                                    <th>View Schedule</th>
                                     <th>Notifications</th>
                                     <th>Update</th>
                                     <th>Delete</th>
+                                    <th>Appointments</th>
+                                    <th>Create Schedule</th>
+
                                 </tr>
                             </thead>
                             <tbody>
