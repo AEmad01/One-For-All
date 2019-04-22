@@ -68,16 +68,36 @@ const ProL = props => (
         <td>{props.profile.reviews}</td>
         <td>{props.profile.certificates}</td>
         <td>{props.profile.specification}</td>
+
         <td>{props.profile.salary}</td>
         <td>{props.profile.Schedule}</td>
-        <td>{props.profile.Appointments}</td>
+        <td>{props.profile.Appointments.toString()}</td>
         <td>{props.profile.Notification}</td>
+
+        <td>{props.profile.Schedule}
+        <Link to= {'/coachschedule/'+localStorage.getItem('userid')}>Schedule</Link>
+
+        </td>
+       
+        <td>{props.profile.Notification}
+        <Link to= {'/LifecoachNotification/'+localStorage.getItem('userid')}>Notifications</Link>
+        </td>
+
+
         <td>
-            <Link to={'/lifecoach/update/'+localStorage.getItem('userid')}>Update</Link>
+            <Link to={'/updateCoach/'+localStorage.getItem('userid')}>Update</Link>
         </td>
         <td>
             <Link to={'/lifecoach/delete/'+localStorage.getItem('userid')}>Delete</Link>
         </td>
+    
+        <td>
+            <Link to={'/Coachappointments/'+localStorage.getItem('userid')}>Appointments</Link>
+        </td>
+        <td>
+            <Link to={'/schedule/postSchedule/'+localStorage.getItem('userid')}>Post my schedule</Link>
+        </td>
+        
     </tr>
 )
 
@@ -148,53 +168,9 @@ export default class Profile extends Component {
 
     componentDidUpdate() {
         if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('/api/admin/getadmin/'+localStorage.getItem('userid'))
+            axios.get('/api/getadmin/'+localStorage.getItem('userid'))
                 .then(response => {
-                    let details = [];
-
-                    details.push({ name: response.data.name, age: response.data.age})
-        
-                    this.setState({info: details});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        } else if(localStorage.getItem('jwtToken').startsWith('L')){
-            axios.get('/api/lifecoach/'+localStorage.getItem('userid'))
-                .then(response => {
-                    let details = [];
-
-                    details.push({ name: response.data.name, age: response.data.age, skills: response.data.skills,
-                        intrests: response.data.intrests, pastEvents: response.data.pastEvents, completedProjects: response.data.completedProjects,
-                        reviews: response.data.reviews, certificates: response.data.certificates, specification: response.data.specification,
-                        salary: response.data.salary, Schedule: response.data.Schedule, Appointments: response.data.Appointments, Notification: response.data.Notification})
-                    this.setState({info: details});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        } else if(localStorage.getItem('jwtToken').startsWith('P')){
-            axios.get('/api/partners/'+localStorage.getItem('userid'))
-                .then(response => {
-                    let details = [];
-
-                    details.push({ name: response.data.name, age: response.data.age, task: response.data.Task})
-        
-                    this.setState({info: details});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        } else if(localStorage.getItem('jwtToken').startsWith('M')){
-            axios.get('/api/members/'+localStorage.getItem('userid'))
-                .then(response => {
-                    let details = [];
-
-                    details.push({  name: response.data.name, age: response.data.age, skills: response.data.skills,
-                        intrests: response.data.intrests, pastEvents: response.data.pastEvents, completedProjects: response.data.completedProjects,
-                        reviews: response.data.reviews, certificates: response.data.certificates, notification: response.data.notification})
-        
-                    this.setState({info: details});
+                    this.setState({info: response.data});
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -261,12 +237,13 @@ export default class Profile extends Component {
                                     <th>Reviews</th>
                                     <th>Certificates</th>
                                     <th>Specifications</th>
-                                    <th>Salary</th>
-                                    <th>Schedule</th>
-                                    <th>Appointments</th>
+                                    <th>View Schedule</th>
                                     <th>Notifications</th>
                                     <th>Update</th>
                                     <th>Delete</th>
+                                    <th>Appointments</th>
+                                    <th>Create Schedule</th>
+
                                 </tr>
                             </thead>
                             <tbody>

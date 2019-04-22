@@ -15,6 +15,10 @@ const slotSchema = new Schema({
   Appointments:{
     type:Array,
     required: false
+  },
+  ScheduleID: {
+    type: String,
+    required: true
   }
   
 });

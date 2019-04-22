@@ -2,13 +2,28 @@ import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const Slot = props => (
+const SlotD = props => (
     
     <tr>
-        <td>{props.slot.location.toString()}</td>
         <td>{props.slot.date}</td>
         <td>{props.slot.booked.toString()}</td>
-        <td>{props.slot.Appointments.toString()}</td>
+
+
+        <td>      <button onClick={() =>  axios({
+  method: 'delete',
+  url: '/api/slots/' + props.slot._id,
+})}>
+        Delete
+      </button>
+</td>
+    </tr>
+)
+
+const SlotB = props => (
+    
+    <tr>
+        <td>{props.slot.date}</td>
+        <td>{props.slot.booked.toString()}</td>
 
                <td>
      <button onClick={() =>  axios({
@@ -23,7 +38,10 @@ const Slot = props => (
       </button>
 
 
+
+
         </td>
+        
     </tr>
 )
 
@@ -39,7 +57,8 @@ export default class SlotList extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/slots/')
+        
+        axios.get('/api/slots/getslots/'+window.location.href.match(/\/([^\/]+)\/?$/)[1])
             .then(response => {
                 this.setState({slots: response.data.data});
             })
@@ -49,9 +68,21 @@ export default class SlotList extends Component {
     }
 
     SlotList() {
-        return this.state.slots.map(function(currentSlot, i)  {
-            return <Slot slot={currentSlot} key={i} />;
-        })
+        if(localStorage.getItem('jwtToken').startsWith('L')){
+
+            return this.state.slots.map(function(currentSlot, i)  {
+                return <SlotD slot={currentSlot} key={i} />;
+            })
+
+        }
+        if(localStorage.getItem('jwtToken').startsWith('M')){
+
+            return this.state.slots.map(function(currentSlot, i)  {
+                return <SlotB slot={currentSlot} key={i} />;
+            })
+
+        }
+
     }
     
 
@@ -63,10 +94,8 @@ export default class SlotList extends Component {
                     <thead>
             
                         <tr>
-                            <th>location</th>
                             <th>date</th>
                             <th>booked</th>
-                            <th>Appointments</th>
   
                         </tr>
                     </thead>

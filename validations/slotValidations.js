@@ -6,7 +6,8 @@ module.exports = {
             location: Joi.array(),
             booked: Joi.boolean(),
             date: Joi.date().required(),
-            appointment: Joi.array()
+            appointment: Joi.array(),
+            ScheduleID: Joi.string().required()
 
         }
 
@@ -18,7 +19,8 @@ module.exports = {
             location: Joi.array(),
             booked: Joi.boolean(),
             date: Joi.date(),
-            appointment: Joi.array()
+            appointment: Joi.array(),
+            ScheduleID: Joi.string()
 
         }
 

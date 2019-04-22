@@ -6,7 +6,6 @@ export default class PostSchedule extends Component {
         constructor(props){
         super(props)
         this.onChangeName=this.onChangeName.bind(this);
-        this.onChangeSlots=this.onChangeSlots.bind(this);
         this.onChangeSpecification=this.onChangeSpecification.bind(this);
         this.onCreate= this.onCreate.bind(this);
 
@@ -18,11 +17,7 @@ export default class PostSchedule extends Component {
         name:e.target.value
       });
     }
-    onChangeSlots(e){
-      this.setState({
-        slots:e.target.value
-      });
-    }
+
     onChangeSpecification(e){
       this.setState({
         specification:e.target.value
@@ -34,9 +29,8 @@ export default class PostSchedule extends Component {
       e.preventDefault();
       const newSchedule ={
         name: this.state.name,
-        slots:this.state.slots,
         specification:this.state.specification,
-        lifeCoachID:window.location.href.match(/\/([^\/]+)\/?$/)[1],
+        lifeCoachID:localStorage.getItem('userid'),
 
       } 
       axios.post('/api/schedules/CreateSchedule/'+window.location.href.match(/\/([^\/]+)\/?$/)[1],newSchedule).then(response =>response.data);
@@ -62,14 +56,7 @@ export default class PostSchedule extends Component {
                                 onChange={this.onChangeName}
                                 />
                     </div>
-                    <div className="form-group">
-                        <label>Slots: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.slots}
-                                onChange={this.onChangeSlots}
-                                />
-                    </div>
+                   
                     <div className="form-group">
                         <label>specification</label>
                         <input  type="text"
