@@ -32,9 +32,7 @@ const Member = props => (
         <td>{props.lifecoach.reviews}</td>
         <td>{props.lifecoach.certificates}</td>
         <td>{props.lifecoach.specification}</td>
-        <td>
-            <Link to={'/Coachschedule/'+props.lifecoach._id}>Schedule</Link>
-        </td>
+
         <td>
             <Link to={'/appointments/createAppointment/'+props.lifecoach._id+'/'+localStorage.getItem('userid')}>Book Appointment</Link>
         </td>
@@ -98,7 +96,6 @@ export default class lifeCoach extends Component {
                             <th>Reviews</th>
                             <th>Certificates</th>
                             <th>Specifications</th>
-                            <th>Schedule</th>
                             <th>Appointments</th>
                         </tr>
                     </thead>

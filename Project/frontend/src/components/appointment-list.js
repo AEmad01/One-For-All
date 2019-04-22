@@ -1,8 +1,54 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+const MAppointment = props => (
+ 
+    <tr>
+        <td>{props.appointment.location}</td>
+        <td>{props.appointment.slot}</td>
+        <td>{props.appointment.lifeCoachID}</td>
+        <td>{props.appointment.lifeCoachName}</td>
+        <td>{props.appointment.memberID}</td>
+        <td>{props.appointment.memberName}</td>
+        <td>{props.appointment.confirm.toString()}</td>
+        <td>
+            <Link to={'/locations/suggest/'+props.appointment._id}>Suggest Location</Link>
+            
+   
+       
+  
 
-const Appointment = props => (
+
+        </td>
+        <td>
+            <Link to={'/Coachschedule/'+props.appointment.lifeCoachID}>Schedule</Link>
+        </td>
+    </tr>
+)
+const NotConfirmed = props => (
+    
+    <tr>
+        <td>{props.appointment.location}</td>
+        <td>{props.appointment.slot}</td>
+        <td>{props.appointment.lifeCoachID}</td>
+        <td>{props.appointment.lifeCoachName}</td>
+        <td>{props.appointment.memberID}</td>
+        <td>{props.appointment.memberName}</td>
+        <td>{props.appointment.confirm.toString()}</td>
+        <td>
+            <Link to={'/locations/suggest/'+props.appointment._id}>Suggest Location</Link>
+            
+   
+       
+  
+
+
+        </td>
+    </tr>
+)
+
+
+const LAppointment = props => (
     <tr>
         <td>{props.appointment.location}</td>
         <td>{props.appointment.slot}</td>
@@ -29,6 +75,7 @@ const Appointment = props => (
     </tr>
 )
 
+
 export default class AppointmentList extends Component {
 
     constructor(props) {
@@ -37,30 +84,69 @@ export default class AppointmentList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/appointments')
+     
+
+        if(localStorage.getItem('jwtToken').startsWith('L')){
+
+            axios.get('http://localhost:3001/api/appointments/getappsL/'+localStorage.getItem('userid'))
             .then(response => {
                 this.setState({appointments: response.data.data});
             })
             .catch(function (error) {
                 console.log(error);
             })
-    }
 
-    componentDidUpdate() {
-        axios.get('http://localhost:3000/api/appointments')
+        }
+
+        
+        else {  if(localStorage.getItem('jwtToken').startsWith('M')){
+
+            axios.get('http://localhost:3001/api/appointments/getapps/'+localStorage.getItem('userid'))
             .then(response => {
                 this.setState({appointments: response.data.data});
             })
             .catch(function (error) {
                 console.log(error);
             })
-    }
 
-    appointmentList() {
+        }
+        else {
+
+
+
+
+
+    axios.get('http://localhost:3000/api/appointments')
+        .then(response => {
+            this.setState({appointments: response.data.data});
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
+}
+
+}
+
+
+
+appointmentList() {
+    if(localStorage.getItem('jwtToken').startsWith('M')){
         return this.state.appointments.map(function(currentAppointment, i) {
-            return <Appointment appointment={currentAppointment} key={i} />;
+            return <MAppointment appointment={currentAppointment} key={i} />;
+        });
+
+    
+    }
+    if(localStorage.getItem('jwtToken').startsWith('L')){
+        return this.state.appointments.map(function(currentAppointment, i) {
+            return <LAppointment appointment={currentAppointment} key={i} />;
         });
     }
+ 
+
+
+}
 
     render() {
         return(

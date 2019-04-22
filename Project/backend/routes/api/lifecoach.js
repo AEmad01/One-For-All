@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Lifecoach = require("../../models/lifecoach.js");
+const Schedule = require("../../models/schedule");
+
 const notifier = require('node-notifier');
 const validator = require("../../validations/lifecoachValidations.js");
 const validatorApp = require("../../validations/appointmentValidation")
@@ -149,5 +151,18 @@ router.delete('/delete/:id', async (req,res) => {
       console.log(error)
   }  
 });
+router.get('/schedule/:id', async (req, res) => {
 
+
+  const id = req.params.id
+  const allsched = await Schedule.find();
+  const filtered= allsched.filter(allsched => allsched.lifeCoachID===id);
+  res.send({ data:filtered})
+
+
+
+
+
+  
+});
 module.exports = router;

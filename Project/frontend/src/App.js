@@ -12,6 +12,8 @@ import CreateMember from './components/create-member'
 import PartnerList from './components/partner-list'
 import CreatePartner from './components/create-partner';
 import Slots from './components/slots-list';
+import PostSlots from './components/post-slot';
+
 import LocationList from './components/locationList'
 import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
@@ -117,7 +119,9 @@ class App extends Component {
             <Route path='/members/createMember' exact component={CreateMember} />
             <Route path='/partners' exact component={PartnerList} />
             <Route path='/partners/createPartner' exact component={CreatePartner} />
-            <Route path='/slots' exact component={Slots} />
+            <Route path='/slots/:id' exact component={Slots} />
+            <Route path='/post-slot/:id' exact component={PostSlots} />
+
             <Route path='/update/:id' component={UpdateTask} />
             <Route path='/addATT/:id' component={addATT} />
             <Route path='/locations' exact component={LocationList} />
@@ -242,27 +246,15 @@ class App extends Component {
                     <li className="navbar-item">
                       <Link to="/profile" className="nav-link">Profile</Link>
                     </li>
-                    <li className="navbar-item">
-                      <Link to="/tasks" className="nav-link">Tasks</Link>
-                    </li>
-                    <li className="navbar-item">
-                    <Link to="/members" className="nav-link">Members</Link>
-                  </li>
+
                   <li className="navbar-item">
-                    <Link to="/lifecoach" className="nav-link">Life Coach</Link>
+                    <Link to="/lifecoach" className="nav-link">Life Coaches</Link>
                   </li>
-                  <li className="navbar-item">
-                    <Link to="/slots" className="nav-link">Slots</Link>
-                  </li>
-                <li className="navbar-item">
-                    <Link to="/locations" className="nav-link">Locations</Link>
-                  </li>
+
                   <li className="navbar-item">
                     <Link to="/appointments" className="nav-link">Appointments</Link>
                   </li>
-                  <li className="navbar-item">
-                    <Link to="/schedules" className="nav-link">Schedules</Link>
-                  </li>
+
                     <li className="navbar-item">
                       <Link to="/" className="nav-link">Logout</Link>
                     </li>
@@ -277,7 +269,9 @@ class App extends Component {
               <Route path='/members/createMember' exact component={CreateMember} />
               <Route path='/partners' exact component={PartnerList} />
               <Route path='/partners/createPartner' exact component={CreatePartner} />
-              <Route path='/slots' exact component={Slots} />
+              <Route path='/slots/:id' exact component={Slots} />
+              <Route path='/post-slot/:id' exact component={PostSlots} />
+
               <Route path='/update/:id' component={UpdateTask} />
               <Route path='/addATT/:id' component={addATT} />
               <Route path='/locations' exact component={LocationList} />
@@ -360,7 +354,9 @@ class App extends Component {
             <Route path='/members/createMember' exact component={CreateMember} />
             <Route path='/partners' exact component={PartnerList} />
             <Route path='/partners/createPartner' exact component={CreatePartner} />
-            <Route path='/slots' exact component={Slots} />
+            <Route path='/slots/:id' exact component={Slots} />
+            <Route path='/post-slot/:id' exact component={PostSlots} />
+
             <Route path='/update/:id' component={UpdateTask} />
             <Route path='/addATT/:id' component={addATT} />
             <Route path='/locations' exact component={LocationList} />
@@ -425,29 +421,12 @@ class App extends Component {
                   <li className="navbar-item">
                     <Link to="/profile" className="nav-link">Profile</Link>
                   </li>
-                  <li className="navbar-item">
-                    <Link to="/tasks" className="nav-link">Tasks</Link>
-                  </li>
-                  <li className="navbar-item">
-                  <Link to="/members" className="nav-link">Members</Link>
+
+                <li className="navbar-item">
+                  <Link to="/appointments" className="nav-link">My Appointments</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/partners" className="nav-link">Partners</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/lifecoach" className="nav-link">Life Coach</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/slots" className="nav-link">Slots</Link>
-                </li>
-              <li className="navbar-item">
-                  <Link to="/locations" className="nav-link">Locations</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/appointments" className="nav-link">Appointments</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/schedules" className="nav-link">Schedules</Link>
+                  <Link to="/schedules" className="nav-link">My Schedule</Link>
                 </li>
                   <li className="navbar-item">
                     <Link to="/" className="nav-link">Logout</Link>
@@ -463,7 +442,9 @@ class App extends Component {
             <Route path='/members/createMember' exact component={CreateMember} />
             <Route path='/partners' exact component={PartnerList} />
             <Route path='/partners/createPartner' exact component={CreatePartner} />
-            <Route path='/slots' exact component={Slots} />
+            <Route path='/slots/:id' exact component={Slots} />
+            <Route path='/post-slot/:id' exact component={PostSlots} />
+
             <Route path='/update/:id' component={UpdateTask} />
             <Route path='/addATT/:id' component={addATT} />
             <Route path='/locations' exact component={LocationList} />

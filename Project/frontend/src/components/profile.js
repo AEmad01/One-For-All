@@ -68,6 +68,12 @@ const ProL = props => (
         <td>{props.profile.reviews}</td>
         <td>{props.profile.certificates}</td>
         <td>{props.profile.specification}</td>
+
+        <td>{props.profile.salary}</td>
+        <td>{props.profile.Schedule}</td>
+        <td>{props.profile.Appointments.toString()}</td>
+        <td>{props.profile.Notification}</td>
+
         <td>{props.profile.Schedule}
         <Link to= {'/coachschedule/'+localStorage.getItem('userid')}>Schedule</Link>
 
@@ -76,6 +82,7 @@ const ProL = props => (
         <td>{props.profile.Notification}
         <Link to= {'/LifecoachNotification/'+localStorage.getItem('userid')}>Notifications</Link>
         </td>
+
 
         <td>
             <Link to={'/updateCoach/'+localStorage.getItem('userid')}>Update</Link>
