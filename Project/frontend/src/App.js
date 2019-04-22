@@ -247,6 +247,12 @@ class App extends Component {
                       <Link to="/profile" className="nav-link">Profile</Link>
                     </li>
 
+                    <li className="navbar-item">
+                    <Link to="/tasks" className="nav-link">Tasks</Link>
+                  </li>
+                  <li className="navbar-item">
+                  <Link to="/members" className="nav-link">Members</Link>
+                </li>
                   <li className="navbar-item">
                     <Link to="/lifecoach" className="nav-link">Life Coaches</Link>
                   </li>
