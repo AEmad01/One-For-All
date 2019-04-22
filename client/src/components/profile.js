@@ -166,19 +166,6 @@ export default class Profile extends Component {
         }
     }
 
-    componentDidUpdate() {
-        if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('/api/getadmin/'+localStorage.getItem('userid'))
-                .then(response => {
-                    this.setState({info: response.data});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-
     infoList() {
         if(localStorage.getItem('jwtToken').startsWith('A')){
             return this.state.info.map(function(currentInfo, i) {
