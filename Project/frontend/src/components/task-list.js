@@ -45,7 +45,6 @@ const TaskP = props => (
         <td>{props.task.memberName}</td>
         <td>{props.task.Description}</td>
         <td>{props.task.extraAtt}</td>
-        <td><Link to={'/addATT/'+props.task._id}>Update</Link></td> 
     </tr>
 ) 
 
@@ -205,7 +204,6 @@ export default class TaskList extends Component {
                                    <th>Assigned Member</th>
                                    <th>Description</th>
                                    <th>Extra Attribute</th>
-                                <th>Add Attribute</th>
                                </tr>
                            </thead>
                            <tbody>
