@@ -106,44 +106,6 @@ export default class TaskList extends Component {
         }
     }
 
-    componentDidUpdate() {
-        if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('http://localhost:3001/api/partners/task/'+localStorage.getItem('userid'))
-                .then(response => {
-                    let details = [];
-                    details.push({ name: response.data.name, time: response.data.time,effort:response.data.effort, levelOfCommitment: response.data.levelOfCommitment,
-                        experienceLevel: response.data.experienceLevel, partnerName: response.data.partnerName, monetaryCompensation:response.data.monetaryCompensation, consultency: response.data.consultency,
-                        setOfSkills: response.data.setOfSkills, memberName: response.data.memberName, Description: response.data.Description,
-                        extraAtt: response.data.extraAtt})
-                    this.setState({tasks: details});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
-        else if(localStorage.getItem('jwtToken').startsWith('P')){
-            axios.get('http://localhost:3001/api/partners/task/'+localStorage.getItem('userid'))
-            .then(response => {
-                let details = [];
-                details.push({ name: response.data.name, time: response.data.time,effort:response.data.effort, levelOfCommitment: response.data.levelOfCommitment,
-                    experienceLevel: response.data.experienceLevel, partnerName: response.data.partnerName, monetaryCompensation:response.data.monetaryCompensation, consultency: response.data.consultency,
-                    setOfSkills: response.data.setOfSkills, memberName: response.data.memberName, Description: response.data.Description,
-                    extraAtt: response.data.extraAtt})
-                this.setState({tasks: details});
-            })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        } else {
-            axios.get('http://localhost:3001/api/task/accepted')
-                .then(response => {
-                    this.setState({tasks: response.data.data});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
 
 
     taskList() {
