@@ -148,9 +148,53 @@ export default class Profile extends Component {
 
     componentDidUpdate() {
         if(localStorage.getItem('jwtToken').startsWith('A')){
-            axios.get('/api/getadmin/'+localStorage.getItem('userid'))
+            axios.get('/api/admin/getadmin/'+localStorage.getItem('userid'))
                 .then(response => {
-                    this.setState({info: response.data});
+                    let details = [];
+
+                    details.push({ name: response.data.name, age: response.data.age})
+        
+                    this.setState({info: details});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else if(localStorage.getItem('jwtToken').startsWith('L')){
+            axios.get('/api/lifecoach/'+localStorage.getItem('userid'))
+                .then(response => {
+                    let details = [];
+
+                    details.push({ name: response.data.name, age: response.data.age, skills: response.data.skills,
+                        intrests: response.data.intrests, pastEvents: response.data.pastEvents, completedProjects: response.data.completedProjects,
+                        reviews: response.data.reviews, certificates: response.data.certificates, specification: response.data.specification,
+                        salary: response.data.salary, Schedule: response.data.Schedule, Appointments: response.data.Appointments, Notification: response.data.Notification})
+                    this.setState({info: details});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else if(localStorage.getItem('jwtToken').startsWith('P')){
+            axios.get('/api/partners/'+localStorage.getItem('userid'))
+                .then(response => {
+                    let details = [];
+
+                    details.push({ name: response.data.name, age: response.data.age, task: response.data.Task})
+        
+                    this.setState({info: details});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        } else if(localStorage.getItem('jwtToken').startsWith('M')){
+            axios.get('/api/members/'+localStorage.getItem('userid'))
+                .then(response => {
+                    let details = [];
+
+                    details.push({  name: response.data.name, age: response.data.age, skills: response.data.skills,
+                        intrests: response.data.intrests, pastEvents: response.data.pastEvents, completedProjects: response.data.completedProjects,
+                        reviews: response.data.reviews, certificates: response.data.certificates, notification: response.data.notification})
+        
+                    this.setState({info: details});
                 })
                 .catch(function (error) {
                     console.log(error);
