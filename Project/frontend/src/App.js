@@ -16,6 +16,7 @@ import LocationList from './components/locationList'
 import updateLocation from './components/updateLocation'
 import AppointmentList from './components/appointment-list'
 import BookAppointment from './components/book-appointment'
+import BookAppointmentlife from './components/lifecoach-booking'
 import UpdateTask from './components/updatetask'
 import addATT from './components/addATT'
 import ScheduleList from './components/show-schedule'
@@ -221,7 +222,7 @@ class App extends Component {
               <Route path='/locations' exact component={LocationList} />
               <Route path='/put/:id' component={updateLocation} />
               <Route path='/appointments' exact component={AppointmentList} />
-              <Route path='/appointments/createAppointment' component={BookAppointment} />
+              <Route path='/appointments/createAppointment/:id/:mid' component={BookAppointment} />
               <Route path='/schedules' exact component={ScheduleList} />
               <Route path='/schedule/postSchedule' component={PostSchedule} />
               <Route path='/task/createTask' exact component={CreateTask} />
@@ -348,7 +349,7 @@ class App extends Component {
           </Router>
         )
     }
-      else{
+      else if(localStorage.getItem('jwtToken').startsWith('L')){
         return (  
           <Router>
             <div className='container'>
@@ -407,7 +408,7 @@ class App extends Component {
             <Route path='/locations' exact component={LocationList} />
             <Route path='/put/:id' component={updateLocation} />
             <Route path='/appointments' exact component={AppointmentList} />
-            <Route path='/appointments/createAppointment' component={BookAppointment} />
+            <Route path='/appointments/createAppointmentlife/:id/:mid' component={BookAppointmentlife} />
             <Route path='/schedules' exact component={ScheduleList} />
             <Route path='/schedule/postSchedule' component={PostSchedule} />
             <Route path='/task/createTask' exact component={CreateTask} />

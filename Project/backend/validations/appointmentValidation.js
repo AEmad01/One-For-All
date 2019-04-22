@@ -7,8 +7,8 @@ module.exports = {
             slot: Joi.string(),
             lifeCoachID:Joi.string(),
             lifeCoachName:Joi.string(),
-            memberID:Joi.string().required(),
-            memberName:Joi.string().required(),
+            memberID:Joi.string(),
+            memberName:Joi.string(),
            
 
         }
