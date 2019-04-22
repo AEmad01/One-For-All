@@ -60,9 +60,8 @@ router.get('/:id',async (req, res) => {
 //gets the tasks of a user
 router.get('/task/:id',async (req, res) => {
     const partnerId = req.params.id
-    const partner = await Partner.findById(partnerId)  
-    const tasks = partner.Task
-    if(!partner) return res.status(400).send({error:result.error.details[0].message});
+    const tasks = await Task.find({partnerID: partnerId}) 
+    if(!tasks) return res.status(400).send({error:result.error.details[0].message});
     res.json({data:tasks})
 })
 
@@ -100,8 +99,8 @@ router.delete('/:id',async (req, res) => {
     
     partners.splice(index,1)*/
     
-    const deleteuser = await user.findOneAndDelete(partner1.username)
-    res.send({msg:"done"})
+    const deleteuser = await User.findOneAndDelete({username: partner1.username})
+    res.send({msg:deleteuser})
 })
   
 router.put('/addAttribute/:id', async (req,res) => {

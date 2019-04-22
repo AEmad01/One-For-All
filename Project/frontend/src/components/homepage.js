@@ -42,6 +42,8 @@ export default class Homepage extends Component {
         .then( response => {
             const token = response.data.token
             const id = response.data.userid
+            const name = response.data.name
+            localStorage.setItem('username',name)
             localStorage.setItem('userid',id)
             localStorage.setItem('jwtToken',token)
             setAuthToken(token)
