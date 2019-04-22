@@ -158,11 +158,5 @@ router.get('/schedule/:id', async (req, res) => {
   const allsched = await Schedule.find();
   const filtered= allsched.filter(allsched => allsched.lifeCoachID===id);
   res.send({ data:filtered})
-
-
-
-
-
-  
 });
 module.exports = router;
