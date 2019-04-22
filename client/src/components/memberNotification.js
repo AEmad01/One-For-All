@@ -3,15 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 const Member = props => (
     <tr>
-        <td>{props.member.name}</td>
-        <td>{props.member.age}</td>
-        <td>{props.member.skills}</td>
-        <td>{props.member.intrests}</td>
-        <td>{props.member.pastEvents}</td>
-        <td>{props.member.completedProjects}</td>
-        <td>{props.member.reviews}</td>
-        <td>{props.member.certificates}</td>
-        
+        <td>{props.member}</td>
         </tr>
 )
 
@@ -22,9 +14,10 @@ export default class MemberList extends Component {
         this.state = {members: []}
     }
     componentDidMount() {
-        axios.get('/api/members/')
+
+        axios.get('/api/members/notification/'+localStorage.getItem('userid'))
             .then(response => {
-                this.setState({members: response.data.data});
+               this.setState({members: response.data.data});
             })
             .catch(function (error) {
                 console.log(error);
@@ -39,19 +32,10 @@ export default class MemberList extends Component {
     render() {
         return(
             <div>
-                
-                <h3>Member List</h3>                
                 <table className='table table-striped' style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Skills</th>
-                            <th>Intrests</th>
-                            <th>Past Events</th>
-                            <th>Completed Projects</th>
-                            <th>Reviews</th>
-                            <th>Certificate</th>
+                            <th>Notifications</th>
                         </tr>
                     </thead>
                     <tbody>

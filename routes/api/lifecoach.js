@@ -125,6 +125,8 @@ router.put("/update/:id", async (req, res) => {
         .send({ error: isValidated.error.details[0].message });
     
     const updatedLifecoach = await Lifecoach.findOneAndUpdate({_id: id} , req.body);
+    if(req.body.username) await user.findOneAndUpdate({id: updatedLifecoach._id},{username: req.body.username})
+    if(req.body.password) await user.findOneAndUpdate({id: updatedLifecoach._id},{password: req.body.password})
     res.json({ msg: "Lifecoach updated successfully" });
   } catch (error) {
     // We will be handling the error later

@@ -6,7 +6,7 @@ export default class DeletePartner extends Component {
     componentDidMount() {
         axios.delete('/api/partners/' + this.props.match.params.id )
         alert('Partner Deleted Successfully!')
-        window.location.replace("/partners");
+        window.location.replace("/");
     }
 
     render() {

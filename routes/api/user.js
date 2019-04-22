@@ -3,9 +3,13 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const User = require('../../models/User')
+const Admin = require('../../models/Admin')
+const Lifecoach = require('../../models/lifecoach')
+const Partner = require('../../models/Partner')
+const Member = require('../../models/Member')
+const tokenKey = require('../../config/keys').secretOrKey
 const validator = require('../../validations/userValidations')
 
-const tokenKey = process.env.SECRET || 'verysecretkey'
 
 router.get("/", async (req, res) => {
     const users = await User.find();
@@ -27,32 +31,40 @@ router.get("/", async (req, res) => {
             name: user.name,
             username: user.username
           }
+          const result =  await Admin.find({ _id: user.id })
+          const name = result[0].name
           const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-          return res.json({token: `A ${token}`,userid: user.id})
+          return res.json({token: `A ${token}`,userid: user.id,name: name})
         } else if( user.type === 'partner') {
             const payload = {
               id: user._id,
               name: user.name,
               username: user.username
             }
+            const result = await Partner.find({_id: user.id})
+            const name = result[0].name
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({token: `P ${token}`,userid: user.id})
+            return res.json({token: `P ${token}`,userid: user.id,name: name})
         } else if( user.type === 'lifecoach') {
             const payload = {
               id: user._id,
               name: user.name,
               username: user.username
             }
+            const result = await Lifecoach.find({_id: user.id})
+            const name = result[0].name
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({token: `L ${token}`,userid: user.id})
+            return res.json({token: `L ${token}`,userid: user.id,name: name})
         } else if( user.type === 'member') {
             const payload = {
               id: user._id,
               name: user.name,
               username: user.username
             }
+            const result = await Member.find({_id: user.id})
+            const name = result[0].name
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
-            return res.json({token: `M ${token}`,userid: user.id})
+            return res.json({token: `M ${token}`,userid: user.id, name: name})
         }
       }
       else return res.status(400).send({ password: 'Wrong password' });

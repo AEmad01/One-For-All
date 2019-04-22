@@ -90,7 +90,7 @@ export default class updateCoach extends Component {
       this.setState({
       });
       alert("Coach updated Successfully")
-      window.location.replace("/lifecoach");
+      window.location.replace("/profile");
 
     }
       

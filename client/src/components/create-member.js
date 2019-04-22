@@ -111,7 +111,7 @@ export default class CreateMember extends Component {
         reviews:'',
         certificates:''
       });
-      window.location.assign("/")
+      window.location.assign("http://localhost:3000")
     }
       
       render() {

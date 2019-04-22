@@ -6,10 +6,6 @@ const Admin = props => (
     <tr>
         <td>{props.admin.name}</td>
         <td>{props.admin.age}</td>
-        <td>
-            <Link to={'/deleteadmin/'+props.admin._id}>Delete</Link>
-        </td>
-        <td><Link to={'/updateadmin/'+props.admin._id}>Update</Link></td> 
     </tr>
 )
 export default class AdminList extends Component {
@@ -54,8 +50,6 @@ adminlist() {
                         <tr>
                             <th>Name</th>
                             <th>age</th>
-                            <th>delete</th>
-                            <th>update</th>
                         </tr>
                     </thead>
                     <tbody>
