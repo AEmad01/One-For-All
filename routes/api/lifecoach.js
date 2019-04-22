@@ -55,7 +55,7 @@ router.get('/:id',async (req, res) => {
     
   }
   ,function() {
-open("http://localhost:3000/api/lifecoach/notification/"+lifecoachID);
+open("/api/lifecoach/notification/"+lifecoachID);
   });   
 })
 // Create a new lifecoach
