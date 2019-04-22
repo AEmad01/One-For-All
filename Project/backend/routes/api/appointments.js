@@ -167,4 +167,17 @@ router.get("/getappsL/:id", async (req, res) => {
   }
 });
 
+
+router.get("/check/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const appointments = await appointment.findById(id);
+    const filtered = appointments.confirm;
+    res.json({data:filtered});
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error);
+  }
+});
+
 module.exports = router;
