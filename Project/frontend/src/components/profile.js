@@ -19,7 +19,6 @@ const ProP = props => (
     <tr>
         <td>{props.profile.name}</td>
         <td>{props.profile.age}</td>
-        <td>{props.profile.Task}</td>
         <td>
             <Link to={'/partners/put/'+localStorage.getItem('userid')}>Update</Link>
         </td>
@@ -32,6 +31,7 @@ const ProP = props => (
         <td>
             <Link to={'partners/task/'+localStorage.getItem('userid')}>Create new Task</Link>
         </td>
+        <td>{props.profile.Task}</td>
     </tr>
 )
 
@@ -241,9 +241,9 @@ export default class Profile extends Component {
                                 <tr>    
                                     <th>Name</th>
                                     <th>Age</th>
-                                    <th>Task</th>
-                                   <th>Update</th>
+                                   <th>Update Information</th>
                                    <th>Delete My Account</th>
+                                   <th>View My Tasks</th>
                                 </tr>
                             </thead>
                             <tbody>
