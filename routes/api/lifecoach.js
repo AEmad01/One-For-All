@@ -51,15 +51,6 @@ router.get('/:id',async (req, res) => {
    const lifecoach1 = await Lifecoach.findById(lifecoachID)
    if(!lifecoach1) return res.status(404).send({error:result.error.details[0].message})
    res.send(lifecoach1)
-
-   if(lifecoach1.Notification.length!=0){
-    notifier.notify({
-        'title': 'Alert',
-        'message': 'You have new Notifications',
-        'wait': true
-        }
-      );
-    }
   }
 )
 // Create a new lifecoach
